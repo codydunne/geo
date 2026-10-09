@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.18.0",
+  "scripts": {
+    "test": "node --test",
+    "typecheck": "tsc --noEmit -p jsconfig.json"
+  },
+  "devDependencies": {
+    "@types/node": "24.10.1",
+    "typescript": "5.9.3"
+  }
+}

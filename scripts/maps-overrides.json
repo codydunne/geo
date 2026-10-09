@@ -1,0 +1,149 @@
+{
+ "geocoder": "https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&q={a}",
+ "order": [
+  "Main",
+  "Outdoor",
+  "Imagery",
+  "Street-level",
+  "Weather",
+  "Photos",
+  "Wikipedia",
+  "Info",
+  "OSM tools",
+  "Apps",
+  "Other"
+ ],
+ "categories": {
+  "Main maps": "Main",
+  "Global/Trans-national services": "Main",
+  "Other maps": "Other",
+  "Specials": "Other",
+  "Local maps": "Other",
+  "OSM local chapter": "OSM tools",
+  "Utilities": "OSM tools",
+  "External App": "Apps",
+  "Map portal": "Other",
+  "Wikimedia maps": "Wikipedia",
+  "Wikipedia articles": "Wikipedia",
+  "Photos": "Photos",
+  "Other information": "Info",
+  "International waters": "Other"
+ },
+ "regions": {
+  "KO": "KR",
+  "SJ": [
+   [
+    -9.1,
+    70.8,
+    33.7,
+    80.9
+   ]
+  ],
+  "AQ": [
+   [
+    -180,
+    -90,
+    180,
+    -60
+   ]
+  ],
+  "XS": [
+   [
+    -180,
+    -90,
+    180,
+    -60
+   ]
+  ],
+  "XN": [
+   [
+    -180,
+    66.56,
+    180,
+    90
+   ]
+  ],
+  "XZ": null
+ },
+ "maps": [
+  {
+   "id": "osm",
+   "match": "OpenStreetMap"
+  },
+  {
+   "id": "google",
+   "match": "Google Maps"
+  },
+  {
+   "id": "apple",
+   "match": "Apple Maps"
+  },
+  {
+   "id": "bing",
+   "match": "Bing Maps"
+  },
+  {
+   "id": "here",
+   "match": "HERE WeGo"
+  },
+  {
+   "id": "waze",
+   "match": "Waze"
+  },
+  {
+   "id": "osmcycle",
+   "match": "CyclOSM",
+   "c": "Outdoor"
+  },
+  {
+   "id": "rwgps",
+   "n": "RideWithGPS",
+   "c": "Outdoor",
+   "u": "https://ridewithgps.com/routes/new?center={lat}%2C{lon}&zoom={z}",
+   "p": [
+    "ridewithgps\\.com/.*[?&]center=(?<lat>[-+]?\\d+(?:\\.\\d+)?)(?:%2C|,)(?<lon>[-+]?\\d+(?:\\.\\d+)?)(?:.*[?&]zoom=(?<z>\\d+))?"
+   ]
+  },
+  {
+   "id": "alltrails",
+   "n": "AllTrails",
+   "c": "Outdoor",
+   "u": "https://www.alltrails.com/explore?b_tl_lat={n}&b_tl_lng={w}&b_br_lat={s}&b_br_lng={e}"
+  },
+  {
+   "id": "google-satellite",
+   "n": "Google Maps Satellite",
+   "c": "Imagery",
+   "u": "https://www.google.com/maps/@{lat},{lon},{z}z/data=!3m1!1e3"
+  },
+  {
+   "id": "google-streetview",
+   "n": "Google Street View",
+   "c": "Street-level",
+   "u": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint={lat},{lon}"
+  },
+  {
+   "id": "ventusky",
+   "n": "Ventusky",
+   "c": "Weather",
+   "u": "https://www.ventusky.com/?p={lat};{lon};{z}"
+  },
+  {
+   "id": "yelp",
+   "n": "Yelp",
+   "c": "Other",
+   "u": "https://www.yelp.com/search?l=g%3A{e}%2C{n}%2C{w}%2C{s}"
+  },
+  {
+   "id": "worldview",
+   "n": "NASA EOSDIS Worldview",
+   "c": "Imagery",
+   "u": "https://worldview.earthdata.nasa.gov/?v={w},{s},{e},{n}"
+  },
+  {
+   "id": "omniscale",
+   "match": "Omniscale",
+   "u": "https://maps.omniscale.com/en/p/map#map={z}/{lat}/{lon}/3857/B"
+  }
+ ]
+}

@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "checkJs": true,
+    "strict": true,
+    "noEmit": true,
+    "target": "es2022",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "lib": ["es2022", "dom", "dom.iterable"],
+    "types": ["node"],
+    "resolveJsonModule": true
+  },
+  "include": ["web/_/*.js", "tests/*.js"]
+}
