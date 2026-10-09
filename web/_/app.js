@@ -12,6 +12,8 @@ const list = $("list");
 const featured = $("featured");
 const filter = /** @type {HTMLInputElement} */ ($("filter"));
 const q = /** @type {HTMLInputElement} */ ($("q"));
+const showDisabled = /** @type {HTMLInputElement} */ ($("show-disabled"));
+const showRegions = /** @type {HTMLInputElement} */ ($("show-regions"));
 
 /** @type {MapData} */
 const data = await (await fetch("_/maps.json")).json();
@@ -50,8 +52,10 @@ const cache = {
 };
 
 /**
- * One Nominatim lookup per address, ever, per browser: the result is cached and the
- * canonical URL then carries coordinates, so reloads never ask again (usage policy).
+ * One lookup per address, ever, per browser: the result is cached and the canonical
+ * URL then carries coordinates, so reloads never ask again (usage policy).
+ * Geocoders are tried in order; Nominatim matches names exactly ("Trader Joes" misses
+ * "Trader Joe's"), so the fuzzy Photon runs only when it finds nothing or fails.
  * @param {string} a
  * @returns {Promise<{lat: string, lon: string} | null>}
  */
@@ -59,20 +63,48 @@ async function geocode(a) {
   const key = `geo:a:${a}`;
   const hit = cache.get(key);
   if (hit) return hit;
-  const url = (data.geocoder ?? "").replace("{a}", encodeURIComponent(a));
-  const res = await fetch(url, { headers: { Accept: "application/json" } });
-  if (!res.ok) throw new Error(`geocoder HTTP ${res.status}`);
-  const [r] = await res.json();
-  if (!r) return null;
-  // Nominatim returns decimal strings: the same truncation rule as typed input.
-  const out = { lat: trunc6(String(r.lat)), lon: trunc6(String(r.lon)) };
-  cache.set(key, out);
-  return out;
+  let err;
+  for (const tpl of data.geocoders ?? []) {
+    try {
+      const res = await fetch(tpl.replace("{a}", encodeURIComponent(a)), {
+        headers: { Accept: "application/json" },
+      });
+      if (!res.ok) throw new Error(`geocoder HTTP ${res.status}`);
+      const j = await res.json();
+      // Nominatim: [{lat, lon}] as decimal strings; Photon: GeoJSON [lon, lat] numbers.
+      const c = j.features?.[0]?.geometry.coordinates;
+      const r = c ? { lat: c[1], lon: c[0] } : j[0];
+      if (!r) continue;
+      // Same truncation rule as typed input.
+      const out = { lat: trunc6(String(r.lat)), lon: trunc6(String(r.lon)) };
+      cache.set(key, out);
+      return out;
+    } catch (e) {
+      err = e;
+    }
+  }
+  if (err) throw err;
+  return null;
 }
 
 function updateUrl() {
   const url = canonical(st);
   if (url !== location.pathname + location.search + location.hash) history.replaceState(null, "", url);
+}
+
+/**
+ * A disabled map (dead service, kept so its published id still resolves) stays a link
+ * so it can still be tried, but is marked as broken.
+ * @param {import("./geo.js").MapDef} d @param {string} text @param {string} [cls]
+ */
+function link(d, text, cls = "") {
+  const el = document.createElement("a");
+  el.className = d.disabled ? `${cls} disabled`.trim() : cls;
+  el.textContent = d.disabled ? `${text} (disabled)` : text;
+  el.href = fill(d.u, st);
+  el.rel = "noopener";
+  if (d.disabled) el.title = "This service appears to no longer work";
+  return el;
 }
 
 function renderFeatured() {
@@ -83,12 +115,7 @@ function renderFeatured() {
   featured.replaceChildren();
   const name = document.createElement("strong");
   name.textContent = d.n;
-  const open = document.createElement("a");
-  open.className = "button";
-  open.href = fill(d.u, st);
-  open.textContent = "Open";
-  open.rel = "noopener";
-  featured.append(name, open);
+  featured.append(name, link(d, "Open", d.disabled ? "" : "button"));
 }
 
 function renderList() {
@@ -97,7 +124,8 @@ function renderList() {
   /** @type {Map<string, HTMLElement>} */
   const groups = new Map();
   for (const d of data.maps) {
-    if (!inRegion(d, st, data.regions)) continue;
+    if (d.disabled && !showDisabled.checked) continue;
+    if (!showRegions.checked && !inRegion(d, st, data.regions)) continue;
     let ul = groups.get(d.c);
     if (!ul) {
       const det = document.createElement("details");
@@ -115,12 +143,8 @@ function renderList() {
       groups.set(d.c, ul);
     }
     const li = document.createElement("li");
-    const a = document.createElement("a");
-    a.href = fill(d.u, st);
-    a.textContent = d.n;
-    a.rel = "noopener";
     li.dataset.n = d.n.toLowerCase();
-    li.append(a);
+    li.append(link(d, d.n));
     ul.append(li);
   }
   applyFilter();
@@ -128,6 +152,7 @@ function renderList() {
 
 function applyFilter() {
   const f = filter.value.trim().toLowerCase();
+  $("filter-clear").hidden = !filter.value;
   for (const det of /** @type {NodeListOf<HTMLDetailsElement>} */ (list.querySelectorAll("details"))) {
     const catHit = (det.dataset.c ?? "").includes(f);
     let shown = 0;
@@ -136,7 +161,8 @@ function applyFilter() {
       if (!li.hidden) shown++;
     }
     det.hidden = shown === 0;
-    /** @type {HTMLElement} */ (det.querySelector(".count")).textContent = `(${shown})`;
+    const total = det.querySelectorAll("li").length;
+    /** @type {HTMLElement} */ (det.querySelector(".count")).textContent = f ? `(${shown}/${total} shown)` : `(${total})`;
   }
 }
 
@@ -163,7 +189,8 @@ function update(moveMap = true) {
   updateUrl();
   $("where").textContent =
     st.lat !== undefined ? `${st.a ? st.a + " · " : ""}${st.lat}, ${st.lon}` : "Click the map to drop a pin, or enter a location above.";
-  q.placeholder = st.lat !== undefined ? `${st.lat},${st.lon}` : "Coordinates, map URL, or address";
+  // The current location is the field's value, not its placeholder, so it can be edited; don't clobber typing.
+  if (document.activeElement !== q) q.value = st.lat !== undefined ? `${st.lat},${st.lon}` : "";
   if (moveMap) renderMap();
   renderFeatured();
   renderList();
@@ -218,10 +245,17 @@ $("go").addEventListener("submit", (e) => {
   // Anything we cannot read as a location is an address: `a=` is the only geocoding trigger.
   const next = parse(v, data) ?? parse(`a=${encodeURIComponent(v)}`, data);
   if (next) load({ ...next, m: next.m ?? st.m });
-  q.value = "";
+  q.blur(); // lets update() show the resolved coordinates
 });
 
 filter.addEventListener("input", applyFilter);
+showDisabled.addEventListener("change", renderList);
+showRegions.addEventListener("change", renderList);
+$("filter-clear").addEventListener("click", () => {
+  filter.value = "";
+  applyFilter();
+  filter.focus();
+});
 
 $("copy").addEventListener("click", async () => {
   try {

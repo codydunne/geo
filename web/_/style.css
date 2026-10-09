@@ -105,6 +105,22 @@ input[type="text"], input[type="search"] {
 }
 input:focus { outline: none; border-color: var(--accent); }
 
+/* Own clear button: Firefox has no native one, so hide WebKit's to avoid two. */
+.filter { position: relative; }
+.filter input { padding-right: 2.25rem; }
+.filter input::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
+#filter-clear {
+  position: absolute;
+  top: 50%;
+  right: 0.25rem;
+  transform: translateY(-50%);
+  padding: 0 0.5rem;
+  background: none;
+  color: var(--muted);
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
 button, .button {
   display: inline-block;
   padding: 0.55rem 1rem;
@@ -174,6 +190,9 @@ button:hover, .button:hover { opacity: 0.88; text-decoration: none; }
   column-gap: 1.5rem;
 }
 .group li { padding: 0.15rem 0; break-inside: avoid; }
+a.disabled { color: var(--error); text-decoration: line-through; }
+.toggles { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; padding: 0.75rem 0; color: var(--muted); }
+.toggles label { cursor: pointer; }
 
 footer {
   margin-top: 2rem;

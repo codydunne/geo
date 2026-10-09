@@ -421,14 +421,21 @@ def check_patterns(maps: list[Map]) -> None:
             m.pop('p', None)
 
 
-def apply_overrides(maps: list[Map], ov: dict[str, Any]) -> tuple[list[Map], set[str]]:
+def apply_overrides(
+    maps: list[Map], ov: dict[str, Any]
+) -> tuple[list[Map], set[str], set[str]]:
     by_name = {m['n'].casefold(): m for m in maps}
     cat_alias: dict[str, str] = ov.get('categories', {})
     for m in maps:
         m['c'] = cat_alias.get(m['c'], m['c'])
     dropped_ids: set[str] = set()
+    disabled_ids: set[str] = set()
     for o in ov['maps']:
         o = dict(o)
+        # Matched by id after gone-upstream entries are kept, so it covers those too.
+        if o.pop('disabled', False):
+            disabled_ids.add(o['id'])
+            continue
         target = by_name.get(o.pop('match', o.get('n', '')).casefold())
         if o.pop('drop', False):
             dropped_ids.add(o['id'])
@@ -441,7 +448,7 @@ def apply_overrides(maps: list[Map], ov: dict[str, Any]) -> tuple[list[Map], set
             maps.append(o | {'s': ['x']})
         else:
             print(f'  override {o["id"]}: no map matched', file=sys.stderr)
-    return maps, dropped_ids
+    return maps, dropped_ids, disabled_ids
 
 
 def assign_ids(maps: list[Map], prev: list[Map]) -> None:
@@ -578,7 +585,7 @@ def main() -> None:
                 m['r'] = [code]
             else:
                 print(f'  local map without region: {m["n"]}', file=sys.stderr)
-    maps, dropped_ids = apply_overrides(maps, ov)
+    maps, dropped_ids, disabled_ids = apply_overrides(maps, ov)
 
     # IDs first, so an entry that kept its name+host but changed its template
     # inherits its published id instead of leaving a stale copy behind.
@@ -595,6 +602,12 @@ def main() -> None:
     for m in kept:
         print(f'  kept (gone upstream): {m["id"]}', file=sys.stderr)
     maps += kept
+    for m in maps:
+        m.pop('disabled', None)
+        if m['id'] in disabled_ids:
+            m['disabled'] = True
+    if unknown := disabled_ids - {m['id'] for m in maps}:
+        print(f'  disabled ids not found: {sorted(unknown)}', file=sys.stderr)
 
     check_patterns(maps)
     reg = regions(maps, ov)
@@ -607,11 +620,11 @@ def main() -> None:
             m['n'].casefold(),
         )
     )
-    keys = ['id', 'n', 'c', 'u', 'p', 'r', 's']
+    keys = ['id', 'n', 'c', 'u', 'p', 'r', 's', 'disabled']
     data = {
         'v': 1,
         'src': SOURCES,
-        'geocoder': ov['geocoder'],
+        'geocoders': ov['geocoders'],
         'maps': [{k: m[k] for k in keys if k in m} for m in maps],
         'regions': reg,
     }

@@ -53,9 +53,21 @@ def main() -> None:
 
     def nominatim(route: Route) -> None:
         nominatim_calls.append(route.request.url)
+        # Misspelled names miss in Nominatim; the page must fall back to Photon.
+        miss = 'Joes' in route.request.url
         route.fulfill(
             content_type='application/json',
-            body=json.dumps([{'lat': '42.3736158', 'lon': '-71.1097335'}]),
+            body=json.dumps(
+                [] if miss else [{'lat': '42.3736158', 'lon': '-71.1097335'}]
+            ),
+        )
+
+    def photon(route: Route) -> None:
+        route.fulfill(
+            content_type='application/json',
+            body=json.dumps(
+                {'features': [{'geometry': {'coordinates': [-71.114146, 42.3581395]}}]}
+            ),
         )
 
     try:
@@ -77,6 +89,7 @@ def main() -> None:
                 page.on('pageerror', lambda e, errors=errors: errors.append(str(e)))
                 page.route('https://tile.openstreetmap.org/**', lambda r: r.abort())
                 page.route('https://nominatim.openstreetmap.org/**', nominatim)
+                page.route('https://photon.komoot.io/**', photon)
 
                 # Embedded Google URL with its own query string -> canonical path.
                 visit(
@@ -126,11 +139,28 @@ def main() -> None:
                 assert (
                     page.locator('#list summary', has_text='United States').count() == 0
                 )
+                page.check('#show-regions')
+                assert (
+                    page.locator('#list summary', has_text='United States').count() == 1
+                )
+                page.uncheck('#show-regions')
+
+                # Disabled maps: hidden unless asked for, then red links.
+                assert page.locator('#list a.disabled').count() == 0
+                page.check('#show-disabled')
+                dead = page.locator('#list a.disabled', has_text='Qwant Maps')
+                assert dead.count() == 1
+                assert 'qwant.com' in (dead.get_attribute('href') or '')
+                page.uncheck('#show-disabled')
 
                 # Filter.
                 page.fill('#filter', 'cyclosm')
                 visible = page.locator('#list li:not([hidden])').count()
                 assert 1 <= visible < 5, visible
+                assert page.locator('#list .count', has_text='shown').count() >= 1
+                page.click('#filter-clear')
+                assert page.input_value('#filter') == ''
+                assert page.locator('#filter-clear').is_hidden()
 
                 # Address -> one geocode -> canonical URL keeps `a`; reload does not geocode again.
                 before = len(nominatim_calls)
@@ -143,6 +173,13 @@ def main() -> None:
                 page.reload()
                 page.wait_for_selector('#list a')
                 assert len(nominatim_calls) == before + 1, nominatim_calls
+
+                # Nominatim miss -> Photon fallback.
+                visit(page, '/geo/?a=Trader%20Joes,%20Cambridge')
+                page.wait_for_function('location.pathname !== "/geo/"')
+                assert page.evaluate('location.pathname').startswith(
+                    '/geo/42.358139,-71.114146'
+                ), page.url
 
                 # Typed input: coordinates in the box.
                 page.fill('#q', '42°21′52.8″N 71°7′52.7″W')

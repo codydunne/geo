@@ -1,9 +1,12 @@
 {
- "geocoder": "https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&q={a}",
+ "geocoders": [
+  "https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&q={a}",
+  "https://photon.komoot.io/api/?limit=1&q={a}"
+ ],
  "order": [
   "Main",
   "Outdoor",
-  "Imagery",
+  "Imagery/Satellite/Aerial",
   "Street-level",
   "Weather",
   "Photos",
@@ -124,7 +127,7 @@
   {
    "id": "google-satellite",
    "n": "Google Maps Satellite",
-   "c": "Imagery",
+   "c": "Imagery/Satellite/Aerial",
    "u": "https://www.google.com/maps/@{lat},{lon},{z}z/data=!3m1!1e3"
   },
   {
@@ -148,7 +151,7 @@
   {
    "id": "worldview",
    "n": "NASA EOSDIS Worldview",
-   "c": "Imagery",
+   "c": "Imagery/Satellite/Aerial",
    "u": "https://worldview.earthdata.nasa.gov/?v={w},{s},{e},{n}"
   },
   {
@@ -179,6 +182,151 @@
    "r": [
     "JP"
    ]
+  },
+  {
+   "match": "ACME Mapper Satellite",
+   "c": "Imagery/Satellite/Aerial"
+  },
+  {
+   "match": "Apple Maps Satellite",
+   "c": "Imagery/Satellite/Aerial"
+  },
+  {
+   "match": "Bing Maps Aerial",
+   "c": "Imagery/Satellite/Aerial"
+  },
+  {
+   "match": "Esri World Imagery Wayback",
+   "c": "Imagery/Satellite/Aerial"
+  },
+  {
+   "match": "Google Earth",
+   "c": "Imagery/Satellite/Aerial"
+  },
+  {
+   "match": "Google Earth Web",
+   "c": "Imagery/Satellite/Aerial"
+  },
+  {
+   "match": "Google Maps Earth Timelapse",
+   "c": "Imagery/Satellite/Aerial"
+  },
+  {
+   "match": "HERE WeGo Satellite",
+   "c": "Imagery/Satellite/Aerial"
+  },
+  {
+   "match": "MapQuest Satellite",
+   "c": "Imagery/Satellite/Aerial"
+  },
+  {
+   "match": "Mapy.com Aerial",
+   "c": "Imagery/Satellite/Aerial"
+  },
+  {
+   "match": "Wikimapia Satellite",
+   "c": "Imagery/Satellite/Aerial"
+  },
+  {
+   "match": "OpenAerialMap",
+   "c": "Imagery/Satellite/Aerial"
+  },
+  {
+   "match": "Satellites.pro",
+   "c": "Imagery/Satellite/Aerial"
+  },
+  {
+   "match": "Soar.Earth",
+   "c": "Imagery/Satellite/Aerial"
+  },
+  {
+   "match": "Zoom Earth",
+   "c": "Imagery/Satellite/Aerial"
+  },
+  {
+   "id": "qwant-maps",
+   "match": "Qwant Maps",
+   "disabled": true
+  },
+  {
+   "id": "rambler-maps",
+   "match": "Rambler Maps / Рамблер",
+   "disabled": true
+  },
+  {
+   "id": "maps-mail-ru-mail-ru",
+   "match": "Maps@Mail.ru / Карты@Mail.ru",
+   "disabled": true
+  },
+  {
+   "id": "maps-mail-ru-mail-ru-satellite",
+   "match": "Maps@Mail.ru / Карты@Mail.ru Satellite",
+   "disabled": true
+  },
+  {
+   "id": "copernix",
+   "match": "Copernix",
+   "disabled": true
+  },
+  {
+   "id": "parsijoo-map",
+   "match": "Parsijoo map",
+   "disabled": true
+  },
+  {
+   "id": "autopilot",
+   "match": "Autopilot",
+   "disabled": true
+  },
+  {
+   "id": "mapy-atlas-sk",
+   "match": "Mapy. Atlas.sk",
+   "disabled": true
+  },
+  {
+   "id": "cyprus-on-line",
+   "match": "Cyprus on-line",
+   "disabled": true
+  },
+  {
+   "id": "geopedia",
+   "match": "Geopedia",
+   "disabled": true
+  },
+  {
+   "id": "geopedia-terrain",
+   "match": "Geopedia Terrain",
+   "disabled": true
+  },
+  {
+   "id": "geopedia-orthophoto",
+   "match": "Geopedia Orthophoto",
+   "disabled": true
+  },
+  {
+   "id": "openindoor",
+   "match": "OpenIndoor",
+   "disabled": true
+  },
+  {
+   "id": "protomaps-com",
+   "match": "protomaps.com",
+   "disabled": true
+  },
+  {
+   "id": "osmchina",
+   "match": "OSMChina",
+   "disabled": true
+  },
+  {
+   "id": "open-historical-map-nominatim-reverse-geocoding",
+   "match": "Open Historical Map Nominatim (reverse geocoding)",
+   "disabled": true
+  },
+  {
+   "id": "nasa-msfc-goes",
+   "match": "NASA/MSFC GOES",
+   "disabled": true
   }
  ]
 }

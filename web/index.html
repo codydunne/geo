@@ -33,15 +33,22 @@
       </div>
       <div class="right">
         <div id="featured" class="featured" hidden></div>
-        <input type="search" id="filter" aria-label="Filter maps" placeholder="Filter maps by name or category">
+        <div class="filter">
+          <input type="search" id="filter" aria-label="Filter maps" placeholder="Filter maps by name or category">
+          <button type="button" id="filter-clear" aria-label="Clear filter" hidden>&times;</button>
+        </div>
         <div id="list"></div>
+        <div class="toggles">
+          <label><input type="checkbox" id="show-disabled"> Show disabled</label>
+          <label><input type="checkbox" id="show-regions"> Show other regions</label>
+        </div>
       </div>
     </div>
     <footer>
-      Map links collected from
+      Credits: Map links collected from
       <a href="https://geohack.toolforge.org/">GeoHack</a> (<a href="https://en.wikipedia.org/wiki/Template:GeoTemplate">Template:GeoTemplate</a>, CC BY-SA 4.0) and
       <a href="https://github.com/tankaru/OpenSwitchMapsWeb">OpenSwitchMaps</a> (MIT).
-      Geocoding by <a href="https://nominatim.org/">Nominatim</a>.
+      Geocoding by <a href="https://nominatim.org/">Nominatim</a> and <a href="https://photon.komoot.io/">Photon</a>.
       Region outlines from <a href="https://www.naturalearthdata.com/">Natural Earth</a>.
       Map by <a href="https://leafletjs.com/">Leaflet</a> with
       <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> tiles.

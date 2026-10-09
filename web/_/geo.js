@@ -3,8 +3,8 @@
 /**
  * @typedef {{lat?: string, lon?: string, z?: number, m?: string, a?: string}} State
  *   lat/lon stay strings so the digits a user typed survive canonicalization.
- * @typedef {{id: string, n: string, c: string, u: string, p?: string[], r?: (string | number[])[], s?: string[]}} MapDef
- * @typedef {{v: number, geocoder?: string, maps: MapDef[], regions: Record<string, number[][]>}} MapData
+ * @typedef {{id: string, n: string, c: string, u: string, p?: string[], r?: (string | number[])[], s?: string[], disabled?: boolean}} MapDef
+ * @typedef {{v: number, geocoders?: string[], maps: MapDef[], regions: Record<string, number[][]>}} MapData
  */
 
 export const BASE = "/geo/";

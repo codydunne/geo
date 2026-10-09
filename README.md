@@ -15,7 +15,7 @@ The map list is the union of [GeoHack](https://geohack.toolforge.org/), [OpenSwi
 | `<lat>,<lon>` | Decimal degrees; digits kept as entered, truncated past 6 decimals | — |
 | `z` | OSM-scale zoom, converted per provider | 15 |
 | `m` | Map ID to feature at the top (never auto-redirects) | none |
-| `a` | Pin label; on its own (`/geo/?a=…`) it is geocoded once via Nominatim | none |
+| `a` | Pin label; on its own (`/geo/?a=…`) it is geocoded once via Nominatim, falling back to Photon | none |
 
 A bare `/geo/` shows Cambridge, MA at zoom 10 (greater Boston) with no pin; click the map to drop one, or use the input box or My location.
 Anything after `/geo/` is parsed, then replaced by the canonical form:
@@ -89,4 +89,4 @@ Code: MIT ([`LICENSE`](LICENSE)).
 Map link formats come from GeoHack's Template:GeoTemplate (Wikipedia contributors, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)) and OpenSwitchMaps / OpenSwitchMapsWeb by tankaru (MIT); `web/_/maps.json` records its sources per entry.
 Regional bboxes are derived from [Natural Earth](https://www.naturalearthdata.com/) (public domain).
 Bundled: [Leaflet](https://leafletjs.com/) 1.9.4 (BSD-2-Clause, `web/_/leaflet/LICENSE`) and Atkinson Hyperlegible by the Braille Institute (SIL OFL 1.1, `web/_/fonts/OFL.txt`).
-The page uses [OpenStreetMap](https://www.openstreetmap.org/copyright) tiles and [Nominatim](https://nominatim.org/) under their usage policies.
+The page uses [OpenStreetMap](https://www.openstreetmap.org/copyright) tiles, [Nominatim](https://nominatim.org/), and [Photon](https://photon.komoot.io/) under their usage policies.
