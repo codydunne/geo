@@ -162,7 +162,7 @@ function renderMap() {
 function update(moveMap = true) {
   updateUrl();
   $("where").textContent =
-    st.lat !== undefined ? `${st.a ? st.a + " · " : ""}${st.lat}, ${st.lon}` : "Open a location in any map.";
+    st.lat !== undefined ? `${st.a ? st.a + " · " : ""}${st.lat}, ${st.lon}` : "Click the map to drop a pin, or enter a location above.";
   q.placeholder = st.lat !== undefined ? `${st.lat},${st.lon}` : "Coordinates, map URL, or address";
   if (moveMap) renderMap();
   renderFeatured();
@@ -195,7 +195,12 @@ async function load(next) {
 
 // --- wiring ---
 
-map = L.map("map", { worldCopyJump: true }).setView([20, 0], 2);
+// With no location yet, show Cambridge, MA at greater-Boston zoom; a click drops the first pin.
+map = L.map("map", { worldCopyJump: true }).setView([42.3736, -71.1097], 10);
+map.on("click", (/** @type {any} */ e) => {
+  if (st.lat !== undefined) return; // after the first pin, move it by dragging
+  load({ lat: fmt(e.latlng.lat), lon: fmt(L.Util.wrapNum(e.latlng.lng, [-180, 180], true)), z: map.getZoom(), m: st.m });
+});
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 19,
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',

@@ -190,6 +190,25 @@ def main() -> None:
                 assert page.evaluate('window.pwned') is None
                 assert page.locator('.leaflet-popup-content img').count() == 0
 
+                # Bare /geo/ shows Cambridge with no pin; a click drops the first pin there.
+                page.goto(BASE + '/geo/')
+                page.wait_for_function(
+                    'document.querySelector("#where").textContent.startsWith("Click")'
+                )
+                assert page.locator('.leaflet-marker-icon').count() == 0
+                assert page.locator('#list a').count() == 0
+                page.click('#map', position={'x': 40, 'y': 120})
+                page.wait_for_selector('#list a')
+                path = page.evaluate('location.pathname')
+                lat, lon = (
+                    float(v)
+                    for v in path.removeprefix('/geo/').split('&')[0].split(',')
+                )
+                assert (
+                    path.endswith('&z=10') and 42.0 < lat < 42.8 and -71.6 < lon < -70.6
+                ), path
+                assert page.locator('.leaflet-marker-icon').count() == 1
+
                 # Unreadable input shows an error, not a crash.
                 visit(page, '/geo/not-a-place')
                 assert page.locator('#msg').is_visible()

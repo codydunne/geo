@@ -17,6 +17,7 @@ The map list is the union of [GeoHack](https://geohack.toolforge.org/), [OpenSwi
 | `m` | Map ID to feature at the top (never auto-redirects) | none |
 | `a` | Pin label; on its own (`/geo/?a=…`) it is geocoded once via Nominatim | none |
 
+A bare `/geo/` shows Cambridge, MA at zoom 10 (greater Boston) with no pin; click the map to drop one, or use the input box or My location.
 Anything after `/geo/` is parsed, then replaced by the canonical form:
 
 - `42.364678,-71.131311`, `42°21′52.8″N 71°7′52.7″W`, `42.36 N 71.13 W`, `geo:42.36,-71.13?z=15`
