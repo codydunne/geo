@@ -143,6 +143,15 @@ def main() -> None:
                 page.press('#q', 'Enter')
                 page.wait_for_function('location.pathname.startsWith("/geo/42.364667")')
 
+                # A label is text, never HTML.
+                visit(
+                    page,
+                    '/geo/42.36,-71.13&a=%3Cimg%20src%3Dx%20onerror%3D%22window.pwned%3D1%22%3E',
+                )
+                page.wait_for_selector('.leaflet-popup-content')
+                assert page.evaluate('window.pwned') is None
+                assert page.locator('.leaflet-popup-content img').count() == 0
+
                 # Unreadable input shows an error, not a crash.
                 visit(page, '/geo/not-a-place')
                 assert page.locator('#msg').is_visible()

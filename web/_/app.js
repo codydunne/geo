@@ -152,7 +152,8 @@ function renderMap() {
       update(false);
     });
   } else pin.setLatLng(ll);
-  if (st.a) pin.bindPopup(st.a).openPopup();
+  // The label comes from the URL: always text, never HTML (Leaflet uses innerHTML for strings).
+  if (st.a) pin.bindPopup(document.createTextNode(st.a)).openPopup();
   else pin.unbindPopup();
   map.setView(ll, z);
 }
@@ -168,18 +169,24 @@ function update(moveMap = true) {
   renderList();
 }
 
+/** Bumped per load, so a slow lookup cannot overwrite a newer location. */
+let generation = 0;
+
 /** @param {State} next */
 async function load(next) {
+  const gen = ++generation;
   say("");
   st = next;
   if (st.lat === undefined && st.a) {
     say(`Looking up "${st.a}"…`, "ok");
     try {
       const hit = await geocode(st.a);
+      if (gen !== generation) return;
       if (!hit) return say(`No match for "${st.a}".`);
       st = { ...st, ...hit };
       say("");
     } catch (e) {
+      if (gen !== generation) return;
       return say(`Address lookup failed (${e instanceof Error ? e.message : e}).`);
     }
   }
@@ -229,9 +236,14 @@ if (navigator.share) {
 $("locate").addEventListener("click", () => {
   if (!navigator.geolocation) return say("This browser has no geolocation.");
   say("Finding your location…", "ok");
+  const gen = generation;
   navigator.geolocation.getCurrentPosition(
-    (p) => load({ lat: fmt(p.coords.latitude), lon: fmt(p.coords.longitude), z: st.z, m: st.m }),
-    (err) => say(`Location unavailable (${err.message}).`),
+    (p) => {
+      if (gen === generation) load({ lat: fmt(p.coords.latitude), lon: fmt(p.coords.longitude), z: st.z, m: st.m });
+    },
+    (err) => {
+      if (gen === generation) say(`Location unavailable (${err.message}).`);
+    },
     { enableHighAccuracy: true, timeout: 15000 },
   );
 });
