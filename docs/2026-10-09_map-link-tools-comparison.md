@@ -92,7 +92,7 @@ The first four are derived from GeoHack's live links.
 | Natural Atlas | `https://naturalatlas.com/map/@{latitude},{longitude},{zoom}z` | From GeoHack |
 | USGS TopoView | `https://ngmdb.usgs.gov/topoview/viewer/#{zoom}/{latitude}/{longitude}` | From GeoHack |
 | NWS forecast | `https://forecast.weather.gov/MapClick.php?lat={latitude}&lon={longitude}` | From GeoHack |
-| RideWithGPS | `https://ridewithgps.com/routes/new?center={latitude}%2C{longitude}&zoom={zoom}` | **Unverified**; test once directly |
+| RideWithGPS | `https://ridewithgps.com/routes/new?center={latitude}%2C{longitude}&zoom={zoom}` | Verified |
 
 ## 5. Open items
 
