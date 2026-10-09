@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Every path under /geo/ serves this page, so assets must resolve from /geo/. -->
+  <base href="/geo/">
+  <title>geo · open a location in any map</title>
+  <meta name="description" content="Open a coordinate or map link in any of hundreds of map services.">
+  <link rel="stylesheet" href="_/leaflet/leaflet.css">
+  <link rel="stylesheet" href="_/style.css">
+  <script src="_/leaflet/leaflet.js" defer></script>
+  <script type="module" src="_/app.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1><a href="./">geo</a></h1>
+    <p class="subtitle" id="where">Open a location in any map.</p>
+    <div class="layout">
+      <div class="left">
+        <form id="go">
+          <input type="text" id="q" aria-label="Coordinates, map URL, or address"
+                 placeholder="Coordinates, map URL, or address" autocomplete="off" enterkeyhint="go">
+          <button type="submit">Go</button>
+        </form>
+        <div class="actions">
+          <button type="button" class="secondary" id="copy">Copy link</button>
+          <button type="button" class="secondary" id="share" hidden>Share</button>
+          <button type="button" class="secondary" id="locate">My location</button>
+        </div>
+        <p id="msg" class="message" role="status" hidden></p>
+        <div id="map" role="region" aria-label="Map of the location; drag the pin to move it"></div>
+      </div>
+      <div class="right">
+        <div id="featured" class="featured" hidden></div>
+        <input type="search" id="filter" aria-label="Filter maps" placeholder="Filter maps by name or category">
+        <div id="list"></div>
+      </div>
+    </div>
+    <footer>
+      Map links collected from
+      <a href="https://geohack.toolforge.org/">GeoHack</a> (<a href="https://en.wikipedia.org/wiki/Template:GeoTemplate">Template:GeoTemplate</a>, CC BY-SA 4.0) and
+      <a href="https://github.com/tankaru/OpenSwitchMapsWeb">OpenSwitchMaps</a> (MIT).
+      Geocoding by <a href="https://nominatim.org/">Nominatim</a>.
+      Region outlines from <a href="https://www.naturalearthdata.com/">Natural Earth</a>.
+      Map by <a href="https://leafletjs.com/">Leaflet</a> with
+      <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> tiles.
+    </footer>
+  </div>
+</body>
+</html>

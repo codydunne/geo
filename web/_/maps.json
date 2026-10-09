@@ -157,7 +157,7 @@
   },
   {
    "id": "copernicus-browser-sentinel-2",
-   "n": "Copernicus Browser (Sentinel-2",
+   "n": "Copernicus Browser (Sentinel-2)",
    "c": "Main",
    "u": "https://browser.dataspace.copernicus.eu/?zoom={z}&lat={lat}&lng={lon}&themeId=DEFAULT-THEME",
    "s": [
@@ -207,7 +207,7 @@
   },
   {
    "id": "geonames-text-xml",
-   "n": "GeoNames Text (XML",
+   "n": "GeoNames Text (XML)",
    "c": "Main",
    "u": "http://sws.geonames.org/extendedFindNearby?lat={lat}&lng={lon}",
    "s": [
@@ -652,26 +652,8 @@
    ]
   },
   {
-   "id": "virtualglobetrotting-wikidata-todo",
-   "n": "VirtualGlobetrotting Wikidata Todo",
-   "c": "Wikipedia",
-   "u": "https://wikidata-todo.toolforge.org/around.html?lat={lat}&lon={lon}&radius=15&lang=en",
-   "s": [
-    "gh"
-   ]
-  },
-  {
-   "id": "virtualglobetrotting-wikimap",
-   "n": "VirtualGlobetrotting WikiMap",
-   "c": "Wikipedia",
-   "u": "https://wikimap.toolforge.org/?lang=en&lon={lon}&lat={lat}&zoom={z}&commons=false",
-   "s": [
-    "gh"
-   ]
-  },
-  {
-   "id": "virtualglobetrotting-wikinearby",
-   "n": "VirtualGlobetrotting WikiNearby",
+   "id": "list-of-nearby-articles",
+   "n": "List of nearby articles",
    "c": "Wikipedia",
    "u": "https://wikinearby.toolforge.org/?lang=en&q={lat},+{lon}",
    "s": [
@@ -679,8 +661,8 @@
    ]
   },
   {
-   "id": "virtualglobetrotting-wikipedia",
-   "n": "VirtualGlobetrotting Wikipedia",
+   "id": "list-of-nearby-articles-wikipedia",
+   "n": "List of nearby articles Wikipedia",
    "c": "Wikipedia",
    "u": "https://en.wikipedia.org/wiki/Special:Nearby#/coord/{lat},{lon}",
    "s": [
@@ -688,8 +670,17 @@
    ]
   },
   {
-   "id": "virtualglobetrotting-wikipedia-world",
-   "n": "VirtualGlobetrotting Wikipedia World",
+   "id": "map-of-nearby-articles",
+   "n": "Map of nearby articles",
+   "c": "Wikipedia",
+   "u": "https://wikimap.toolforge.org/?lang=en&lon={lon}&lat={lat}&zoom={z}&commons=false",
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "map-of-nearby-articles-wikipedia-world",
+   "n": "Map of nearby articles Wikipedia World",
    "c": "Wikipedia",
    "u": "https://wiwosm.toolforge.org/osm-on-ol/kml-on-ol.php?la=en&uselang=en&lon={lon}&lat={lat}&rang=50&map=1",
    "s": [
@@ -697,10 +688,19 @@
    ]
   },
   {
-   "id": "virtualglobetrotting-wikishootme",
-   "n": "VirtualGlobetrotting WikiShootMe",
+   "id": "map-of-nearby-places-with-no-images",
+   "n": "Map of nearby places with no images",
    "c": "Wikipedia",
    "u": "https://wikishootme.toolforge.org/#lat={lat}&lng={lon}",
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "map-of-nearby-wikidata-items",
+   "n": "Map of nearby Wikidata items",
+   "c": "Wikipedia",
+   "u": "https://wikidata-todo.toolforge.org/around.html?lat={lat}&lon={lon}&radius=15&lang=en",
    "s": [
     "gh"
    ]
@@ -761,7 +761,7 @@
   },
   {
    "id": "mapit-from-mysociety",
-   "n": "MapIt (from mySociety",
+   "n": "MapIt (from mySociety)",
    "c": "Info",
    "u": "https://global.mapit.mysociety.org/point/4326/{lon},{lat}.html",
    "s": [
@@ -2460,8 +2460,8 @@
    ]
   },
   {
-   "id": "australian-geographic-reference-image-map",
-   "n": "Australian Geographic Reference Image Map",
+   "id": "austrian-map-amap-at-max-1-50-000",
+   "n": "Austrian map amap.at (max 1:50,000)",
    "c": "Austria",
    "u": "https://maps.bev.gv.at/#/center/{lon},{lat}/zoom/{z}",
    "r": [
@@ -2485,7 +2485,7 @@
   },
   {
    "id": "digitaler-atlas-steiermark-styria",
-   "n": "Digitaler Atlas Steiermark (Styria",
+   "n": "Digitaler Atlas Steiermark (Styria)",
    "c": "Austria",
    "u": "https://gis.stmk.gv.at/wgportal/atlasmobile/map/Basiskarten/Basiskarte?center={lon},{lat}&scale={scale}",
    "r": [
@@ -2497,7 +2497,7 @@
   },
   {
    "id": "doris-weboffice-upper-austria",
-   "n": "DORIS weboffice (Upper Austria",
+   "n": "DORIS weboffice (Upper Austria)",
    "c": "Austria",
    "u": "https://wikitools.toolforge.org/geolink.php?config=ooeatlas&lat={lat}&lon={lon}&scale={scale}",
    "r": [
@@ -2509,7 +2509,7 @@
   },
   {
    "id": "karnten-atlas-carinthia",
-   "n": "Kärnten Atlas (Carinthia",
+   "n": "Kärnten Atlas (Carinthia)",
    "c": "Austria",
    "u": "https://gis.ktn.gv.at/webgisviewer/atlas-mobile/map/Basiskarten/0rientierung%20u.%20Kataster?center={lon},{lat}&scale={scale}",
    "r": [
@@ -2521,7 +2521,7 @@
   },
   {
    "id": "no-atlas-lower-austria",
-   "n": "NÖ Atlas (Lower Austria",
+   "n": "NÖ Atlas (Lower Austria)",
    "c": "Austria",
    "u": "https://atlas.noe.gv.at/atlas/portal/noe-atlas/map/Planung%20und%20Kataster/Grundst%C3%BCcke?center={lon},{lat}&scale={scale}",
    "r": [
@@ -2533,7 +2533,7 @@
   },
   {
    "id": "sagis-salzburg",
-   "n": "SAGIS (Salzburg",
+   "n": "SAGIS (Salzburg)",
    "c": "Austria",
    "u": "https://www.salzburg.gv.at/sagismobile/sagisonline/map/Basiskarten/Alle%20Themen?center={lon},{lat}&scale={scale}",
    "r": [
@@ -2545,7 +2545,7 @@
   },
   {
    "id": "tirismaps-tyrol",
-   "n": "tirisMaps (Tyrol",
+   "n": "tirisMaps (Tyrol)",
    "c": "Austria",
    "u": "https://wikitools.toolforge.org/geolink.php?config=tirol&lat={lat}&lon={lon}&scale={scale}",
    "r": [
@@ -2557,7 +2557,7 @@
   },
   {
    "id": "vogis-vorarlberg",
-   "n": "VoGIS (Vorarlberg",
+   "n": "VoGIS (Vorarlberg)",
    "c": "Austria",
    "u": "https://atlas.vorarlberg.at/portal/map/Basiskarten/Adressen?center={lon},{lat}&scale={scale}",
    "r": [
@@ -2653,7 +2653,7 @@
   },
   {
    "id": "amap",
-   "n": "Amap (高德地图",
+   "n": "Amap (高德地图)",
    "c": "China",
    "u": "http://ditu.amap.com/regeo?lng={lon}&lat={lat}&name={a}",
    "r": [
@@ -2665,7 +2665,7 @@
   },
   {
    "id": "baidu-maps",
-   "n": "Baidu Maps (百度地图",
+   "n": "Baidu Maps (百度地图)",
    "c": "China",
    "u": "http://map.baidu.com/?latlng={lat},{lon}&title={a}&content={a}&autoOpen=true&l=",
    "r": [
@@ -2676,10 +2676,10 @@
    ]
   },
   {
-   "id": "gpixel",
-   "n": "Gpixel",
+   "id": "qq-map",
+   "n": "QQ Map (腾讯地图)",
    "c": "China",
-   "u": "https://artoria2e5.github.io/PRCoords/demo?lat={lat}&lon={lon}",
+   "u": "https://map.qq.com/?type=marker&isopeninfowin=1&markertype=1&pointx={lon}&pointy={lat}&name={a}&addr=ADDRESS",
    "r": [
     "CN"
    ],
@@ -2688,10 +2688,10 @@
    ]
   },
   {
-   "id": "qq-map",
-   "n": "QQ Map (腾讯地图",
+   "id": "this-web-page",
+   "n": "this web page",
    "c": "China",
-   "u": "https://map.qq.com/?type=marker&isopeninfowin=1&markertype=1&pointx={lon}&pointy={lat}&name={a}&addr=ADDRESS",
+   "u": "https://artoria2e5.github.io/PRCoords/demo?lat={lat}&lon={lon}",
    "r": [
     "CN"
    ],
@@ -2796,8 +2796,8 @@
    ]
   },
   {
-   "id": "rovaniemi",
-   "n": "Rovaniemi",
+   "id": "tampere",
+   "n": "Tampere",
    "c": "Finland",
    "u": "https://kuvaton.toolforge.org/wgs84-to-epsg3067?lat={lat}&lon={lon}&url=https://kartat.tampere.fi/oskari%3Flang=en%26zoomLevel=11%26coord=__E_____N__%26mapLayers=1918+100+raster",
    "r": [
@@ -2821,7 +2821,7 @@
   },
   {
    "id": "cartes-gouv-fr-1756-1815-cassini",
-   "n": "cartes.gouv.fr 1756-1815 (Cassini",
+   "n": "cartes.gouv.fr 1756-1815 (Cassini)",
    "c": "France",
    "u": "https://cartes.gouv.fr/explorer-les-cartes/?c={lon},{lat}&z={z}&l=BNF-IGNF_GEOGRAPHICALGRIDSYSTEMS.CASSINI$GEOPORTAIL:OGC:WMTS(1;1;1;0)&permalink=yes",
    "r": [
@@ -2833,7 +2833,7 @@
   },
   {
    "id": "cartes-gouv-fr-1820-1860-etat-major",
-   "n": "cartes.gouv.fr 1820-1860 (État Major",
+   "n": "cartes.gouv.fr 1820-1860 (État Major)",
    "c": "France",
    "u": "https://cartes.gouv.fr/explorer-les-cartes/?c={lon},{lat}&z={z}&l=GEOGRAPHICALGRIDSYSTEMS.ETATMAJOR40$GEOPORTAIL:OGC:WMTS(1;1;1;0)&permalink=yes",
    "r": [
@@ -2977,7 +2977,7 @@
   },
   {
    "id": "ign-geoportail-1756-1815-cassini",
-   "n": "IGN Géoportail 1756-1815 (Cassini",
+   "n": "IGN Géoportail 1756-1815 (Cassini)",
    "c": "France",
    "u": "https://www.geoportail.gouv.fr/carte?c={lon},{lat}&z={z}&l0=BNF-IGNF_GEOGRAPHICALGRIDSYSTEMS.CASSINI::GEOPORTAIL:OGC:WMTS(1)&permalink=yes",
    "r": [
@@ -3109,7 +3109,7 @@
   },
   {
    "id": "mapit-from-mysociety-2",
-   "n": "MapIt (from mySociety",
+   "n": "MapIt (from mySociety)",
    "c": "Great Britain",
    "u": "https://mapit.mysociety.org/point/4326/{lon},{lat}.html",
    "r": [
@@ -3276,8 +3276,8 @@
    ]
   },
   {
-   "id": "amud-anan-lang-he-rtl-yes",
-   "n": "Amud Anan {{lang|he|עמוד ענן|rtl=yes}}",
+   "id": "amud-anan",
+   "n": "Amud Anan עמוד ענן",
    "c": "Israel and Palestine",
    "u": "http://amudanan.co.il/?lon={lon}&lat={lat}",
    "r": [
@@ -3289,8 +3289,8 @@
    ]
   },
   {
-   "id": "amud-anan-lang-he-rtl-yes-1880",
-   "n": "Amud Anan {{lang|he|עמוד ענן|rtl=yes}} 1880",
+   "id": "amud-anan-1880",
+   "n": "Amud Anan עמוד ענן 1880",
    "c": "Israel and Palestine",
    "u": "http://amudanan.co.il/?lon={lon}&lat={lat}&map=pef",
    "r": [
@@ -3302,8 +3302,8 @@
    ]
   },
   {
-   "id": "palestine-open-maps-lang-ar-rtl-yes",
-   "n": "Palestine Open Maps {{lang|ar|خَرائط فلسطين المَفتوحة|rtl=yes}}",
+   "id": "palestine-open-maps",
+   "n": "Palestine Open Maps خَرائط فلسطين المَفتوحة",
    "c": "Israel and Palestine",
    "u": "https://palopenmaps.org/en/maps?basemap=14&overlay=pal1940&color=status&toggles=year#{z},{lon},{lat}",
    "r": [
@@ -3315,8 +3315,8 @@
    ]
   },
   {
-   "id": "palestine-open-maps-lang-ar-rtl-yes-1870s",
-   "n": "Palestine Open Maps {{lang|ar|خَرائط فلسطين المَفتوحة|rtl=yes}} 1870s",
+   "id": "palestine-open-maps-1870s",
+   "n": "Palestine Open Maps خَرائط فلسطين المَفتوحة 1870s",
    "c": "Israel and Palestine",
    "u": "https://palopenmaps.org/en/maps?basemap=11&overlay=pal1940&color=status&toggles=year#{z},{lon},{lat}",
    "r": [
@@ -3328,8 +3328,8 @@
    ]
   },
   {
-   "id": "palestine-open-maps-lang-ar-rtl-yes-1940-50s",
-   "n": "Palestine Open Maps {{lang|ar|خَرائط فلسطين المَفتوحة|rtl=yes}} 1940-50s",
+   "id": "palestine-open-maps-1940-50s",
+   "n": "Palestine Open Maps خَرائط فلسطين المَفتوحة 1940-50s",
    "c": "Israel and Palestine",
    "u": "https://palopenmaps.org/en/maps?basemap=8&overlay=pal1940&color=status&toggles=year#{z},{lon},{lat}",
    "r": [
@@ -3341,8 +3341,8 @@
    ]
   },
   {
-   "id": "palestine-open-maps-lang-ar-rtl-yes-1940s",
-   "n": "Palestine Open Maps {{lang|ar|خَرائط فلسطين المَفتوحة|rtl=yes}} 1940s",
+   "id": "palestine-open-maps-1940s",
+   "n": "Palestine Open Maps خَرائط فلسطين المَفتوحة 1940s",
    "c": "Israel and Palestine",
    "u": "https://palopenmaps.org/en/maps?basemap=16&overlay=pal1940&color=status&toggles=year#{z},{lon},{lat}",
    "r": [
@@ -3354,8 +3354,8 @@
    ]
   },
   {
-   "id": "palestine-open-maps-lang-ar-rtl-yes-1946",
-   "n": "Palestine Open Maps {{lang|ar|خَرائط فلسطين المَفتوحة|rtl=yes}} 1946",
+   "id": "palestine-open-maps-1946",
+   "n": "Palestine Open Maps خَرائط فلسطين المَفتوحة 1946",
    "c": "Israel and Palestine",
    "u": "https://palopenmaps.org/en/maps?basemap=6&overlay=pal1940&color=status&toggles=year#{z},{lon},{lat}",
    "r": [
@@ -3367,8 +3367,8 @@
    ]
   },
   {
-   "id": "palestine-open-maps-lang-ar-rtl-yes-1951",
-   "n": "Palestine Open Maps {{lang|ar|خَرائط فلسطين المَفتوحة|rtl=yes}} 1951",
+   "id": "palestine-open-maps-1951",
+   "n": "Palestine Open Maps خَرائط فلسطين المَفتوحة 1951",
    "c": "Israel and Palestine",
    "u": "https://palopenmaps.org/en/maps?basemap=7&overlay=pal1940&color=status&toggles=year#{z},{lon},{lat}",
    "r": [
@@ -3380,8 +3380,8 @@
    ]
   },
   {
-   "id": "palestine-open-maps-lang-ar-rtl-yes-hybrid",
-   "n": "Palestine Open Maps {{lang|ar|خَرائط فلسطين المَفتوحة|rtl=yes}} Hybrid",
+   "id": "palestine-open-maps-hybrid",
+   "n": "Palestine Open Maps خَرائط فلسطين المَفتوحة Hybrid",
    "c": "Israel and Palestine",
    "u": "https://palopenmaps.org/en/maps?basemap=aerial2020&overlay=pal2020&color=status&toggles=year%7Coverlay#{z},{lon},{lat}",
    "r": [
@@ -3729,8 +3729,8 @@
    ]
   },
   {
-   "id": "2gis-pipe-lang-ru-2",
-   "n": "2GIS {{pipe}} {{lang|ru|2ГИС}}",
+   "id": "2gis-2",
+   "n": "2GIS / 2ГИС",
    "c": "Russia",
    "u": "https://2gis.ru/moscow/geo/4504222442088225,{lat},{lon}",
    "r": [
@@ -3741,8 +3741,8 @@
    ]
   },
   {
-   "id": "cheboksary-ws-pipe-lang-ru",
-   "n": "Cheboksary.ws {{pipe}} {{lang|ru|Чебоксары}}",
+   "id": "cheboksary-ws",
+   "n": "Cheboksary.ws / Чебоксары",
    "c": "Russia",
    "u": "http://www.cheboksary.ws/?xy={lat},{lon}&z={z}&t=coordinate",
    "r": [
@@ -3765,8 +3765,8 @@
    ]
   },
   {
-   "id": "kosmosnimki-pipe-lang-ru",
-   "n": "Kosmosnimki {{pipe}} {{lang|ru|Космоснимки}}",
+   "id": "kosmosnimki-2",
+   "n": "Kosmosnimki / Космоснимки",
    "c": "Russia",
    "u": "http://www.kosmosnimki.ru/index.html#mode=map&x={lon}&y={lat}&z=12&fullscreen=true",
    "r": [
@@ -3777,8 +3777,8 @@
    ]
   },
   {
-   "id": "moscow-map-pipe-lang-ru",
-   "n": "Moscow Map {{pipe}} {{lang|ru|Карта Москвы}}",
+   "id": "moscow-map",
+   "n": "Moscow Map / Карта Москвы",
    "c": "Russia",
    "u": "http://www.moscowmap.ru/imap_moscow.shtml?lat={lat}&lng={lon}&zoom={z}",
    "r": [
@@ -3801,8 +3801,8 @@
    ]
   },
   {
-   "id": "progorod-pipe-lang-ru",
-   "n": "Progorod {{pipe}} {{lang|ru|Прогород}}",
+   "id": "progorod",
+   "n": "Progorod / Прогород",
    "c": "Russia",
    "u": "http://www.pro-gorod.ru/maps/?z={z}&lon={lon}&lat={lat}",
    "r": [
@@ -3813,8 +3813,8 @@
    ]
   },
   {
-   "id": "rambler-maps-pipe-lang-ru",
-   "n": "Rambler Maps {{pipe}} {{lang|ru|Рамблер}}",
+   "id": "rambler-maps",
+   "n": "Rambler Maps / Рамблер",
    "c": "Russia",
    "u": "http://maps.rambler.ru/?ll={lon},{lat}&z={z}",
    "r": [
@@ -3910,7 +3910,7 @@
   },
   {
    "id": "chief-directorate-national-geo-spatial-information-south-african-government",
-   "n": "Chief Directorate: National Geo-spatial Information (South African Government",
+   "n": "Chief Directorate: National Geo-spatial Information (South African Government)",
    "c": "South Africa",
    "u": "http://aerial.openstreetmap.org.za/?lon={lon}&lat={lat}&zoom={z}",
    "r": [
@@ -3921,92 +3921,8 @@
    ]
   },
   {
-   "id": "chief-directorate-national-geo-spatial-information-south-african-government-1940",
-   "n": "Chief Directorate: National Geo-spatial Information (South African Government 1940",
-   "c": "South Africa",
-   "u": "https://htonl.dev.openstreetmap.org/50k-ct/#{z}/{lat}/{lon}/c1940",
-   "r": [
-    "ZA"
-   ],
-   "s": [
-    "gh"
-   ]
-  },
-  {
-   "id": "chief-directorate-national-geo-spatial-information-south-african-government-1943-2000",
-   "n": "Chief Directorate: National Geo-spatial Information (South African Government 1943-2000",
-   "c": "South Africa",
-   "u": "https://htonl.dev.openstreetmap.org/250k-ct/#{z}/{lat}/{lon}",
-   "r": [
-    "ZA"
-   ],
-   "s": [
-    "gh"
-   ]
-  },
-  {
-   "id": "chief-directorate-national-geo-spatial-information-south-african-government-1960",
-   "n": "Chief Directorate: National Geo-spatial Information (South African Government 1960",
-   "c": "South Africa",
-   "u": "https://htonl.dev.openstreetmap.org/50k-ct/#{z}/{lat}/{lon}/c1960",
-   "r": [
-    "ZA"
-   ],
-   "s": [
-    "gh"
-   ]
-  },
-  {
-   "id": "chief-directorate-national-geo-spatial-information-south-african-government-1980",
-   "n": "Chief Directorate: National Geo-spatial Information (South African Government 1980",
-   "c": "South Africa",
-   "u": "https://htonl.dev.openstreetmap.org/50k-ct/#{z}/{lat}/{lon}/c1980",
-   "r": [
-    "ZA"
-   ],
-   "s": [
-    "gh"
-   ]
-  },
-  {
-   "id": "chief-directorate-national-geo-spatial-information-south-african-government-1990",
-   "n": "Chief Directorate: National Geo-spatial Information (South African Government 1990",
-   "c": "South Africa",
-   "u": "https://htonl.dev.openstreetmap.org/50k-ct/#{z}/{lat}/{lon}/c1990",
-   "r": [
-    "ZA"
-   ],
-   "s": [
-    "gh"
-   ]
-  },
-  {
-   "id": "chief-directorate-national-geo-spatial-information-south-african-government-2000",
-   "n": "Chief Directorate: National Geo-spatial Information (South African Government 2000",
-   "c": "South Africa",
-   "u": "https://htonl.dev.openstreetmap.org/50k-ct/#{z}/{lat}/{lon}/c2000",
-   "r": [
-    "ZA"
-   ],
-   "s": [
-    "gh"
-   ]
-  },
-  {
-   "id": "chief-directorate-national-geo-spatial-information-south-african-government-2010",
-   "n": "Chief Directorate: National Geo-spatial Information (South African Government 2010",
-   "c": "South Africa",
-   "u": "https://htonl.dev.openstreetmap.org/50k-ct/#{z}/{lat}/{lon}/c2010",
-   "r": [
-    "ZA"
-   ],
-   "s": [
-    "gh"
-   ]
-  },
-  {
    "id": "chief-directorate-national-geo-spatial-information-south-african-government-topographic-1-250k",
-   "n": "Chief Directorate: National Geo-spatial Information (South African Government Topographic 1:250k",
+   "n": "Chief Directorate: National Geo-spatial Information (South African Government) Topographic 1:250k",
    "c": "South Africa",
    "u": "http://topo.openstreetmap.org.za/?lon={lon}&lat={lat}&zoom={z}",
    "r": [
@@ -4018,7 +3934,7 @@
   },
   {
    "id": "chief-directorate-national-geo-spatial-information-south-african-government-topographic-1-50k",
-   "n": "Chief Directorate: National Geo-spatial Information (South African Government Topographic 1:50k",
+   "n": "Chief Directorate: National Geo-spatial Information (South African Government) Topographic 1:50k",
    "c": "South Africa",
    "u": "https://htonl.dev.openstreetmap.org/ngi-tiles/#{z}/{lat}/{lon}",
    "r": [
@@ -4033,6 +3949,90 @@
    "n": "City of Cape Town",
    "c": "South Africa",
    "u": "https://grant.dev.openstreetmap.org/coct-historical-aerial/?lat={lat}&lon={lon}&zoom={z}",
+   "r": [
+    "ZA"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "greater-cape-town-1-250k",
+   "n": "Greater Cape Town 1:250k",
+   "c": "South Africa",
+   "u": "https://htonl.dev.openstreetmap.org/250k-ct/#{z}/{lat}/{lon}",
+   "r": [
+    "ZA"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "greater-cape-town-1-50k",
+   "n": "Greater Cape Town 1:50k",
+   "c": "South Africa",
+   "u": "https://htonl.dev.openstreetmap.org/50k-ct/#{z}/{lat}/{lon}/c1940",
+   "r": [
+    "ZA"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "greater-cape-town-1-50k-1960",
+   "n": "Greater Cape Town 1:50k 1960",
+   "c": "South Africa",
+   "u": "https://htonl.dev.openstreetmap.org/50k-ct/#{z}/{lat}/{lon}/c1960",
+   "r": [
+    "ZA"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "greater-cape-town-1-50k-1980",
+   "n": "Greater Cape Town 1:50k 1980",
+   "c": "South Africa",
+   "u": "https://htonl.dev.openstreetmap.org/50k-ct/#{z}/{lat}/{lon}/c1980",
+   "r": [
+    "ZA"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "greater-cape-town-1-50k-1990",
+   "n": "Greater Cape Town 1:50k 1990",
+   "c": "South Africa",
+   "u": "https://htonl.dev.openstreetmap.org/50k-ct/#{z}/{lat}/{lon}/c1990",
+   "r": [
+    "ZA"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "greater-cape-town-1-50k-2000",
+   "n": "Greater Cape Town 1:50k 2000",
+   "c": "South Africa",
+   "u": "https://htonl.dev.openstreetmap.org/50k-ct/#{z}/{lat}/{lon}/c2000",
+   "r": [
+    "ZA"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "greater-cape-town-1-50k-2010",
+   "n": "Greater Cape Town 1:50k 2010",
+   "c": "South Africa",
+   "u": "https://htonl.dev.openstreetmap.org/50k-ct/#{z}/{lat}/{lon}/c2010",
    "r": [
     "ZA"
    ],

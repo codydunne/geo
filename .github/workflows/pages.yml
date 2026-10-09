@@ -26,6 +26,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+      # Fallback routing if the Cloudflare rewrite is ever removed: GitHub Pages
+      # serves 404.html for unknown paths, and the page parses the URL itself.
+      - run: cp web/index.html web/404.html
       - uses: actions/upload-pages-artifact@v3
         with:
           path: web

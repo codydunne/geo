@@ -273,5 +273,6 @@ export function inRegion(d, st, regions) {
   const lat = Number(st.lat);
   const lon = Number(st.lon);
   const boxes = d.r.flatMap((r) => (typeof r === "string" ? (regions[r] ?? []) : [r]));
-  return boxes.some(([w, s, e, n]) => lat >= s && lat <= n && lon >= w && lon <= e);
+  // No resolvable box means the region is unknown, not empty: show the map.
+  return boxes.length === 0 || boxes.some(([w, s, e, n]) => lat >= s && lat <= n && lon >= w && lon <= e);
 }

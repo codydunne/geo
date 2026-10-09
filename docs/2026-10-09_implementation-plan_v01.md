@@ -3,7 +3,7 @@
 Cody Dunne · 2026-10-09 · drafted with Claude, reviewed with the CodeRabbit CLI
 
 Implements [`requirements.md`](requirements.md).
-Status: accepted; decisions and rejected alternatives are logged in §8.
+Status: implemented on branch `impl` except the deployment steps in §7.5; decisions made during the build, and their alternatives, are logged in §8.
 
 ## 1. File layout
 
@@ -195,7 +195,7 @@ Run it, review the diff, and commit by hand.
 8. **Report** printed at the end: counts per source, new/removed entries, dropped links and the reason for each.
 
 mapfwd is not scraped.
-A one-time manual comparison of its service list is recorded as a short table in this doc's appendix (to be added), and any gaps go into the overrides.
+A one-time comparison of its service list is in Appendix A; it found no gaps.
 
 ## 5. Checks
 
@@ -239,3 +239,21 @@ Each entry records the conservative choice taken and the alternative not taken.
 | D3 | Vendor Leaflet 1.9.4 into `web/_/leaflet/`. | Pinned cdnjs URL; smaller repo, but the site would no longer be self-contained. |
 | D4 | `404.html` is copied from `index.html` in `pages.yml`. | Commit both files and keep them in sync by hand or by test. |
 | D5 | Geocoder URL comes from `maps.json`. | A separate `config.json`; one more fetch for one value. |
+| D6 | `index.html` has a static `<base href="/geo/">`, since `serve.py` mounts at `/geo/` too. | The inline script in §3.3 that computes the base; only needed if the site moves to another path. |
+| D7 | The collector uses only the standard library (`urllib`). | `httpx`, as §4 planned; no benefit for a handful of GETs. |
+| D8 | GeoHack links using `{zoom}` (41) and other placeholders (`{span}`, UTM, OSGB, CH1903, …) are dropped and counted in the report. | Implement `{zoom}` = `int(18 − log(scale))` clamped to [0, 9]; the GeoHack docs do not say which log base, so it needs one live comparison first. |
+| D9 | `{language}` in GeoHack links becomes `en`. | Drop those links (22), or use the browser language. |
+| D10 | Google, `#map=`, and `center=…&zoom=` parse patterns are built into `geo.js`, not stored in the overrides. | Store them as `p` patterns on the `google` entry; that makes the required input forms depend on generated data. |
+| D11 | Only `.woff2` fonts are shipped. | Also ship `.woff`, for browsers older than about 2016. |
+| D12 | No `{alt}` placeholder: nothing needs it once GeoHack's `{altitude}` link (one) is dropped. | Add `alt = max(1, ⌊scale · 143 / 10⁶⌋)` per the GeoHack docs. |
+| D13 | GeoHack's "International waters" (`XZ`) maps are shown everywhere; `AQ`/`XS`/`XN`/`SJ` get hand bboxes; `KO` is treated as `KR`. | Hide `XZ` maps entirely; or compute land/sea, which needs coastline data. |
+| D14 | Omniscale's upstream template (`…/{lon}3857/B`, a missing `/`) is overridden to `…/{lon}/3857/B`. This is not verified against the live site. | Drop the entry until verified. |
+| D15 | Geocoder coordinates are truncated like typed input; dragged-pin and geolocation coordinates are rounded to 6 decimals. | Round everything, or truncate everything. |
+| D16 | Browser smoke test via Playwright's headless Chromium (`tests/smoke.py`), with Nominatim mocked and tiles blocked. | No browser test; or drive the installed Windows Chrome. |
+| D17 | OpenSwitchMaps entries whose `getUrl` computes values (41 per repo) are skipped, except six notable ones re-added by hand (Google Satellite, Street View, Ventusky, Yelp, Worldview, Omniscale). | Hand-port all 41. Most are OSM QA tools or Japan-only, and GeoHack covers several. |
+| D18 | Parse patterns that cannot read back their own map's link (5) are dropped by the collector. | Hand-fix each pattern in the overrides. |
+
+## Appendix A. mapfwd comparison (2026-10-09)
+
+The services linked from `https://mapfwd.com/42.364678,-71.131311` are Apple Maps, Bing, Google Maps, HERE WeGo, MapQuest, Mapy.com, OpenStreetMap, ViaMichelin, Waze, what3words, and Yandex.
+All are already in `maps.json` from GeoHack or OpenSwitchMaps, so no mapfwd-only overrides were needed.

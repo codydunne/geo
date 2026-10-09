@@ -71,8 +71,17 @@ def clean(s: str) -> str:
     """Wikitext/HTML label -> plain text."""
     s = re.sub(r'\[\[File:[^\]]*\]\]|<sup>.*?</sup>', '', s)
     s = re.sub(r'\[\[(?:[^|\]]*\|)?([^\]]*)\]\]', r'\1', s)
+    s = re.sub(r'\{\{lang\|[^|}]*\|([^|}]*)[^}]*\}\}', r'\1', s)
+    s = re.sub(r'\{\{pipe\}\}', '/', s)
+    s = re.sub(r'\{\{[^}]*\}\}', '', s)
     s = re.sub(r"<[^>]+>|'''?|&nbsp;", ' ', s)
-    return re.sub(r'\s+', ' ', s).strip(' ,()')
+    s = re.sub(r'\s+', ' ', s).strip(' ,')
+    # Drop only an unbalanced wrapping paren, e.g. "(+Wikipedia" from "([url +Wikipedia])".
+    if s.startswith('(') and s.count('(') > s.count(')'):
+        s = s[1:]
+    if s.endswith(')') and s.count(')') > s.count('('):
+        s = s[:-1]
+    return s.strip()
 
 
 # --- GeoHack -----------------------------------------------------------------
@@ -104,14 +113,35 @@ def geohack(text: str) -> list[Map]:
     maps: list[Map] = []
     section, codes, row, first = '', [], '', True
     pending: list[str] = []
+    row_start = False
     for line in text.splitlines():
         if m := re.search(r'id="GEOTEMPLATE-([A-Z]{2})"', line):
             pending.append(m[1])
         if m := re.match(r'^(=+)\s*(.*?)\s*\1\s*$', line):
             if len(m[1]) <= 2 or pending:
                 section, codes, pending = m[2], pending, []
+            row = ''  # a row name never carries across headings
             continue
-        if m := re.match(r'^!\s*scope="row"[^|]*\|\s*(.*)$', line):
+        if line.startswith('|}'):
+            row = ''
+            continue
+        if line.startswith('|-'):
+            row_start = True
+            continue
+        # The row name is a `! scope="row"` header, or plain text (no links) opening a
+        # row, either in the first cell or on the line after an empty `|`.
+        if row_start and line.strip() == '|':
+            continue
+        m = re.match(r'^!\s*scope="row"[^|]*\|\s*(.*)$', line)
+        if (
+            not m
+            and row_start
+            and '//' not in line
+            and not line.startswith(('{', '!', '*'))
+        ):
+            m = re.match(r'^\|?\s*(.+)$', line)
+        row_start = False
+        if m:
             row, first = clean(m[1]), True
             continue
         for um in re.finditer(r'\[((?:https?:)?//\S+)\s+([^\]]*)\]', line):
@@ -489,6 +519,11 @@ def regions(maps: list[Map], ov: dict[str, Any]) -> dict[str, list[list[float]]]
         print(
             f'  no bbox for region {c}; its maps are shown everywhere', file=sys.stderr
         )
+        for m in maps:
+            if c in m.get('r', []):
+                m['r'] = [r for r in m['r'] if r != c]
+                if not m['r']:
+                    del m['r']
     return dict(sorted(out.items()))
 
 
@@ -517,8 +552,11 @@ def main() -> None:
     maps = merge(groups)
     maps, dropped_ids = apply_overrides(maps, ov)
 
+    # IDs first, so an entry that kept its name+host but changed its template
+    # inherits its published id instead of leaving a stale copy behind.
+    assign_ids(maps, prev)
     # Keep previously published entries that vanished upstream until explicitly dropped.
-    have = {ukey(m['u']) for m in maps} | {m.get('id') for m in maps}
+    have = {ukey(m['u']) for m in maps} | {m['id'] for m in maps}
     kept = [
         m
         for m in prev
@@ -529,7 +567,6 @@ def main() -> None:
     for m in kept:
         print(f'  kept (gone upstream): {m["id"]}', file=sys.stderr)
     maps += kept
-    assign_ids(maps, prev)
 
     check_patterns(maps)
     reg = regions(maps, ov)
