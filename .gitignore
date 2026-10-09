@@ -1,3 +1,4 @@
 node_modules/
 tests/.smoke-*.png
 __pycache__/
+.claude.local.md
