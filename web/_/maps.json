@@ -392,10 +392,28 @@
    ]
   },
   {
+   "id": "open-historical-map-nominatim-reverse-geocoding",
+   "n": "Open Historical Map Nominatim (reverse geocoding)",
+   "c": "Main",
+   "u": "https://nominatim-api.openhistoricalmap.org/reverse?lat={lat}&lon={lon}&zoom={mqzoom}",
+   "s": [
+    "gh"
+   ]
+  },
+  {
    "id": "open-street-map",
    "n": "Open Street Map",
    "c": "Main",
    "u": "https://www.openstreetmap.org/?mlat={lat}&mlon={lon}&zoom={z}&layers=M",
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "open-street-map-nominatim-reverse-geocoding",
+   "n": "Open Street Map Nominatim (reverse geocoding)",
+   "c": "Main",
+   "u": "https://nominatim.openstreetmap.org/reverse?lat={lat}&lon={lon}&zoom={mqzoom}",
    "s": [
     "gh"
    ]
@@ -511,6 +529,9 @@
    "u": "https://maps.gsi.go.jp/#{z}/{lat}/{lon}/",
    "p": [
     "maps\\.gsi\\.go\\.jp.*#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "JP"
    ],
    "s": [
     "gh",
@@ -870,19 +891,6 @@
    ]
   },
   {
-   "id": "japanmapcompare",
-   "n": "JapanMapCompare",
-   "c": "OSM tools",
-   "u": "https://mapcompare.jp/3/{z}/{lat}/{lon}/osm/gRoad/mapSatellite",
-   "p": [
-    "mapcompare\\.jp\\/\\d+\\/(?<z>\\d{1,2})\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
    "id": "kontur",
    "n": "Kontur",
    "c": "OSM tools",
@@ -945,19 +953,6 @@
    ]
   },
   {
-   "id": "openstreetmap-nederland",
-   "n": "OpenStreetMap Nederland",
-   "c": "OSM tools",
-   "u": "https://www.openstreetmap.app/#map={z}/{lat}/{lon}",
-   "p": [
-    "www\\.openstreetmap\\.app\\/.*#map=(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
    "id": "osm-address-editor",
    "n": "OSM address editor",
    "c": "OSM tools",
@@ -990,130 +985,6 @@
    "u": "https://notes-heatmap.openstreetmap.fr/?pos={lat},{lon},{z}",
    "p": [
     "pos=(?<lat>-?\\d[0-9.]*),(?<lon>-?\\d[0-9.]*),(?<z>\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "osm-bzh",
-   "n": "osm.bzh",
-   "c": "OSM tools",
-   "u": "https://kartenn.openstreetmap.bzh/#map={z}/{lat}/{lon}",
-   "p": [
-    "openstreetmap\\.bzh\\/#map=(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "osm-cl",
-   "n": "OSM.cl",
-   "c": "OSM tools",
-   "u": "https://www.openstreetmap.cl/#{z}/{lat}/{lon}",
-   "p": [
-    "openstreetmap\\.cl\\/#(?<z>\\d{1,2})\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "osm-de",
-   "n": "OSM.de",
-   "c": "OSM tools",
-   "u": "https://www.openstreetmap.de/karte/?zoom={z}&lat={lat}&lon={lon}",
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "osm-fr",
-   "n": "osm.fr",
-   "c": "OSM tools",
-   "u": "https://tile.openstreetmap.fr/?zoom={z}&lat={lat}&lon={lon}&layers=B00000000FFFFFF",
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "osm-in",
-   "n": "OSM.in",
-   "c": "OSM tools",
-   "u": "https://openstreetmap.in/#{z}/{lat}/{lon}",
-   "p": [
-    "openstreetmap\\.in\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "osm-jp",
-   "n": "OSM.jp",
-   "c": "OSM tools",
-   "u": "https://tile.openstreetmap.jp/styles/osm-bright/#{z}/{lat}/{lon}",
-   "p": [
-    "tile\\.openstreetmap\\.jp\\/.*#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "osm-kr",
-   "n": "osm.kr",
-   "c": "OSM tools",
-   "u": "https://tiles.osm.kr/#{z}/{lat}/{lon}",
-   "p": [
-    "osm\\.kr\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "osm-org-ar",
-   "n": "OSM.org.ar",
-   "c": "OSM tools",
-   "u": "https://openstreetmap.org.ar/#{z}/{lat}/{lon}",
-   "p": [
-    "openstreetmap\\.org\\.ar\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "osm-ru",
-   "n": "OSM.ru",
-   "c": "OSM tools",
-   "u": "https://openstreetmap.ru/#map={z}/{lat}/{lon}",
-   "p": [
-    "openstreetmap\\.ru\\/#map=(?<z>\\d{1,2})\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "osmchina",
-   "n": "OSMChina",
-   "c": "OSM tools",
-   "u": "https://map.osmchina.org/#map={z}/{lat}/{lon}",
-   "p": [
-    "osmchina\\.org\\/#map=(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
    ],
    "s": [
     "osm",
@@ -1170,6 +1041,192 @@
    ]
   },
   {
+   "id": "japanmapcompare",
+   "n": "JapanMapCompare",
+   "c": "OSM tools",
+   "u": "https://mapcompare.jp/3/{z}/{lat}/{lon}/osm/gRoad/mapSatellite",
+   "p": [
+    "mapcompare\\.jp\\/\\d+\\/(?<z>\\d{1,2})\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "JP"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "openstreetmap-nederland",
+   "n": "OpenStreetMap Nederland",
+   "c": "OSM tools",
+   "u": "https://www.openstreetmap.app/#map={z}/{lat}/{lon}",
+   "p": [
+    "www\\.openstreetmap\\.app\\/.*#map=(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "NL"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "osm-bzh",
+   "n": "osm.bzh",
+   "c": "OSM tools",
+   "u": "https://kartenn.openstreetmap.bzh/#map={z}/{lat}/{lon}",
+   "p": [
+    "openstreetmap\\.bzh\\/#map=(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "FR"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "osm-cl",
+   "n": "OSM.cl",
+   "c": "OSM tools",
+   "u": "https://www.openstreetmap.cl/#{z}/{lat}/{lon}",
+   "p": [
+    "openstreetmap\\.cl\\/#(?<z>\\d{1,2})\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "CL"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "osm-de",
+   "n": "OSM.de",
+   "c": "OSM tools",
+   "u": "https://www.openstreetmap.de/karte/?zoom={z}&lat={lat}&lon={lon}",
+   "r": [
+    "DE"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "osm-fr",
+   "n": "osm.fr",
+   "c": "OSM tools",
+   "u": "https://tile.openstreetmap.fr/?zoom={z}&lat={lat}&lon={lon}&layers=B00000000FFFFFF",
+   "r": [
+    "FR"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "osm-in",
+   "n": "OSM.in",
+   "c": "OSM tools",
+   "u": "https://openstreetmap.in/#{z}/{lat}/{lon}",
+   "p": [
+    "openstreetmap\\.in\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "IN"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "osm-jp",
+   "n": "OSM.jp",
+   "c": "OSM tools",
+   "u": "https://tile.openstreetmap.jp/styles/osm-bright/#{z}/{lat}/{lon}",
+   "p": [
+    "tile\\.openstreetmap\\.jp\\/.*#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "JP"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "osm-kr",
+   "n": "osm.kr",
+   "c": "OSM tools",
+   "u": "https://tiles.osm.kr/#{z}/{lat}/{lon}",
+   "p": [
+    "osm\\.kr\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "KR"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "osm-org-ar",
+   "n": "OSM.org.ar",
+   "c": "OSM tools",
+   "u": "https://openstreetmap.org.ar/#{z}/{lat}/{lon}",
+   "p": [
+    "openstreetmap\\.org\\.ar\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "AR"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "osm-ru",
+   "n": "OSM.ru",
+   "c": "OSM tools",
+   "u": "https://openstreetmap.ru/#map={z}/{lat}/{lon}",
+   "p": [
+    "openstreetmap\\.ru\\/#map=(?<z>\\d{1,2})\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "RU"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "osmchina",
+   "n": "OSMChina",
+   "c": "OSM tools",
+   "u": "https://map.osmchina.org/#map={z}/{lat}/{lon}",
+   "p": [
+    "osmchina\\.org\\/#map=(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "CN"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
    "id": "apple-maps-for-apple-device",
    "n": "Apple maps (for Apple device)",
    "c": "Apps",
@@ -1203,38 +1260,12 @@
    ]
   },
   {
-   "id": "2gis-ru",
-   "n": "2gis(RU)",
-   "c": "Other",
-   "u": "https://2gis.ru/?m={lon}%2C{lat}%2F{z}",
-   "p": [
-    "2gis.*\\?m=(?<lon>-?\\d[0-9.]*)%2C(?<lat>-?\\d[0-9.]*)%2F(?<z>\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
    "id": "brouter-web",
    "n": "BRouter-Web",
    "c": "Other",
    "u": "https://brouter.de/brouter-web/#map={z}/{lat}/{lon}/cyclosm",
    "p": [
     "brouter\\.de\\/brouter-web\\/#map=(?<z>\\d{1,2})\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "cmap-dev-jp",
-   "n": "cmap.dev: リアルタイム被害予測(JP)",
-   "c": "Other",
-   "u": "https://cmap.dev/#{z}/{lat}/{lon}",
-   "p": [
-    "cmap\\.dev\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
    ],
    "s": [
     "osm",
@@ -1319,16 +1350,6 @@
    "n": "Historic Place",
    "c": "Other",
    "u": "http://gk.historic.place/historische_objekte/translate/en/index-en.html?zoom={z}&lat={lat}&lon={lon}",
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "ign-geoportail-fr",
-   "n": "IGN Géoportail (FR)",
-   "c": "Other",
-   "u": "https://www.geoportail.gouv.fr/carte?c={lon},{lat}&z={z}&l0=GEOGRAPHICALGRIDSYSTEMS.MAPS.SCAN25TOUR.CV::GEOPORTAIL:OGC:WMTS(1)&permalink=yes",
    "s": [
     "osm",
     "osmw"
@@ -1461,31 +1482,6 @@
     "apps\\.mapbox\\.com\\/cartogram\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
    ],
    "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "mapfan-jp",
-   "n": "MapFan (JP)",
-   "c": "Other",
-   "u": "https://mapfan.com/map/spots/search?c={lat},{lon},{z}",
-   "p": [
-    "mapfan\\.com\\/map\\/spots\\/search\\?c=(?<lat>-?\\d[0-9.]*),(?<lon>-?\\d[0-9.]*),(?<z>\\d{1,2})"
-   ],
-   "s": [
-    "gh",
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "mapion-jp",
-   "n": "Mapion (JP)",
-   "c": "Other",
-   "u": "https://www.mapion.co.jp/m2/{lat},{lon},{z}",
-   "s": [
-    "gh",
     "osm",
     "osmw"
    ]
@@ -1820,19 +1816,6 @@
    ]
   },
   {
-   "id": "ordnance-survey-uk",
-   "n": "Ordnance Survey(UK)",
-   "c": "Other",
-   "u": "https://osmaps.ordnancesurvey.co.uk/{lat},{lon},{z}",
-   "p": [
-    "osmaps\\.ordnancesurvey\\.co\\.uk\\/(?<lat>-?\\d[0-9.]*),(?<lon>-?\\d[0-9.]*),(?<z>\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
    "id": "osm-buildings",
    "n": "OSM Buildings",
    "c": "Other",
@@ -2061,19 +2044,6 @@
    ]
   },
   {
-   "id": "vk-maps",
-   "n": "VK maps",
-   "c": "Other",
-   "u": "https://maps.vk.com/ru/?lng={lon}&lat={lat}&zoom={z}&style=main",
-   "p": [
-    "maps\\.vk\\.com\\/.*\\/?lng=(?<lon>-?\\d[0-9.]*)&lat=(?<lat>-?\\d[0-9.]*)&zoom=(?<z>\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
    "id": "walking-town-map-maker",
    "n": "Walking Town Map Maker",
    "c": "Other",
@@ -2190,19 +2160,6 @@
    ]
   },
   {
-   "id": "yahoo-map-jp",
-   "n": "Yahoo Map (JP)",
-   "c": "Other",
-   "u": "https://map.yahoo.co.jp/?lat={lat}&lon={lon}&zoom={z}",
-   "p": [
-    "lat=(?<lat>-?\\d[0-9.]*)&lon=(?<lon>-?\\d[0-9.]*)&zoom=(?<z>\\d{1,2})"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
    "id": "yelp",
    "n": "Yelp",
    "c": "Other",
@@ -2239,10 +2196,137 @@
    ]
   },
   {
+   "id": "2gis-ru",
+   "n": "2gis(RU)",
+   "c": "Other",
+   "u": "https://2gis.ru/?m={lon}%2C{lat}%2F{z}",
+   "p": [
+    "2gis.*\\?m=(?<lon>-?\\d[0-9.]*)%2C(?<lat>-?\\d[0-9.]*)%2F(?<z>\\d[0-9.]*)"
+   ],
+   "r": [
+    "RU"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "cmap-dev-jp",
+   "n": "cmap.dev: リアルタイム被害予測(JP)",
+   "c": "Other",
+   "u": "https://cmap.dev/#{z}/{lat}/{lon}",
+   "p": [
+    "cmap\\.dev\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "JP"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "ign-geoportail-fr",
+   "n": "IGN Géoportail (FR)",
+   "c": "Other",
+   "u": "https://www.geoportail.gouv.fr/carte?c={lon},{lat}&z={z}&l0=GEOGRAPHICALGRIDSYSTEMS.MAPS.SCAN25TOUR.CV::GEOPORTAIL:OGC:WMTS(1)&permalink=yes",
+   "r": [
+    "FR"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "mapfan-jp",
+   "n": "MapFan (JP)",
+   "c": "Other",
+   "u": "https://mapfan.com/map/spots/search?c={lat},{lon},{z}",
+   "p": [
+    "mapfan\\.com\\/map\\/spots\\/search\\?c=(?<lat>-?\\d[0-9.]*),(?<lon>-?\\d[0-9.]*),(?<z>\\d{1,2})"
+   ],
+   "r": [
+    "JP"
+   ],
+   "s": [
+    "gh",
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "mapion-jp",
+   "n": "Mapion (JP)",
+   "c": "Other",
+   "u": "https://www.mapion.co.jp/m2/{lat},{lon},{z}",
+   "r": [
+    "JP"
+   ],
+   "s": [
+    "gh",
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "ordnance-survey-uk",
+   "n": "Ordnance Survey(UK)",
+   "c": "Other",
+   "u": "https://osmaps.ordnancesurvey.co.uk/{lat},{lon},{z}",
+   "p": [
+    "osmaps\\.ordnancesurvey\\.co\\.uk\\/(?<lat>-?\\d[0-9.]*),(?<lon>-?\\d[0-9.]*),(?<z>\\d[0-9.]*)"
+   ],
+   "r": [
+    "GB"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "vk-maps",
+   "n": "VK maps",
+   "c": "Other",
+   "u": "https://maps.vk.com/ru/?lng={lon}&lat={lat}&zoom={z}&style=main",
+   "p": [
+    "maps\\.vk\\.com\\/.*\\/?lng=(?<lon>-?\\d[0-9.]*)&lat=(?<lat>-?\\d[0-9.]*)&zoom=(?<z>\\d[0-9.]*)"
+   ],
+   "r": [
+    "RU"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "yahoo-map-jp",
+   "n": "Yahoo Map (JP)",
+   "c": "Other",
+   "u": "https://map.yahoo.co.jp/?lat={lat}&lon={lon}&zoom={z}",
+   "p": [
+    "lat=(?<lat>-?\\d[0-9.]*)&lon=(?<lon>-?\\d[0-9.]*)&zoom=(?<z>\\d{1,2})"
+   ],
+   "r": [
+    "JP"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
    "id": "navi-jp-2",
    "n": "いつもNAVI(JP)",
    "c": "Other",
    "u": "https://www.its-mo.com/maps/?lat={lat}&lon={lon}",
+   "r": [
+    "JP"
+   ],
    "s": [
     "osm",
     "osmw"
@@ -2256,6 +2340,9 @@
    "p": [
     "pref\\.miyazaki\\.lg\\.jp\\/hinata\\/hinata\\.html#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
    ],
+   "r": [
+    "JP"
+   ],
    "s": [
     "osm",
     "osmw"
@@ -2266,6 +2353,9 @@
    "n": "れきちず",
    "c": "Other",
    "u": "https://rekichizu.jp/map?center={lon}%2C{lat}&zoom={z}&pitch=0&bearing=0",
+   "r": [
+    "JP"
+   ],
    "s": [
     "osmw"
    ]
@@ -2277,6 +2367,9 @@
    "u": "http://ktgis.net/kjmapw/kjmapw.html?lat={lat}&lng={lon}&zoom={z}",
    "p": [
     "ktgis\\.net\\/kjmapw\\/kjmapw\\.html\\?lat=(?<lat>-?\\d[0-9.]*)\\&lng=(?<lon>-?\\d[0-9.]*)\\&zoom=(?<z>\\d[0-9.]*)"
+   ],
+   "r": [
+    "JP"
    ],
    "s": [
     "osm",
@@ -2291,6 +2384,9 @@
    "p": [
     "qchizu\\.xyz\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
    ],
+   "r": [
+    "JP"
+   ],
    "s": [
     "osm",
     "osmw"
@@ -2303,6 +2399,9 @@
    "u": "https://maps.qchizu.xyz/#{z}/{lat}/{lon}/&base=pale&ls=pale%7Cmlit_road2019_shed_01&disp=11&lcd=mlit_road2019_shed_01&vs=c1j0h0k0l0u0t0z0r0s0m0f1",
    "p": [
     "qchizu\\.xyz\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "JP"
    ],
    "s": [
     "osm",
@@ -2317,6 +2416,9 @@
    "p": [
     "qchizu\\.xyz\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
    ],
+   "r": [
+    "JP"
+   ],
    "s": [
     "osm",
     "osmw"
@@ -2329,6 +2431,9 @@
    "u": "https://maps.qchizu.xyz/#{z}/{lat}/{lon}/&base=pale&ls=pale%7Cmlit_road2019_footbridge_01&disp=11&lcd=mlit_road2019_footbridge_01&vs=c1j0h0k0l0u0t0z0r0s0m0f1",
    "p": [
     "qchizu\\.xyz\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "JP"
    ],
    "s": [
     "osm",
@@ -2343,6 +2448,9 @@
    "p": [
     "qchizu\\.xyz\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
    ],
+   "r": [
+    "JP"
+   ],
    "s": [
     "osm",
     "osmw"
@@ -2355,6 +2463,9 @@
    "u": "https://maps.qchizu.xyz/#{z}/{lat}/{lon}/&base=pale&ls=pale%7Cmaff-pond20200925-1&disp=11&lcd=maff-pond20200925-1&vs=c1j0h0k0l0u0t0z0r0s0m0f1",
    "p": [
     "qchizu\\.xyz\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "JP"
    ],
    "s": [
     "osm",
@@ -2369,6 +2480,9 @@
    "p": [
     "qchizu\\.xyz\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
    ],
+   "r": [
+    "JP"
+   ],
    "s": [
     "osm",
     "osmw"
@@ -2381,6 +2495,9 @@
    "u": "https://gbank.gsj.jp/geonavi/geonavi.php#{z},{lat},{lon}",
    "p": [
     "gbank\\.gsj\\.jp\\/geonavi\\/geonavi\\.php#(?<z>\\d{1,2}),(?<lat>-?\\d[0-9.]*),(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "JP"
    ],
    "s": [
     "gh",
@@ -2396,6 +2513,9 @@
    "p": [
     "historymap\\.html\\?y=(?<lat>-?\\d[0-9.]*)&x=(?<lon>-?\\d[0-9.]*)&z=(?<z>\\d[0-9.]*)"
    ],
+   "r": [
+    "JP"
+   ],
    "s": [
     "osm",
     "osmw"
@@ -2406,6 +2526,9 @@
    "n": "聖地巡礼マップ",
    "c": "Other",
    "u": "https://seichimap.jp/spots?order=nearer&lat={lat}&lng={lon}",
+   "r": [
+    "JP"
+   ],
    "s": [
     "osm",
     "osmw"
@@ -2640,6 +2763,18 @@
    ]
   },
   {
+   "id": "gps-visualizer",
+   "n": "GPS Visualizer",
+   "c": "Canada",
+   "u": "http://www.gpsvisualizer.com/map_input?special=wikipedia&format=google&bg_map=CA_NRCAN_TOPORAMA&sp_width=50km&google_zoom_level={mqzoom}&google_wpt_labels=1&form:data=name,latitude,longitude%0D%22{a}%22,{lat},{lon}",
+   "r": [
+    "CA"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
    "id": "topoquest",
    "n": "TopoQuest",
    "c": "Canada",
@@ -2700,12 +2835,36 @@
    ]
   },
   {
+   "id": "cyprus-on-line",
+   "n": "Cyprus on-line",
+   "c": "Cyprus",
+   "u": "http://www.col.com.cy/?locale=en&lat={lat}&long={lon}&level={mqzoom}",
+   "r": [
+    "CY"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
    "id": "ikatastr-cz",
    "n": "ikatastr.cz",
    "c": "Czech Republic",
    "u": "https://www.ikatastr.cz/#&kde={lat},{lon},19",
    "r": [
     "CZ"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "eniro",
+   "n": "Eniro",
+   "c": "Denmark",
+   "u": "http://kort.eniro.dk/query?what=map&mapstate={mqzoom};{lon};{lat}",
+   "r": [
+    "DK"
    ],
    "s": [
     "gh"
@@ -2754,6 +2913,18 @@
    "u": "https://eswatini-topo.openstreetmap.org.za/#zoom={z}&lat={lat}&lon={lon}",
    "r": [
     "SZ"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "eniro-2",
+   "n": "Eniro",
+   "c": "Finland",
+   "u": "http://kartor.eniro.se/?q={lat},{lon}&z={mqzoom}",
+   "r": [
+    "FI"
    ],
    "s": [
     "gh"
@@ -3302,6 +3473,253 @@
    ]
   },
   {
+   "id": "govmap",
+   "n": "GovMap",
+   "c": "Israel and Palestine",
+   "u": "http://www.govmap.gov.il/?c={lon},{lat}&z={mqzoom}&b=0",
+   "r": [
+    "IL",
+    "PS"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "govmap-1935",
+   "n": "GovMap 1935",
+   "c": "Israel and Palestine",
+   "u": "http://www.govmap.gov.il/?c={lon},{lat}&z={mqzoom}&b=6",
+   "r": [
+    "IL",
+    "PS"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "govmap-3d-buildings",
+   "n": "GovMap 3D buildings",
+   "c": "Israel and Palestine",
+   "u": "http://www.govmap.gov.il/?c={lon},{lat}&z={mqzoom}&b=3",
+   "r": [
+    "IL",
+    "PS"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "govmap-english",
+   "n": "GovMap English",
+   "c": "Israel and Palestine",
+   "u": "http://www.govmap.gov.il/?c={lon},{lat}&z={mqzoom}&b=0&lang=en",
+   "r": [
+    "IL",
+    "PS"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "govmap-english-satellite",
+   "n": "GovMap English Satellite",
+   "c": "Israel and Palestine",
+   "u": "http://www.govmap.gov.il/?c={lon},{lat}&z={mqzoom}&b=1&lang=en",
+   "r": [
+    "IL",
+    "PS"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "govmap-hybrid",
+   "n": "GovMap Hybrid",
+   "c": "Israel and Palestine",
+   "u": "http://www.govmap.gov.il/?c={lon},{lat}&z={mqzoom}&b=2",
+   "r": [
+    "IL",
+    "PS"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "govmap-old",
+   "n": "GovMap Old",
+   "c": "Israel and Palestine",
+   "u": "http://old.govmap.gov.il/?c={lon},{lat}&z={mqzoom}&b=0",
+   "r": [
+    "IL",
+    "PS"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "govmap-old-1935",
+   "n": "GovMap Old 1935",
+   "c": "Israel and Palestine",
+   "u": "http://old.govmap.gov.il/?c={lon},{lat}&z={mqzoom}&b=6",
+   "r": [
+    "IL",
+    "PS"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "govmap-old-3d-buildings",
+   "n": "GovMap Old 3D buildings",
+   "c": "Israel and Palestine",
+   "u": "http://old.govmap.gov.il/?c={lon},{lat}&z={mqzoom}&b=3",
+   "r": [
+    "IL",
+    "PS"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "govmap-old-english",
+   "n": "GovMap Old English",
+   "c": "Israel and Palestine",
+   "u": "http://old.govmap.gov.il/?c={lon},{lat}&z={mqzoom}&b=10&lang=en",
+   "r": [
+    "IL",
+    "PS"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "govmap-old-english-satellite",
+   "n": "GovMap Old English Satellite",
+   "c": "Israel and Palestine",
+   "u": "http://old.govmap.gov.il/?c={lon},{lat}&z={mqzoom}&b=17&lang=en",
+   "r": [
+    "IL",
+    "PS"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "govmap-old-satellite",
+   "n": "GovMap Old Satellite",
+   "c": "Israel and Palestine",
+   "u": "http://old.govmap.gov.il/?c={lon},{lat}&z={mqzoom}&b=1",
+   "r": [
+    "IL",
+    "PS"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "govmap-old-topo",
+   "n": "GovMap Old Topo",
+   "c": "Israel and Palestine",
+   "u": "http://old.govmap.gov.il/?c={lon},{lat}&z={mqzoom}&b=9",
+   "r": [
+    "IL",
+    "PS"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "govmap-satellite",
+   "n": "GovMap Satellite",
+   "c": "Israel and Palestine",
+   "u": "http://www.govmap.gov.il/?c={lon},{lat}&z={mqzoom}&b=1",
+   "r": [
+    "IL",
+    "PS"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "govmap-topo",
+   "n": "GovMap Topo",
+   "c": "Israel and Palestine",
+   "u": "http://www.govmap.gov.il/?c={lon},{lat}&z={mqzoom}&b=9",
+   "r": [
+    "IL",
+    "PS"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "haifa",
+   "n": "Haifa",
+   "c": "Israel and Palestine",
+   "u": "http://www.govmap.gov.il/?c={lon},{lat}&z={mqzoom}&b=8",
+   "r": [
+    "IL",
+    "PS"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "haifa-2",
+   "n": "Haifa",
+   "c": "Israel and Palestine",
+   "u": "http://old.govmap.gov.il/?c={lon},{lat}&z={mqzoom}&b=8",
+   "r": [
+    "IL",
+    "PS"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "jerusalem",
+   "n": "Jerusalem",
+   "c": "Israel and Palestine",
+   "u": "http://www.govmap.gov.il/?c={lon},{lat}&z={mqzoom}&b=7",
+   "r": [
+    "IL",
+    "PS"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "jerusalem-2",
+   "n": "Jerusalem",
+   "c": "Israel and Palestine",
+   "u": "http://old.govmap.gov.il/?c={lon},{lat}&z={mqzoom}&b=7",
+   "r": [
+    "IL",
+    "PS"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
    "id": "palestine-open-maps",
    "n": "Palestine Open Maps خَرائط فلسطين المَفتوحة",
    "c": "Israel and Palestine",
@@ -3384,6 +3802,32 @@
    "n": "Palestine Open Maps خَرائط فلسطين المَفتوحة Hybrid",
    "c": "Israel and Palestine",
    "u": "https://palopenmaps.org/en/maps?basemap=aerial2020&overlay=pal2020&color=status&toggles=year%7Coverlay#{z},{lon},{lat}",
+   "r": [
+    "IL",
+    "PS"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "tel-avivjaffa",
+   "n": "Tel Aviv–Jaffa",
+   "c": "Israel and Palestine",
+   "u": "http://www.govmap.gov.il/?c={lon},{lat}&z={mqzoom}&b=5",
+   "r": [
+    "IL",
+    "PS"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "tel-avivjaffa-2",
+   "n": "Tel Aviv–Jaffa",
+   "c": "Israel and Palestine",
+   "u": "http://old.govmap.gov.il/?c={lon},{lat}&z={mqzoom}&b=5",
    "r": [
     "IL",
     "PS"
@@ -3753,6 +4197,18 @@
    ]
   },
   {
+   "id": "eatlas",
+   "n": "eAtlas",
+   "c": "Russia",
+   "u": "http://www.eatlas.ru/#z={mqzoom}&lat={lat}&lon={lon}",
+   "r": [
+    "RU"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
    "id": "etomesto",
    "n": "EtoMesto",
    "c": "Russia",
@@ -3769,6 +4225,30 @@
    "n": "Kosmosnimki / Космоснимки",
    "c": "Russia",
    "u": "http://www.kosmosnimki.ru/index.html#mode=map&x={lon}&y={lat}&z=12&fullscreen=true",
+   "r": [
+    "RU"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "maps-mail-ru-mail-ru",
+   "n": "Maps@Mail.ru / Карты@Mail.ru",
+   "c": "Russia",
+   "u": "http://maps.mail.ru/#x={lon}&y={lat}&z={mqzoom}",
+   "r": [
+    "RU"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "maps-mail-ru-mail-ru-satellite",
+   "n": "Maps@Mail.ru / Карты@Mail.ru Satellite",
+   "c": "Russia",
+   "u": "http://maps.mail.ru/#x={lon}&y={lat}&z={mqzoom}&mode=satellite",
    "r": [
     "RU"
    ],
@@ -4125,6 +4605,110 @@
    ]
   },
   {
+   "id": "vissir-icc",
+   "n": "Vissir – ICC",
+   "c": "Spain",
+   "u": "http://www.icc.cat/vissir3/?lang=eng&mp_zoom=n:{mqzoom}&etrs89x={lon}&etrs89y={lat}",
+   "r": [
+    "ES"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "topojanmayen",
+   "n": "TopoJanMayen",
+   "c": "Svalbard and Jan Mayen",
+   "u": "http://topojanmayen.npolar.no/?lat={lat}&long={lon}&zoom={mqzoom}&layer=map",
+   "r": [
+    [
+     -9.1,
+     70.8,
+     33.7,
+     80.9
+    ]
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "topojanmayen-aerial",
+   "n": "TopoJanMayen Aerial",
+   "c": "Svalbard and Jan Mayen",
+   "u": "http://topojanmayen.npolar.no/?lat={lat}&long={lon}&zoom={mqzoom}&layer=aerial",
+   "r": [
+    [
+     -9.1,
+     70.8,
+     33.7,
+     80.9
+    ]
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "toposvalbard",
+   "n": "TopoSvalbard",
+   "c": "Svalbard and Jan Mayen",
+   "u": "http://toposvalbard.npolar.no/?lat={lat}&long={lon}&zoom={mqzoom}&layer=map",
+   "r": [
+    [
+     -9.1,
+     70.8,
+     33.7,
+     80.9
+    ]
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "toposvalbard-aerial",
+   "n": "TopoSvalbard Aerial",
+   "c": "Svalbard and Jan Mayen",
+   "u": "http://toposvalbard.npolar.no/?lat={lat}&long={lon}&zoom={mqzoom}&layer=aerial",
+   "r": [
+    [
+     -9.1,
+     70.8,
+     33.7,
+     80.9
+    ]
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "eniro-labeled-satellite",
+   "n": "Eniro Labeled satellite",
+   "c": "Sweden",
+   "u": "http://kartor.eniro.se/query?what=map&mapstate={mqzoom};{lon};{lat};h",
+   "r": [
+    "SE"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "eniro-view",
+   "n": "Eniro View",
+   "c": "Sweden",
+   "u": "http://kartor.eniro.se/query?what=map&mapstate={mqzoom};{lon};{lat};o",
+   "r": [
+    "SE"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
    "id": "hitta-se",
    "n": "hitta.se",
    "c": "Sweden",
@@ -4225,6 +4809,18 @@
    "n": "CalTopo",
    "c": "United States",
    "u": "http://caltopo.com/map.html#ll={lat},{lon}&z={z}&b=t",
+   "r": [
+    "US"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "gps-visualizer-usgs-topo",
+   "n": "GPS Visualizer USGS Topo",
+   "c": "United States",
+   "u": "http://www.gpsvisualizer.com/map_input?special=wikipedia&format=google&bg_map=GV_TOPO_US&sp_width=50km&google_zoom_level={mqzoom}&google_wpt_labels=1&form:data=name,latitude,longitude%0D%22{a}%22,{lat},{lon}",
    "r": [
     "US"
    ],
@@ -4378,6 +4974,14 @@
   }
  ],
  "regions": {
+  "AR": [
+   [
+    -73.58,
+    -55.04,
+    -53.66,
+    -21.8
+   ]
+  ],
   "AT": [
    [
     9.52,
@@ -4450,12 +5054,40 @@
     83.12
    ]
   ],
+  "CL": [
+   [
+    -109.44,
+    -27.18,
+    -109.22,
+    -27.06
+   ],
+   [
+    -78.99,
+    -33.67,
+    -78.76,
+    -33.57
+   ],
+   [
+    -75.71,
+    -55.9,
+    -66.43,
+    -17.5
+   ]
+  ],
   "CN": [
    [
     73.6,
     18.21,
     134.76,
     53.56
+   ]
+  ],
+  "CY": [
+   [
+    32.3,
+    34.56,
+    34.06,
+    35.19
    ]
   ],
   "CZ": [
@@ -4494,6 +5126,20 @@
     57.52,
     28.16,
     59.64
+   ]
+  ],
+  "ES": [
+   [
+    -18.17,
+    27.64,
+    -13.42,
+    29.24
+   ],
+   [
+    -9.24,
+    36.02,
+    4.33,
+    43.77
    ]
   ],
   "FI": [
@@ -4652,6 +5298,26 @@
     -28.94,
     25.26,
     -16.96
+   ]
+  ],
+  "NL": [
+   [
+    -68.38,
+    12.03,
+    -68.2,
+    12.31
+   ],
+   [
+    -63.26,
+    17.47,
+    -62.93,
+    17.66
+   ],
+   [
+    3.35,
+    50.75,
+    7.2,
+    53.63
    ]
   ],
   "NO": [

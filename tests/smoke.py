@@ -66,7 +66,13 @@ def main() -> None:
                 ({'width': 1280, 'height': 900}, 'light'),
                 ({'width': 390, 'height': 844}, 'dark'),
             ):
-                page = browser.new_page(viewport=viewport, color_scheme=scheme)
+                context = browser.new_context(
+                    viewport=viewport,
+                    color_scheme=scheme,
+                    geolocation={'latitude': 48.8566, 'longitude': 2.3522},
+                    permissions=['geolocation', 'clipboard-read', 'clipboard-write'],
+                )
+                page = context.new_page()
                 errors: list[str] = []
                 page.on('pageerror', lambda e, errors=errors: errors.append(str(e)))
                 page.route('https://tile.openstreetmap.org/**', lambda r: r.abort())
@@ -143,6 +149,38 @@ def main() -> None:
                 page.press('#q', 'Enter')
                 page.wait_for_function('location.pathname.startsWith("/geo/42.364667")')
 
+                # Zoom control updates the URL.
+                visit(page, '/geo/42.36,-71.13')
+                page.click('.leaflet-control-zoom-in')
+                page.wait_for_function('location.pathname === "/geo/42.36,-71.13&z=16"')
+
+                # Dragging the pin moves the point, the URL, and every link.
+                osm = page.locator('#list a', has_text='OpenStreetMap').first
+                before_href = osm.get_attribute('href')
+                box = page.locator('.leaflet-marker-icon').bounding_box()
+                assert box
+                x, y = box['x'] + box['width'] / 2, box['y'] + box['height'] / 2
+                page.mouse.move(x, y)
+                page.mouse.down()
+                page.mouse.move(x + 60, y + 30, steps=8)
+                page.mouse.up()
+                page.wait_for_function(
+                    '!location.pathname.startsWith("/geo/42.36,-71.13")'
+                )
+                assert page.evaluate('location.pathname').endswith('&z=16'), page.url
+                assert osm.get_attribute('href') != before_href
+
+                # My location uses browser geolocation; keeps the zoom.
+                page.click('#locate')
+                page.wait_for_function(
+                    'location.pathname === "/geo/48.8566,2.3522&z=16"'
+                )
+
+                # Copy link puts the canonical URL on the clipboard.
+                page.click('#copy')
+                page.wait_for_selector('#msg.ok')
+                assert page.evaluate('navigator.clipboard.readText()') == page.url
+
                 # A label is text, never HTML.
                 visit(
                     page,
@@ -163,7 +201,7 @@ def main() -> None:
                 assert overflow <= 0, f'horizontal overflow {overflow}px at {viewport}'
 
                 assert not errors, errors
-                page.close()
+                context.close()
             browser.close()
         print('smoke: ok')
     finally:

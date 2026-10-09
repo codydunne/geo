@@ -1,6 +1,6 @@
 # geo
 
-A small static page at [dunne.dev/geo](https://dunne.dev/geo/) that opens a location in any of about 380 map services.
+A small static page at [dunne.dev/geo](https://dunne.dev/geo/) that opens a location in any of about 420 map services.
 It takes coordinates, a map URL, or an address, rewrites the address bar to a short canonical link, and lists links into every map that applies at that point.
 The map list is the union of [GeoHack](https://geohack.toolforge.org/), [OpenSwitchMaps](https://github.com/tankaru/OpenSwitchMapsWeb), and [mapfwd](https://mapfwd.com/), plus RideWithGPS and AllTrails.
 

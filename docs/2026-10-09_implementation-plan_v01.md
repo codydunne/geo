@@ -241,7 +241,7 @@ Each entry records the conservative choice taken and the alternative not taken.
 | D5 | Geocoder URL comes from `maps.json`. | A separate `config.json`; one more fetch for one value. |
 | D6 | `index.html` has a static `<base href="/geo/">`, since `serve.py` mounts at `/geo/` too. | The inline script in §3.3 that computes the base; only needed if the site moves to another path. |
 | D7 | The collector uses only the standard library (`urllib`). | `httpx`, as §4 planned; no benefit for a handful of GETs. |
-| D8 | GeoHack links using `{zoom}` (41) and other placeholders (`{span}`, UTM, OSGB, CH1903, …) are dropped and counted in the report. | Implement `{zoom}` = `int(18 − log(scale))` clamped to [0, 9]; the GeoHack docs do not say which log base, so it needs one live comparison first. |
+| D8 | GeoHack's `{zoom}` becomes `{mqzoom}` = `trunc(18 − ln(scale))` clamped to [0, 9]. The natural log was confirmed live on 2026-10-09: the default scale of 300,000 renders `google_zoom_level=5` (log10 would give 9). Links using other placeholders (`{span}`, UTM, OSGB, CH1903, …) are dropped and counted in the report. | Keep dropping `{zoom}` links; or reuse the name `{zoom}`, which invites confusion with `{z}`. |
 | D9 | `{language}` in GeoHack links becomes `en`. | Drop those links (22), or use the browser language. |
 | D10 | Google, `#map=`, and `center=…&zoom=` parse patterns are built into `geo.js`, not stored in the overrides. | Store them as `p` patterns on the `google` entry; that makes the required input forms depend on generated data. |
 | D11 | Only `.woff2` fonts are shipped. | Also ship `.woff`, for browsers older than about 2016. |
@@ -257,3 +257,12 @@ Each entry records the conservative choice taken and the alternative not taken.
 
 The services linked from `https://mapfwd.com/42.364678,-71.131311` are Apple Maps, Bing, Google Maps, HERE WeGo, MapQuest, Mapy.com, OpenStreetMap, ViaMichelin, Waze, what3words, and Yandex.
 All are already in `maps.json` from GeoHack or OpenSwitchMaps, so no mapfwd-only overrides were needed.
+
+Added after the first full build:
+
+| # | Decision | Alternative |
+|---|---|---|
+| D19 | `osmcycle` is CyclOSM. | OpenCycleMap (Thunderforest), which is the osm.org "Cycle Map" layer but needs an API key for full use. |
+| D20 | `maps.json` is written with `indent=1` (≈110 KB; GitHub Pages serves it gzipped) so collector diffs are reviewable. | Minified, about 20% smaller before compression. |
+| D21 | Source categories collapse into one short list (`categories` in the overrides): Main, Outdoor, Imagery, Street-level, Weather, Photos, Wikipedia, Info, OSM tools, Apps, Other, then one group per country. | Keep each source's own category names. |
+| D22 | OpenSwitchMaps "local" entries get a region from a `(XX)` name suffix, Japanese script, or a ccTLD host, with a `local` override table for the rest. Japan-only services in other categories get `r` by override. Global tools on ccTLD hosts (Osmose, BRouter, Mapy) stay global. | Mark every ccTLD host regional; or show all local maps everywhere. |

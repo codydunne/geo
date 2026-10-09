@@ -65,6 +65,17 @@
   ],
   "XZ": null
  },
+ "local": {
+  "OSMChina": "CN",
+  "osm.bzh": "FR",
+  "OpenStreetMap Nederland": "NL",
+  "VK maps": "RU",
+  "OSM.in": "IN",
+  "osm.kr": "KR",
+  "OSM.cl": "CL",
+  "OSM.org.ar": "AR",
+  "MapFan (JP)": "JP"
+ },
  "maps": [
   {
    "id": "osm",
@@ -144,6 +155,30 @@
    "id": "omniscale",
    "match": "Omniscale",
    "u": "https://maps.omniscale.com/en/p/map#map={z}/{lat}/{lon}/3857/B"
+  },
+  {
+   "match": "地理院地図",
+   "r": [
+    "JP"
+   ]
+  },
+  {
+   "match": "JapanMapCompare",
+   "r": [
+    "JP"
+   ]
+  },
+  {
+   "match": "cmap.dev: リアルタイム被害予測(JP)",
+   "r": [
+    "JP"
+   ]
+  },
+  {
+   "match": "聖地巡礼マップ",
+   "r": [
+    "JP"
+   ]
   }
  ]
 }

@@ -241,7 +241,7 @@ export function bbox(lat, lon, z, w = 1024, h = 768) {
   return [lonOf(x - w / 2), latOf(Math.min(size, y + h / 2)), lonOf(x + w / 2), latOf(Math.max(0, y - h / 2))];
 }
 
-export const PLACEHOLDERS = ["lat", "lon", "z", "scale", "w", "s", "e", "n", "a"];
+export const PLACEHOLDERS = ["lat", "lon", "z", "scale", "mqzoom", "w", "s", "e", "n", "a"];
 
 /**
  * Fill a map's link template.
@@ -250,13 +250,17 @@ export const PLACEHOLDERS = ["lat", "lon", "z", "scale", "w", "s", "e", "n", "a"
  */
 export function fill(u, st) {
   const z = st.z ?? DEFAULT_Z;
+  const scale = Math.round(1693 * 2 ** (18 - z));
   const [w, s, e, n] = bbox(Number(st.lat), Number(st.lon), z).map(fmt);
   /** @type {Record<string, string>} */
   const v = {
     lat: st.lat ?? "",
     lon: st.lon ?? "",
     z: String(z),
-    scale: String(Math.round(1693 * 2 ** (18 - z))),
+    scale: String(scale),
+    // GeoHack's legacy {zoom}: int(18 - ln(scale)) in [0, 9]; natural log checked
+    // against geohack.toolforge.org on 2026-10-09 (default scale 300000 -> 5).
+    mqzoom: String(Math.min(9, Math.max(0, Math.trunc(18 - Math.log(scale))))),
     w, s, e, n,
     a: st.a ? encodeURIComponent(st.a) : "",
   };

@@ -42,13 +42,14 @@ SOURCES = {
     'ne': 'Natural Earth 1:50m admin-0 (public domain), region bboxes',
     'x': 'Hand-maintained overrides',
 }
-PLACEHOLDERS = {'lat', 'lon', 'z', 'scale', 'w', 's', 'e', 'n', 'a'}
+PLACEHOLDERS = {'lat', 'lon', 'z', 'scale', 'mqzoom', 'w', 's', 'e', 'n', 'a'}
 # {language} is the reader's wiki language; this site is English-only.
 GH_VARS = {
     'language': 'en',
     'latdegdec': 'lat',
     'londegdec': 'lon',
     'osmzoom': 'z',
+    'zoom': 'mqzoom',
     'scale': 'scale',
     'titlee': 'a',
     'title': 'a',
@@ -296,6 +297,25 @@ def js_pattern(fn: str) -> str | None:
     return name_groups(lit[0], [group[v] for v in vars_])
 
 
+LOCAL_CATEGORIES = {'LOCAL_CATEGORY', 'OSM_LOCAL_CATEGORY'}
+NOT_CCTLD = {'io', 'me', 'co', 'tv', 'ai', 'app', 'xyz'}
+
+
+def local_region(m: Map, by_name: dict[str, str]) -> str | None:
+    """Country for an OpenSwitchMaps "local" entry: override, `(XX)` suffix,
+    Japanese script, or ccTLD, in that order."""
+    if code := by_name.get(m['n']):
+        return code
+    if s := re.search(r'\(([A-Z]{2})\)\s*$', m['n']):
+        return {'UK': 'GB'}.get(s[1], s[1])
+    if re.search(r'[\u3040-\u30ff\u4e00-\u9fff]', m['n']):
+        return 'JP'
+    tld = host(m['u']).rsplit('.', 1)[-1]
+    if len(tld) == 2 and tld not in NOT_CCTLD:
+        return {'uk': 'GB'}.get(tld, tld.upper())
+    return None
+
+
 def osm(text: str, src: str) -> list[Map]:
     cats = dict(re.findall(r'const (\w+_CATEGORY) = "([^"]*)"', text))
     maps: list[Map] = []
@@ -314,6 +334,7 @@ def osm(text: str, src: str) -> list[Map]:
             'n': name[1],
             'c': cats.get(cat[1] if cat else '', 'Other maps'),
             'u': u,
+            '_local': bool(cat) and cat[1] in LOCAL_CATEGORIES,
             's': [src],
         }
         parse = re.search(r'getLatLonZoom\(url\)\s*\{(.*?)\n\t\t\},', chunk, re.DOTALL)
@@ -368,6 +389,7 @@ SAMPLE = {
     'lon': '-71.131311',
     'z': '13',
     'scale': '108352',
+    'mqzoom': '6',
     'w': '-71.2',
     's': '42.3',
     'e': '-71.1',
@@ -550,6 +572,12 @@ def main() -> None:
     groups = [osm(fetch(url), src) for src, url in OSM_SOURCES.items()]
     groups.append(geohack(fetch(GEOTEMPLATE)))
     maps = merge(groups)
+    for m in maps:
+        if m.pop('_local', False) and 'r' not in m:
+            if code := local_region(m, ov.get('local', {})):
+                m['r'] = [code]
+            else:
+                print(f'  local map without region: {m["n"]}', file=sys.stderr)
     maps, dropped_ids = apply_overrides(maps, ov)
 
     # IDs first, so an entry that kept its name+host but changed its template

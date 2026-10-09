@@ -81,6 +81,8 @@ test("bbox is finite at the poles and centred elsewhere", () => {
 test("fill and inRegion", () => {
   const st = { lat: "42.36", lon: "-71.13", z: 12, a: "A & B" };
   assert.equal(fill("x/{z}/{lat}/{lon}?q={a}&s={scale}", st), "x/12/42.36/-71.13?q=A%20%26%20B&s=108352");
+  assert.equal(fill("{mqzoom}", { lat: "0", lon: "0", z: 11 }), "5"); // scale 216704 ~ GeoHack default
+  assert.equal(fill("{mqzoom}", { lat: "0", lon: "0", z: 15 }), "8");
   assert.ok(inRegion({ id: "x", n: "x", c: "x", u: "", r: ["US"] }, st, { US: [[-125, 24, -66, 50]] }));
   assert.ok(!inRegion({ id: "x", n: "x", c: "x", u: "", r: ["GB"] }, st, { GB: [[-8, 49, 2, 61]] }));
   assert.ok(inRegion({ id: "x", n: "x", c: "x", u: "", r: [[-72, 42, -71, 43]] }, st, {}));
@@ -106,6 +108,14 @@ test("maps.json invariants", async () => {
       assert.equal(Number(g.lon), Number(st.lon), `${m.id} lon`);
     }
   }
+  // Country-specific services stay out of a Boston list.
+  const boston = { lat: "42.36", lon: "-71.13" };
+  const leaked = data.maps
+    .filter((m) => inRegion(m, boston, data.regions))
+    .map((m) => m.n)
+    .filter((n) => /\((JP|FR|DE|RU|UK)\)|地理院|^osm\.(fr|kr|bzh)$|^OSM\.(de|jp|ru|cl|in|ch)$|^OSMChina$/i.test(n));
+  assert.deepEqual(leaked, []);
+  assert.ok(data.maps.filter((m) => inRegion(m, { lat: "35.68", lon: "139.76" }, data.regions)).some((m) => m.n === "地理院地図"));
   // A link from a collected service parses through the data patterns.
   assert.equal(canonical(/** @type {any} */ (parse("https://www.komoot.com/plan/@42.36,-71.13,12z", data))), "/geo/42.36,-71.13&z=12");
 });
