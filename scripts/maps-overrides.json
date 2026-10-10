@@ -376,7 +376,7 @@
   },
   {
    "id": "massdot-priority-trails",
-   "n": "MassDOT Priority Trails Network ❓",
+   "n": "MassDOT Priority Trails Network",
    "c": "Massachusetts",
    "u": "https://experience.arcgis.com/experience/75ad0564b18f48f5973657d65d2a775d#widget_1=center:{lon}%2C{lat}%2C4326,level:{z},marker:{lon}%2C{lat}",
    "r": [
@@ -385,7 +385,7 @@
   },
   {
    "id": "massmapper-aerial-2025",
-   "n": "MassMapper 2025 Aerial Imagery ❓",
+   "n": "MassMapper 2025 Aerial Imagery",
    "c": "Massachusetts",
    "u": "https://maps.massgis.digital.mass.gov/MassMapper/MassMapper.html?bl=2025%20Aerial%20Imagery__100&l=massgis:GISDATA.COQ2025INDEX_POLY__GISDATA.COQ2025INDEX_POLY::Labels__ON__100,massgis:GISDATA.COQ2025INDEX_POLY__GISDATA.COQ2025INDEX_POLY::Default__ON__100&b={w},{s},{e},{n}",
    "r": [
@@ -394,7 +394,7 @@
   },
   {
    "id": "massmapper-mbta",
-   "n": "MassMapper MBTA + Parcels ❓",
+   "n": "MassMapper MBTA + Parcels",
    "c": "Massachusetts",
    "u": "https://maps.massgis.digital.mass.gov/MassMapper/MassMapper.html?bl=MassGIS%20Basemap__100&l=massgis:GISDATA.MBTA_NODE__GISDATA.MBTA_NODE::Default__ON__100,massgis:GISDATA.MBTA_ARC__GISDATA.MBTA_ARC::Default__ON__100,massgis:GISDATA.MBTA_NODE__GISDATA.MBTA_NODE::Labels__ON__100,Basemaps_L3Parcels____ON__100&b={w},{s},{e},{n}",
    "r": [
@@ -412,7 +412,7 @@
   },
   {
    "id": "mass-crash-map",
-   "n": "Mass Crash Map",
+   "n": "Mass Crash Map ★",
    "c": "Massachusetts",
    "u": "https://picturedigits.github.io/mass-crash-map/#lat={lat}&lng={lon}&z={z}&region=boston-metro&opacity=5&from=2021-01-01&to=2026-08-31&view=heatmap&inv=ped,cyc,other,veh&harm=fatal,any&roads=local,interstate&labels=1",
    "r": [
@@ -421,9 +421,9 @@
   },
   {
    "id": "bcu-labs-map",
-   "n": "Boston Cyclists Union Labs Map",
+   "n": "Boston Cyclists Union Labs Map ★",
    "c": "Massachusetts",
-   "u": "https://bostoncyclistsunion.github.io/LabsWebsiteMap/#map={z}/{lat}/{lon}",
+   "u": "https://bostoncyclistsunion.github.io/LabsWebsiteMap/#map={z}/{lat}/{lon}&inx=true",
    "r": [
     "US-MA-BOSTON"
    ]
@@ -547,7 +547,7 @@
   },
   {
    "id": "arcgis-nu-webmap",
-   "n": "Northeastern ArcGIS web map (sign-in) ❓",
+   "n": "Northeastern ArcGIS web map (sign-in)",
    "c": "Other",
    "u": "https://nu.maps.arcgis.com/apps/mapviewer/index.html?webmap=5107b74893784cf49f2b06dfd4df37e4&center={lon},{lat}&level={z}&marker={lon};{lat}"
   },
@@ -631,13 +631,14 @@
   },
   {
    "id": "nls-side-by-side",
-   "n": "National Library of Scotland side by side ❓",
+   "n": "National Library of Scotland side by side",
    "c": "Other",
    "u": "https://maps.nls.uk/geo/explore/side-by-side/#zoom={z}&lat={lat}&lon={lon}&layers=ESRIWorld&right=GoogleSat"
   },
   {
    "id": "windy-com",
    "match": "Windy.com",
+   "c": "Weather",
    "n": "Windy.com ★"
   },
   {

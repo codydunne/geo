@@ -190,6 +190,8 @@ button:hover, .button:hover { opacity: 0.88; text-decoration: none; }
   column-gap: 1.5rem;
 }
 .group li { padding: 0.15rem 0; break-inside: avoid; }
+/* Unstarred maps recede; must precede a.disabled, which has equal specificity. */
+a.dim { color: var(--fg); }
 a.disabled { color: var(--error); text-decoration: line-through; }
 .toggles { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; padding: 0.75rem 0; color: var(--muted); }
 .toggles label { cursor: pointer; }

@@ -144,7 +144,7 @@ function renderList() {
     }
     const li = document.createElement("li");
     li.dataset.n = d.n.toLowerCase();
-    li.append(link(d, d.n));
+    li.append(link(d, d.n, d.n.includes("★") ? "" : "dim"));
     ul.append(li);
   }
   applyFilter();
