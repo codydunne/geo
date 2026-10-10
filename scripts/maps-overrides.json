@@ -14,6 +14,7 @@
   "Info",
   "OSM tools",
   "Apps",
+  "Travel time",
   "Other"
  ],
  "categories": {
@@ -66,7 +67,39 @@
     90
    ]
   ],
-  "XZ": null
+  "XZ": null,
+  "US-MA": [
+   [
+    -73.51,
+    41.23,
+    -69.92,
+    42.89
+   ]
+  ],
+  "US-MA-BOSTON": [
+   [
+    -71.3,
+    42.2,
+    -70.95,
+    42.5
+   ]
+  ],
+  "US-MA-WESTON": [
+   [
+    -71.36,
+    42.32,
+    -71.26,
+    42.41
+   ]
+  ],
+  "US-MA-CAMBRIDGE": [
+   [
+    -71.161,
+    42.352,
+    -71.063,
+    42.404
+   ]
+  ]
  },
  "local": {
   "OSMChina": "CN",
@@ -82,11 +115,13 @@
  "maps": [
   {
    "id": "osm",
-   "match": "OpenStreetMap"
+   "match": "OpenStreetMap",
+   "n": "OpenStreetMap ★"
   },
   {
    "id": "google",
-   "match": "Google Maps"
+   "match": "Google Maps",
+   "n": "Google Maps ★"
   },
   {
    "id": "apple",
@@ -94,7 +129,8 @@
   },
   {
    "id": "bing",
-   "match": "Bing Maps"
+   "match": "Bing Maps",
+   "n": "Bing Maps ★"
   },
   {
    "id": "here",
@@ -107,11 +143,12 @@
   {
    "id": "osmcycle",
    "match": "CyclOSM",
-   "c": "Outdoor"
+   "c": "Outdoor",
+   "n": "CyclOSM ★"
   },
   {
    "id": "rwgps",
-   "n": "RideWithGPS",
+   "n": "RideWithGPS ★",
    "c": "Outdoor",
    "u": "https://ridewithgps.com/routes/new?center={lat}%2C{lon}&zoom={z}",
    "p": [
@@ -120,7 +157,7 @@
   },
   {
    "id": "alltrails",
-   "n": "AllTrails",
+   "n": "AllTrails ★",
    "c": "Outdoor",
    "u": "https://www.alltrails.com/explore?b_tl_lat={n}&b_tl_lng={w}&b_br_lat={s}&b_br_lng={e}"
   },
@@ -327,6 +364,326 @@
    "id": "nasa-msfc-goes",
    "match": "NASA/MSFC GOES",
    "disabled": true
+  },
+  {
+   "id": "massdot-bike-inventory",
+   "n": "MassDOT Bicycle Facility Inventory",
+   "c": "Massachusetts",
+   "u": "https://massdot.maps.arcgis.com/apps/webappviewer/index.html?id=76fc33869d534c6ba0b16803d25ee990&marker={lon}%2C{lat}%2C4326&level={z}",
+   "r": [
+    "US-MA"
+   ]
+  },
+  {
+   "id": "massdot-priority-trails",
+   "n": "MassDOT Priority Trails Network ❓",
+   "c": "Massachusetts",
+   "u": "https://experience.arcgis.com/experience/75ad0564b18f48f5973657d65d2a775d#widget_1=center:{lon}%2C{lat}%2C4326,level:{z},marker:{lon}%2C{lat}",
+   "r": [
+    "US-MA"
+   ]
+  },
+  {
+   "id": "massmapper-aerial-2025",
+   "n": "MassMapper 2025 Aerial Imagery ❓",
+   "c": "Massachusetts",
+   "u": "https://maps.massgis.digital.mass.gov/MassMapper/MassMapper.html?bl=2025%20Aerial%20Imagery__100&l=massgis:GISDATA.COQ2025INDEX_POLY__GISDATA.COQ2025INDEX_POLY::Labels__ON__100,massgis:GISDATA.COQ2025INDEX_POLY__GISDATA.COQ2025INDEX_POLY::Default__ON__100&b={w},{s},{e},{n}",
+   "r": [
+    "US-MA"
+   ]
+  },
+  {
+   "id": "massmapper-mbta",
+   "n": "MassMapper MBTA + Parcels ❓",
+   "c": "Massachusetts",
+   "u": "https://maps.massgis.digital.mass.gov/MassMapper/MassMapper.html?bl=MassGIS%20Basemap__100&l=massgis:GISDATA.MBTA_NODE__GISDATA.MBTA_NODE::Default__ON__100,massgis:GISDATA.MBTA_ARC__GISDATA.MBTA_ARC::Default__ON__100,massgis:GISDATA.MBTA_NODE__GISDATA.MBTA_NODE::Labels__ON__100,Basemaps_L3Parcels____ON__100&b={w},{s},{e},{n}",
+   "r": [
+    "US-MA"
+   ]
+  },
+  {
+   "id": "mass-trail-tracker",
+   "n": "Mass Trail Tracker",
+   "c": "Massachusetts",
+   "u": "https://masstrailtracker.com/map?lat={lat}&lon={lon}&zoom={z}",
+   "r": [
+    "US-MA"
+   ]
+  },
+  {
+   "id": "mass-crash-map",
+   "n": "Mass Crash Map",
+   "c": "Massachusetts",
+   "u": "https://picturedigits.github.io/mass-crash-map/#lat={lat}&lng={lon}&z={z}&region=boston-metro&opacity=5&from=2021-01-01&to=2026-08-31&view=heatmap&inv=ped,cyc,other,veh&harm=fatal,any&roads=local,interstate&labels=1",
+   "r": [
+    "US-MA"
+   ]
+  },
+  {
+   "id": "bcu-labs-map",
+   "n": "Boston Cyclists Union Labs Map",
+   "c": "Massachusetts",
+   "u": "https://bostoncyclistsunion.github.io/LabsWebsiteMap/#map={z}/{lat}/{lon}",
+   "r": [
+    "US-MA-BOSTON"
+   ]
+  },
+  {
+   "id": "mapjunction-boston",
+   "n": "Mapjunction (Boston historical overlay)",
+   "c": "Massachusetts",
+   "u": "https://alpha.mapjunction.com/?lat={lat}&lng={lon}&map1=link.mapwarpermap32092&map2=link.mapwarpermap18587&zoom={z}&mode=overlay&b=0&p=0",
+   "r": [
+    "US-MA-BOSTON"
+   ]
+  },
+  {
+   "id": "mapc-trailmap",
+   "n": "MAPC Trailmap",
+   "c": "Massachusetts",
+   "u": "https://trailmap.mapc.org/",
+   "r": [
+    "US-MA"
+   ]
+  },
+  {
+   "id": "massgis-hub-search",
+   "n": "MassGIS Data Hub search",
+   "c": "Massachusetts",
+   "u": "https://gis.data.mass.gov/search",
+   "r": [
+    "US-MA"
+   ]
+  },
+  {
+   "id": "weston-trails",
+   "n": "Weston MA Trails (MapsOnline)",
+   "c": "Massachusetts",
+   "u": "https://www.mapsonline.net/westonma/trails.html",
+   "r": [
+    "US-MA-WESTON"
+   ]
+  },
+  {
+   "id": "cambridge-axisgis",
+   "n": "Cambridge GIS Viewer (AxisGIS)",
+   "c": "Massachusetts",
+   "u": "https://www.axisgis.com/cambridgema",
+   "r": [
+    "US-MA-CAMBRIDGE"
+   ]
+  },
+  {
+   "id": "cambridge-axisgis-dpw",
+   "n": "Cambridge AxisGIS DPW",
+   "c": "Massachusetts",
+   "u": "https://www.axisgis.com/cambridgema?map=DPW",
+   "r": [
+    "US-MA-CAMBRIDGE"
+   ]
+  },
+  {
+   "id": "cambridge-axisgis-elections",
+   "n": "Cambridge AxisGIS Elections",
+   "c": "Massachusetts",
+   "u": "https://www.axisgis.com/cambridgema?map=Elections",
+   "r": [
+    "US-MA-CAMBRIDGE"
+   ]
+  },
+  {
+   "id": "cambridge-axisgis-historical",
+   "n": "Cambridge AxisGIS Historical",
+   "c": "Massachusetts",
+   "u": "https://www.axisgis.com/cambridgema?map=Historical",
+   "r": [
+    "US-MA-CAMBRIDGE"
+   ]
+  },
+  {
+   "id": "cambridge-axisgis-land-use",
+   "n": "Cambridge AxisGIS Land Use",
+   "c": "Massachusetts",
+   "u": "https://www.axisgis.com/cambridgema?map=Land%20Use",
+   "r": [
+    "US-MA-CAMBRIDGE"
+   ]
+  },
+  {
+   "id": "cambridge-axisgis-parking",
+   "n": "Cambridge AxisGIS Parking",
+   "c": "Massachusetts",
+   "u": "https://www.axisgis.com/cambridgema?map=Parking",
+   "r": [
+    "US-MA-CAMBRIDGE"
+   ]
+  },
+  {
+   "id": "cambridge-axisgis-transportation",
+   "n": "Cambridge AxisGIS Transportation",
+   "c": "Massachusetts",
+   "u": "https://www.axisgis.com/cambridgema?map=Transportation",
+   "r": [
+    "US-MA-CAMBRIDGE"
+   ]
+  },
+  {
+   "id": "cambridge-axisgis-water",
+   "n": "Cambridge AxisGIS Water",
+   "c": "Massachusetts",
+   "u": "https://www.axisgis.com/cambridgema?map=Water",
+   "r": [
+    "US-MA-CAMBRIDGE"
+   ]
+  },
+  {
+   "id": "cambridge-axisgis-zoning",
+   "n": "Cambridge AxisGIS Zoning",
+   "c": "Massachusetts",
+   "u": "https://www.axisgis.com/cambridgema?map=Zoning",
+   "r": [
+    "US-MA-CAMBRIDGE"
+   ]
+  },
+  {
+   "id": "arcgis-nu-webmap",
+   "n": "Northeastern ArcGIS web map (sign-in) ❓",
+   "c": "Other",
+   "u": "https://nu.maps.arcgis.com/apps/mapviewer/index.html?webmap=5107b74893784cf49f2b06dfd4df37e4&center={lon},{lat}&level={z}&marker={lon};{lat}"
+  },
+  {
+   "id": "esri-firefly",
+   "n": "Esri World Imagery (Firefly)",
+   "c": "Imagery/Satellite/Aerial",
+   "u": "https://www.arcgis.com/apps/mapviewer/index.html?layers=a66bfb7dd3b14228bf7ba42b138fe2ea&center={lon},{lat}&level={z}&marker={lon};{lat}"
+  },
+  {
+   "id": "landsat-explorer",
+   "n": "Esri Landsat Explorer",
+   "c": "Imagery/Satellite/Aerial",
+   "u": "https://livingatlas.arcgis.com/landsatexplorer/#mapCenter={lon}%2C{lat}%2C{z}&mode=find+a+scene&mainScene=%7CNatural+Color+for+Visualization%7C"
+  },
+  {
+   "id": "earthexplorer",
+   "n": "USGS EarthExplorer",
+   "c": "Imagery/Satellite/Aerial",
+   "u": "https://earthexplorer.usgs.gov/"
+  },
+  {
+   "id": "pera-portal",
+   "n": "Pera Portal",
+   "c": "Imagery/Satellite/Aerial",
+   "u": "https://portal.geopera.com/"
+  },
+  {
+   "id": "gpx-studio",
+   "n": "gpx.studio ★",
+   "c": "Outdoor",
+   "u": "https://gpx.studio/app#{z}/{lat}/{lon}"
+  },
+  {
+   "id": "cycle-travel-overnight",
+   "n": "cycle.travel overnight (campsites)",
+   "c": "Outdoor",
+   "u": "https://cycle.travel/overnight?show=campsites&lat={lat}&lon={lon}"
+  },
+  {
+   "id": "surfline",
+   "n": "Surfline ★",
+   "c": "Weather",
+   "u": "https://www.surfline.com/surf-reports-forecasts-cams-map/@{lat},{lon},{z}z"
+  },
+  {
+   "id": "traveltime",
+   "n": "TravelTime (45 min)",
+   "c": "Travel time",
+   "u": "https://app.traveltime.com/?o={lat},{lon},45"
+  },
+  {
+   "id": "commutetimemap",
+   "n": "CommuteTimeMap",
+   "c": "Travel time",
+   "u": "https://commutetimemap.com/map?places={lat}%253B{lon}%253B2%253B2400%253B%25234143f4"
+  },
+  {
+   "id": "mapbox-isochrone",
+   "n": "Mapbox Isochrone Playground",
+   "c": "Travel time",
+   "u": "https://docs.mapbox.com/playground/isochrone/"
+  },
+  {
+   "id": "bbbike-compare-9",
+   "n": "Map compare (BBBike, 9 general) ★",
+   "c": "OSM tools",
+   "u": "https://mc.bbbike.org/mc/?lon={lon}&lat={lat}&zoom={z}&num=9&mt0=google-hybrid&mt1=bing-hybrid&mt2=esri-satellite&mt3=usgs-topo&mt4=esri-topo-usa&mt5=google-map&mt6=bing-map&mt7=cyclosm&mt8=cyclemap"
+  },
+  {
+   "id": "bbbike-compare-topo",
+   "n": "Map compare (BBBike, 10 topo) ★",
+   "c": "OSM tools",
+   "u": "https://mc.bbbike.org/mc/?lon={lon}&lat={lat}&zoom={z}&num=10&mt0=stamen-terrain&mt1=tracestrack-topo&mt2=esri-satellite&mt3=usgs-topo&mt4=esri-topo-usa&mt5=usgs-imagery-topo&mt6=opentopomap&mt7=cyclosm&mt8=cyclemap&mt9=tomtom-sat"
+  },
+  {
+   "id": "geofabrik-compare-cycle",
+   "n": "Map compare (Geofabrik, cycling)",
+   "c": "OSM tools",
+   "u": "https://tools.geofabrik.de/mc/#{z}/{lat}/{lon}&num=4&mt0=cyclosm&mt1=cyclemap&mt2=thunderforest-cycle&mt3=geofabrik-topo"
+  },
+  {
+   "id": "nls-side-by-side",
+   "n": "National Library of Scotland side by side ❓",
+   "c": "Other",
+   "u": "https://maps.nls.uk/geo/explore/side-by-side/#zoom={z}&lat={lat}&lon={lon}&layers=ESRIWorld&right=GoogleSat"
+  },
+  {
+   "id": "windy-com",
+   "match": "Windy.com",
+   "n": "Windy.com ★"
+  },
+  {
+   "id": "national-weather-service",
+   "match": "National Weather Service",
+   "n": "National Weather Service ★"
+  },
+  {
+   "id": "map-compare-bbbike",
+   "match": "Map compare (BBBike)",
+   "n": "Map compare (BBBike) ★"
+  },
+  {
+   "id": "opentopomap",
+   "match": "OpenTopoMap",
+   "n": "OpenTopoMap ★"
+  },
+  {
+   "id": "openrailwaymap",
+   "match": "OpenRailwayMap",
+   "n": "OpenRailwayMap ★"
+  },
+  {
+   "id": "trail-router",
+   "match": "Trail Router",
+   "n": "Trail Router ★"
+  },
+  {
+   "id": "historic-aerials",
+   "match": "Historic Aerials",
+   "n": "Historic Aerials ★"
+  },
+  {
+   "id": "topoquest",
+   "match": "TopoQuest",
+   "n": "TopoQuest ★"
+  },
+  {
+   "id": "topoquest-topo",
+   "match": "TopoQuest Topo",
+   "n": "TopoQuest Topo ★"
+  },
+  {
+   "id": "usgs-topoview",
+   "match": "USGS TopoView",
+   "n": "USGS TopoView ★"
   }
  ]
 }
