@@ -243,8 +243,7 @@
    "u": "https://wikimapia.org/#lang=en&lat={lat}&lon={lon}&z={z}&m=b&v=8",
    "s": [
     "gh"
-   ],
-   "f": true
+   ]
   },
   {
    "id": "wikimedia-maps",
@@ -4811,18 +4810,6 @@
    "s": [
     "osm",
     "osmw"
-   ]
-  },
-  {
-   "id": "2gis-2",
-   "n": "2GIS / 2ГИС 👥",
-   "c": "Russia",
-   "u": "https://2gis.ru/moscow/geo/4504222442088225,{lat},{lon}",
-   "r": [
-    "RU"
-   ],
-   "s": [
-    "gh"
    ]
   },
   {

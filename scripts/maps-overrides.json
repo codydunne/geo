@@ -1192,7 +1192,7 @@
    "id": "wikimapia-old-places",
    "match": "Wikimapia + old places",
    "u": "https://wikimapia.org/#lang=en&lat={lat}&lon={lon}&z={z}&m=b&v=8",
-   "f": true
+   "f": false
   },
   {
    "id": "wikimedia-maps",
