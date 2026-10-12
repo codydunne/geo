@@ -98,7 +98,7 @@ The parser accepts `https:/` as well, so a collapsed slash degrades gracefully.
 
 ## Credits and licenses
 
-Code: MIT ([`LICENSE`](LICENSE)).
+Code: Apache-2.0 ([`LICENSE`](LICENSE)), copyright 2026 Cody Dunne.
 Map link formats come from GeoHack's Template:GeoTemplate (Wikipedia contributors, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)) and OpenSwitchMaps / OpenSwitchMapsWeb by tankaru (MIT); `web/_/maps.json` records its sources per entry.
 Regional bboxes are derived from [Natural Earth](https://www.naturalearthdata.com/) (public domain).
 Bundled: [Leaflet](https://leafletjs.com/) 1.9.4 (BSD-2-Clause, `web/_/leaflet/LICENSE`) and Atkinson Hyperlegible by the Braille Institute (SIL OFL 1.1, `web/_/fonts/OFL.txt`).
