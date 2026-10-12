@@ -118,7 +118,8 @@
   {
    "id": "osm",
    "match": "Open Street Map",
-   "n": "OpenStreetMap ★"
+   "n": "OpenStreetMap",
+   "star": true
   },
   {
    "id": "open-street-map",
@@ -129,7 +130,7 @@
   {
    "id": "google",
    "match": "Google Maps",
-   "n": "Google Maps ★"
+   "star": true
   },
   {
    "id": "apple",
@@ -144,7 +145,7 @@
   {
    "id": "bing",
    "match": "Bing Maps",
-   "n": "Bing Maps ★",
+   "star": true,
    "p": [
     "bing\\.com/maps.*[?&]cp=(?<lat>[-+]?\\d+(?:\\.\\d+)?)~(?<lon>[-+]?\\d+(?:\\.\\d+)?)(?:.*[?&]lvl=(?<z>[\\d.]+))?"
    ]
@@ -172,11 +173,12 @@
    "id": "osmcycle",
    "match": "CyclOSM",
    "c": "Outdoor",
-   "n": "CyclOSM ★"
+   "star": true
   },
   {
    "id": "rwgps",
-   "n": "RideWithGPS ★",
+   "n": "RideWithGPS",
+   "star": true,
    "c": "Routing",
    "u": "https://ridewithgps.com/routes/new?center={lat}%2C{lon}&zoom={z}",
    "p": [
@@ -185,7 +187,8 @@
   },
   {
    "id": "alltrails",
-   "n": "AllTrails ★",
+   "n": "AllTrails",
+   "star": true,
    "c": "Outdoor",
    "u": "https://www.alltrails.com/explore?b_tl_lat={n}&b_tl_lng={w}&b_br_lat={s}&b_br_lng={e}"
   },
@@ -260,7 +263,7 @@
   },
   {
    "match": "ACME Mapper Satellite",
-   "n": "ACME Mapper Satellite ★",
+   "star": true,
    "c": "Imagery/Satellite/Aerial",
    "f": true
 
@@ -278,7 +281,8 @@
   },
   {
    "match": "Bing Maps Aerial",
-   "n": "Bing Maps Satellite ★",
+   "n": "Bing Maps Satellite",
+   "star": true,
    "c": "Imagery/Satellite/Aerial"
   },
   {
@@ -465,7 +469,8 @@
   },
   {
    "id": "mass-crash-map",
-   "n": "Mass Crash Map ★",
+   "n": "Mass Crash Map",
+   "star": true,
    "c": "Massachusetts",
    "u": "https://picturedigits.github.io/mass-crash-map/#lat={lat}&lng={lon}&z={z}&region=boston-metro&opacity=5&from=2021-01-01&to=2026-08-31&view=heatmap&inv=ped,cyc,other,veh&harm=fatal,any&roads=local,interstate&labels=1",
    "r": [
@@ -474,7 +479,8 @@
   },
   {
    "id": "bcu-labs-map",
-   "n": "Boston Cyclists Union Labs Map ★",
+   "n": "Boston Cyclists Union Labs Map",
+   "star": true,
    "c": "Massachusetts",
    "u": "https://bostoncyclistsunion.github.io/LabsWebsiteMap/#map={z}/{lat}/{lon}&inx=true",
    "r": [
@@ -630,7 +636,8 @@
   },
   {
    "id": "gpx-studio",
-   "n": "gpx.studio ★",
+   "n": "gpx.studio",
+   "star": true,
    "c": "Routing",
    "u": "https://gpx.studio/app#{z}/{lat}/{lon}",
    "f": false
@@ -643,7 +650,8 @@
   },
   {
    "id": "surfline",
-   "n": "Surfline ★",
+   "n": "Surfline",
+   "star": true,
    "c": "Weather",
    "u": "https://www.surfline.com/surf-reports-forecasts-cams-map/@{lat},{lon},{z}z"
   },
@@ -667,13 +675,15 @@
   },
   {
    "id": "bbbike-compare-9",
-   "n": "Map compare (BBBike, 9 general) ★",
+   "n": "Map compare (BBBike, 9 general)",
+   "star": true,
    "c": "Tools",
    "u": "https://mc.bbbike.org/mc/?lon={lon}&lat={lat}&zoom={z}&num=9&mt0=google-hybrid&mt1=bing-hybrid&mt2=esri-satellite&mt3=usgs-topo&mt4=esri-topo-usa&mt5=google-map&mt6=bing-map&mt7=cyclosm&mt8=cyclemap"
   },
   {
    "id": "bbbike-compare-topo",
-   "n": "Map compare (BBBike, 10 topo) ★",
+   "n": "Map compare (BBBike, 10 topo)",
+   "star": true,
    "c": "Tools",
    "u": "https://mc.bbbike.org/mc/?lon={lon}&lat={lat}&zoom={z}&num=10&mt0=stamen-terrain&mt1=tracestrack-topo&mt2=esri-satellite&mt3=usgs-topo&mt4=esri-topo-usa&mt5=usgs-imagery-topo&mt6=opentopomap&mt7=cyclosm&mt8=cyclemap&mt9=tomtom-sat"
   },
@@ -693,35 +703,35 @@
    "id": "windy-com",
    "match": "Windy.com",
    "c": "Weather",
-   "n": "Windy.com ★"
+   "star": true
   },
   {
    "id": "national-weather-service",
    "match": "National Weather Service",
-   "n": "National Weather Service ★",
+   "star": true,
    "c": "Weather"
   },
   {
    "id": "map-compare-bbbike",
    "match": "Map compare (BBBike)",
-   "n": "Map compare (BBBike) ★"
+   "star": true
   },
   {
    "id": "opentopomap",
    "match": "OpenTopoMap",
-   "n": "OpenTopoMap ★",
+   "star": true,
    "c": "Outdoor"
   },
   {
    "id": "openrailwaymap",
    "match": "OpenRailwayMap",
-   "n": "OpenRailwayMap ★",
+   "star": true,
    "c": "Transport"
   },
   {
    "id": "trail-router",
    "match": "Trail Router",
-   "n": "Trail Router ★",
+   "star": true,
    "c": "Routing",
    "p": [
     "trailrouter\\.com/.*#wps=(?<lat>[-+]?\\d+(?:\\.\\d+)?),(?<lon>[-+]?\\d+(?:\\.\\d+)?)"
@@ -730,22 +740,22 @@
   {
    "id": "historic-aerials",
    "match": "Historic Aerials",
-   "n": "Historic Aerials ★"
+   "star": true
   },
   {
    "id": "topoquest",
    "match": "TopoQuest",
-   "n": "TopoQuest ★"
+   "star": true
   },
   {
    "id": "topoquest-topo",
    "match": "TopoQuest Topo",
-   "n": "TopoQuest Topo ★"
+   "star": true
   },
   {
    "id": "usgs-topoview",
    "match": "USGS TopoView",
-   "n": "USGS TopoView ★"
+   "star": true
   },
   {
    "id": "brouter-web",
@@ -794,7 +804,7 @@
   {
    "id": "opencyclemap",
    "match": "OpenCycleMap",
-   "n": "OpenCycleMap ★",
+   "star": true,
    "c": "Outdoor"
   },
   {
@@ -814,7 +824,8 @@
   {
    "id": "nakarte",
    "match": "nakarte",
-   "n": "Nakarte ★",
+   "n": "Nakarte",
+   "star": true,
    "c": "Outdoor"
   },
   {
@@ -866,20 +877,20 @@
   {
    "id": "acme-mapper-topo",
    "match": "ACME Mapper Topo",
-   "n": "ACME Mapper Topo ★",
+   "star": true,
    "c": "Outdoor",
    "f": true
   },
   {
    "id": "google-maps-terrain",
    "match": "Google Maps Terrain",
-   "n": "Google Maps Terrain ★",
+   "star": true,
    "c": "Outdoor"
   },
   {
    "id": "here-wego-terrain",
    "match": "HERE WeGo Terrain",
-   "n": "HERE WeGo Terrain ★",
+   "star": true,
    "c": "Outdoor"
   },
   {
@@ -1213,7 +1224,7 @@
   {
    "id": "osmapp",
    "match": "OsmAPP",
-   "n": "OsmAPP ★",
+   "star": true,
    "c": "Main",
    "u": "https://osmapp.org/{lat},{lon}#{z}",
    "p": [
@@ -1439,7 +1450,7 @@
   {
    "id": "acme-mapper",
    "match": "ACME Mapper",
-   "n": "ACME Mapper ★",
+   "star": true,
    "f": true
   },
   {

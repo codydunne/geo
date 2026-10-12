@@ -112,11 +112,12 @@ function link(d, text, cls = "") {
   el.textContent = d.disabled ? `${text} (disabled)` : text;
   el.href = fill(d.u, st);
   el.rel = "noopener";
-  if (d.disabled) el.title = "This service appears to no longer work";
+  el.title = d.id; // the `&m=` value
+  if (d.disabled) el.title += " · This service appears to no longer work";
   else if (d.f || (frameAny.checked && d.u.startsWith("https://"))) {
     // Icon only for the probed ones, so it keeps meaning "known to work".
     if (d.f) el.classList.add("f"); // style.css draws the icon
-    el.title = d.f ? "Opens here, in place of the pin map" : "Tries to open here; the site may refuse";
+    el.title += d.f ? " · Opens here, in place of the pin map" : " · Tries to open here; the site may refuse";
     el.addEventListener("click", (e) => {
       if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
       e.preventDefault();
@@ -207,7 +208,7 @@ function renderList() {
     }
     const li = document.createElement("li");
     li.dataset.n = d.n.toLowerCase();
-    li.append(link(d, d.n, d.n.includes("★") ? "" : "dim"));
+    li.append(link(d, d.star ? `${d.n} ★` : d.n, d.star ? "" : "dim"));
     ul.append(li);
   }
   applyFilter();

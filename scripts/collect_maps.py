@@ -689,7 +689,7 @@ def main() -> None:
             m['n'].casefold(),
         )
     )
-    keys = ['id', 'n', 'c', 'u', 'p', 'r', 's', 'f', 'disabled']
+    keys = ['id', 'n', 'c', 'u', 'p', 'r', 's', 'f', 'star', 'disabled']
     data = {
         'v': 1,
         'src': SOURCES,

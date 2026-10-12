@@ -15,7 +15,27 @@
 </head>
 <body>
   <div class="container">
-    <h1><a href="./">geo</a></h1>
+    <header>
+      <h1><a href="./">geo</a></h1>
+      <button type="button" class="linkish" popovertarget="about">About</button>
+    </header>
+    <div id="about" popover>
+      <h2>geo:</h2>
+      <ul>
+        <li>Links hundreds of map services for one location.</li>
+        <li>Reads a location from the address bar: put coordinates or a map URL after <code>/geo/</code>,
+          e.g. <code>/geo/https://www.google.com/maps/@42.3647,-71.1313,15z</code>. No short links, e.g., <code>maps.app.goo.gl</code>
+        </li>
+        <li>Decimal or degree-minute-second coordinates.</li>
+        <li>Searches Nominatim then Photon for non-lat-lon entries.</li>
+        <li>Rewrites the address bar to a short link: <code>/geo/&lt;lat&gt;,&lt;lon&gt;</code> plus optional
+          <code>&amp;z=</code> zoom, <code>&amp;m=</code> map, and <code>&amp;a=</code> pin label.</li>
+        <li>Filters maps by location coverage (automatic), category, or name. Optionally show disabled sites and other regions&rsquo; maps.</li>
+        <li>Maps with a small window open in place. Ctrl/&#8984;/middle-click opens them directly. Optionally try any map in the frame.</li>
+        <li>FOSS: <a href="https://github.com/geo">github.com/codydunne/geo</a>.</li>
+      </ul>
+      <button type="button" class="secondary" popovertarget="about" popovertargetaction="hide">Close</button>
+    </div>
     <p class="subtitle" id="where">Open a location in any map.</p>
     <div class="layout">
       <div class="left">

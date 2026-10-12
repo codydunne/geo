@@ -210,6 +210,7 @@ def main() -> None:
                 dead = page.locator('#list a.disabled', has_text='Qwant Maps')
                 assert dead.count() == 1
                 assert 'qwant.com' in (dead.get_attribute('href') or '')
+                assert (dead.get_attribute('title') or '').startswith('qwant')
                 page.uncheck('#show-disabled')
 
                 # Filter.
@@ -220,6 +221,13 @@ def main() -> None:
                 page.click('#filter-clear')
                 assert page.input_value('#filter') == ''
                 assert page.locator('#filter-clear').is_hidden()
+
+                # About: a native popover, opened and closed without script.
+                assert page.locator('#about').is_hidden()
+                page.click('[popovertarget=about].linkish')
+                assert page.locator('#about li').first.is_visible()
+                page.click('#about button')
+                assert page.locator('#about').is_hidden()
 
                 # Address -> one geocode -> canonical URL keeps `a`; reload does not geocode again.
                 before = len(nominatim_calls)

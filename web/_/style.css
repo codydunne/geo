@@ -139,6 +139,26 @@ button.secondary {
 }
 button:hover, .button:hover { opacity: 0.88; text-decoration: none; }
 
+/* The About link is a button (it opens a popover, it does not navigate). */
+header { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+button.linkish { padding: 0; background: none; color: var(--accent); font-weight: normal; }
+button.linkish:hover { opacity: 1; text-decoration: underline; }
+#about {
+  max-width: min(40rem, calc(100vw - 2rem));
+  max-height: calc(100dvh - 2rem);
+  overflow: auto;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--fg);
+}
+#about::backdrop { background: rgba(0, 0, 0, 0.5); }
+#about h2 { margin: 0; font-size: 1.15rem; color: var(--accent); }
+#about ul { padding-left: 1.25rem; }
+#about li { margin: 0.35rem 0; }
+#about code { overflow-wrap: anywhere; }
+
 .actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.75rem 0; }
 
 .message {
