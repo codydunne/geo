@@ -15,6 +15,7 @@ const filter = /** @type {HTMLInputElement} */ ($("filter"));
 const q = /** @type {HTMLInputElement} */ ($("q"));
 const showDisabled = /** @type {HTMLInputElement} */ ($("show-disabled"));
 const showRegions = /** @type {HTMLInputElement} */ ($("show-regions"));
+const frameAny = /** @type {HTMLInputElement} */ ($("frame-any"));
 const pane = $("pane");
 
 /** @type {MapData} */
@@ -101,6 +102,8 @@ function updateUrl() {
  * so it can still be tried, but is marked as broken.
  * A framable map opens in the pane on a plain click; the href stays real, so
  * middle-click, modifier-click, and "open in new tab" still leave the page.
+ * "Try any map in the frame" does the same for the rest, which may then show a
+ * blank or refused pane; `http://` stays a link (blocked as mixed content on https).
  * @param {MapDef} d @param {string} text @param {string} [cls]
  */
 function link(d, text, cls = "") {
@@ -110,9 +113,10 @@ function link(d, text, cls = "") {
   el.href = fill(d.u, st);
   el.rel = "noopener";
   if (d.disabled) el.title = "This service appears to no longer work";
-  else if (d.f) {
-    el.classList.add("f"); // style.css draws the icon
-    el.title = "Opens here, in place of the pin map";
+  else if (d.f || (frameAny.checked && d.u.startsWith("https://"))) {
+    // Icon only for the probed ones, so it keeps meaning "known to work".
+    if (d.f) el.classList.add("f"); // style.css draws the icon
+    el.title = d.f ? "Opens here, in place of the pin map" : "Tries to open here; the site may refuse";
     el.addEventListener("click", (e) => {
       if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
       e.preventDefault();
@@ -330,6 +334,11 @@ $("pane-wide").addEventListener("click", () => widen(!pane.classList.contains("w
 filter.addEventListener("input", applyFilter);
 showDisabled.addEventListener("change", renderList);
 showRegions.addEventListener("change", renderList);
+// The featured link is built by link() too.
+frameAny.addEventListener("change", () => {
+  renderFeatured();
+  renderList();
+});
 $("filter-clear").addEventListener("click", () => {
   filter.value = "";
   applyFilter();

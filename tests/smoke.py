@@ -166,6 +166,15 @@ def main() -> None:
                 visit(page, '/geo/42.3646,-71.1313&m=google')
                 page.click('#featured a')
                 page.wait_for_url('https://www.google.com/**')
+                # Unless asked to try it in the frame anyway.
+                visit(page, '/geo/42.3646,-71.1313&m=google')
+                page.check('#frame-any')
+                page.click('#featured a')
+                src = page.locator('#pane iframe').get_attribute('src')
+                assert src and src.startswith('https://www.google.com/'), src
+                assert page.url.endswith('/geo/42.3646,-71.1313&m=google')
+                page.click('#pane-close')
+                page.uncheck('#frame-any')
 
                 # Query and hash forms canonicalize to the path form.
                 visit(page, '/geo/?42.36,-71.13')

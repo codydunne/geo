@@ -801,12 +801,17 @@
   {
    "id": "peakfinder",
    "match": "PeakFinder",
-   "c": "Outdoor"
+   "dup": "peakfinder-org",
+   "drop": true
   },
   {
    "id": "peakfinder-org",
    "match": "PeakFinder.org",
-   "dup": "peakfinder"
+   "c": "Outdoor",
+   "u": "https://www.peakfinder.org/?lat={lat}&lng={lon}&azi=0&zoom={z}&name={a}",
+   "p": [
+    "www\\.peakfinder\\.org\\/.*\\?lat=(?<lat>-?\\d[0-9.]*)&lng=(?<lon>-?\\d[0-9.]*)&azi=[0-9]*&zoom=(?<z>\\d[0-9.]*)"
+   ]
   },
   {
    "id": "mapy-com-outdoor",
@@ -1181,7 +1186,11 @@
   {
    "id": "osmapp",
    "match": "OsmAPP",
-   "c": "Main"
+   "c": "Main",
+   "u": "https://osmapp.org/{lat},{lon}#{z}",
+   "p": [
+    "osmapp\\.org/(?<lat>-?\\d[0-9.]*),(?<lon>-?\\d[0-9.]*)(?:#(?<z>\\d[0-9.]*))?"
+   ]
   },
   {
    "id": "wikimapia",
@@ -1254,7 +1263,8 @@
   {
    "id": "navi-jp-2",
    "match": "いつもNAVI(JP)",
-   "dup": "its-mo-navi"
+   "dup": "its-mo-navi",
+   "drop": true
   },
   {
    "id": "gis",
@@ -1400,7 +1410,8 @@
   {
    "id": "baidu",
    "match": "Baidu",
-   "dup": "baidu-maps"
+   "dup": "baidu-maps",
+   "drop": true
   },
   {
    "id": "baidu-maps",

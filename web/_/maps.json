@@ -203,9 +203,9 @@
    "id": "osmapp",
    "n": "OsmAPP",
    "c": "Main",
-   "u": "https://osmapp.org/#{z}/{lat}/{lon}",
+   "u": "https://osmapp.org/{lat},{lon}#{z}",
    "p": [
-    "osmapp\\.org\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+    "osmapp\\.org/(?<lat>-?\\d[0-9.]*),(?<lon>-?\\d[0-9.]*)(?:#(?<z>\\d[0-9.]*))?"
    ],
    "s": [
     "osm",
@@ -573,24 +573,13 @@
    "f": true
   },
   {
-   "id": "peakfinder",
-   "n": "PeakFinder",
+   "id": "peakfinder-org",
+   "n": "PeakFinder.org",
    "c": "Outdoor",
-   "u": "https://www.peakfinder.org/?lat={lat}&lng={lon}&azi=0&zoom={z}",
+   "u": "https://www.peakfinder.org/?lat={lat}&lng={lon}&azi=0&zoom={z}&name={a}",
    "p": [
     "www\\.peakfinder\\.org\\/.*\\?lat=(?<lat>-?\\d[0-9.]*)&lng=(?<lon>-?\\d[0-9.]*)&azi=[0-9]*&zoom=(?<z>\\d[0-9.]*)"
    ],
-   "s": [
-    "osm",
-    "osmw"
-   ],
-   "f": true
-  },
-  {
-   "id": "peakfinder-org",
-   "n": "PeakFinder.org 👥",
-   "c": "Outdoor",
-   "u": "https://www.peakfinder.org/?lat={lat}&lng={lon}&name={a}",
    "s": [
     "gh"
    ],
@@ -2539,20 +2528,6 @@
    "f": true
   },
   {
-   "id": "baidu",
-   "n": "Baidu 👥",
-   "c": "China",
-   "u": "https://map.baidu.com/?latlng={lat},{lon}",
-   "r": [
-    "CN"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ],
-   "f": true
-  },
-  {
    "id": "osmchina",
    "n": "OSMChina",
    "c": "China",
@@ -3785,20 +3760,6 @@
    ],
    "s": [
     "gh"
-   ],
-   "f": true
-  },
-  {
-   "id": "navi-jp-2",
-   "n": "いつもNAVI(JP) 👥",
-   "c": "Japan",
-   "u": "https://www.its-mo.com/maps/?lat={lat}&lon={lon}",
-   "r": [
-    "JP"
-   ],
-   "s": [
-    "osm",
-    "osmw"
    ],
    "f": true
   },

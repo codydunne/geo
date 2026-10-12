@@ -31,6 +31,7 @@ Anything after `/geo/` is parsed, then replaced by the canonical form:
 
 Clicking a map that permits framing (`"f": true` in `maps.json`, about 200 of them) shows it in place of the pin map, with an Open ↗ link to the service itself and a Back to pin button; Ctrl/⌘/middle-click still opens it directly.
 Google, Bing, Apple, OpenStreetMap, and others refuse to be framed, and `http://`-only services cannot be framed from an `https://` page, so those stay plain links.
+The "Try any map in the frame" checkbox under the list opens those `https://` services in the pane anyway; expect a blank or refused frame for most of them.
 
 Map IDs are listed in [`web/_/maps.json`](web/_/maps.json); curated short ones include `osm`, `google`, `apple`, `osmcycle`, `rwgps`, and `alltrails`.
 Short links such as `maps.app.goo.gl` are not supported: resolving them needs a server-side proxy.
