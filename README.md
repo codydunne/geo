@@ -1,12 +1,8 @@
 # geo
 
-A small static page at [dunne.dev/geo](https://dunne.dev/geo/) that opens a location in any of about 420 map services.
+A small static page at [dunne.dev/geo](https://dunne.dev/geo/) that opens a location in any of hundreds of map services.
 It takes coordinates, a map URL, or an address, rewrites the address bar to a short canonical link, and lists links into every map that applies at that point.
-The map list is the union of [GeoHack](https://geohack.toolforge.org/), [OpenSwitchMaps](https://github.com/tankaru/OpenSwitchMapsWeb), and [mapfwd](https://mapfwd.com/), plus RideWithGPS and AllTrails.
-
-## TODO
-
-add descriptive text for each
+The map list is the union of [GeoHack](https://geohack.toolforge.org/) and [OpenSwitchMaps](https://github.com/tankaru/OpenSwitchMapsWeb), plus hand-added services.
 
 ## URLs
 
@@ -26,12 +22,13 @@ Anything after `/geo/` is parsed, then replaced by the canonical form:
 
 - `42.364678,-71.131311`, `42°21′52.8″N 71°7′52.7″W`, `42.36 N 71.13 W`, `geo:42.36,-71.13?z=15`
 - Google Maps `place/`, `search/?api=1&query=`, `@?api=1&map_action=map&center=`, and `@lat,lon,Nz` URLs
-- GeoHack `geohack.php?params=` URLs, RideWithGPS, OpenStreetMap `#map=`, and about 90 other services' URLs (the `p` patterns in `maps.json`)
+- GeoHack `geohack.php?params=` URLs, RideWithGPS, OpenStreetMap `#map=`, and any service with `p` patterns in `maps.json`
 - `/geo/?<input>` and `/geo/#<input>` work too
 
-Clicking a map that permits framing (`"f": true` in `maps.json`, about 200 of them) shows it in place of the pin map, with an Open ↗ link to the service itself and a Back to pin button; Ctrl/⌘/middle-click still opens it directly.
-Google, Bing, Apple, OpenStreetMap, and others refuse to be framed, and `http://`-only services cannot be framed from an `https://` page, so those stay plain links.
-The "Try any map in the frame" checkbox under the list opens those `https://` services in the pane anyway; expect a blank or refused frame for most of them.
+A map that permits framing (`"f": true` in `maps.json`) opens in place of the pin map on a plain click; Ctrl/⌘/middle-click opens it directly.
+The rest stay plain links: Google, Bing, Apple, OpenStreetMap, and others refuse framing, and `http://` services are blocked as mixed content.
+"Try any map in the frame" frames the `https://` ones anyway; expect most to come up blank.
+The list shows only maps covering the point; ★ marks curated picks, and dead services are hidden unless "Show disabled" is checked.
 
 Map IDs are listed in [`web/_/maps.json`](web/_/maps.json); curated short ones include `osm`, `google`, `apple`, `osmcycle`, `rwgps`, and `alltrails`.
 Short links such as `maps.app.goo.gl` are not supported: resolving them needs a server-side proxy.
@@ -42,8 +39,7 @@ Short links such as `maps.app.goo.gl` are not supported: resolving them needs a 
 uv run scripts/serve.py        # http://127.0.0.1:8000/geo/
 ```
 
-The server mounts `web/` at `/geo/` and serves `index.html` for every non-asset path, as production does.
-A plain static server or `file://` will not work, because every path must serve the same page.
+The server serves `index.html` for every non-asset path under `/geo/`, as production does; a plain static server or `file://` will not work.
 
 ## Tests
 
@@ -62,12 +58,20 @@ git diff web/_/maps.json       # review before committing
 ```
 
 The collector fetches GeoHack's [`Template:GeoTemplate`](https://en.wikipedia.org/wiki/Template:GeoTemplate) wikitext and OpenSwitchMaps' `maps.js` (both repos, pinned commits), and Natural Earth country outlines for regional bboxes.
-It parses the JavaScript with regexes and never runs it.
-It then applies [`scripts/maps-overrides.json`](scripts/maps-overrides.json): curated IDs, category names, region aliases, and hand-added services.
-An override with `"dup": "<id>"` marks a duplicate of that map: it is kept, suffixed with 👥, and listed right after it in the same category and region.
-Published IDs never change: the collector reuses IDs from the previous `maps.json`, keeps entries that vanish upstream until an override marks them `"drop": true`, and refuses to write if a published ID would disappear.
-`uv run scripts/collect_maps.py --frames` also re-probes every service for the `f` flag (one request each; `X-Frame-Options` and CSP `frame-ancestors` only) and upgrades an `http://` template to `https://` when the service answers there. Without it, flags and upgrades carry over from the previous `maps.json`, and an override's `"f": true` or `false` always wins (use it when a framed service turns out not to work). Slow or bot-blocking hosts can flip between probes; review the diff.
-It prints what it could not translate (computed URLs, unsupported GeoHack placeholders, parse patterns that fail to round-trip).
+It parses the JavaScript with regexes and never runs it, and prints what it could not translate.
+It then applies [`scripts/maps-overrides.json`](scripts/maps-overrides.json): curated IDs, category names, region aliases, hand-added services, and per-map keys:
+
+| Key | Effect |
+|---|---|
+| `"star": true` | Marked ★ in the list |
+| `"dup": "<id>"` | Duplicate of that map: suffixed 👥 and listed right after it |
+| `"f": true`/`false` | Forces the framing flag, overriding the probe |
+| `"disabled": true` | Dead service: kept so its `&m=` link resolves, hidden by default |
+| `"drop": true` | Removes the map and retires its ID |
+
+Published IDs never change: the collector reuses IDs from the previous `maps.json`, keeps entries that vanish upstream, and refuses to write if an ID would disappear without a `drop`.
+`--frames` re-probes every service for the `f` flag (one request each; `X-Frame-Options` and CSP `frame-ancestors` only) and upgrades `http://` templates that answer on `https://`; otherwise both carry over from the previous `maps.json`.
+Slow or bot-blocking hosts can flip between probes, so review the diff.
 
 ## Deployment
 
@@ -80,12 +84,9 @@ Without the rule, GitHub's `404.html` fallback still serves the page, but with s
 
 **Rules → Overview → Create Rule → URL Rewrite Rule**:
 
-- Enter a rule name, e.g.: "transform for /geo/ so it doesn't hit 404s"
-- Under "If incoming requests match…", choose "Custom filter expression"
-- Select "Edit expression" and paste the whole expression there, not into the builder's Value box or the "Wildcard pattern" Request URL box (both read it as a URL pattern and warn that DNS is not proxying it):
+- "If incoming requests match…": Custom filter expression → Edit expression, and paste the whole expression there, not into the builder's Value box or the "Wildcard pattern" Request URL box (both read it as a URL pattern and warn that DNS is not proxying it):
   `starts_with(http.request.uri.path, "/geo/") and not starts_with(http.request.uri.path, "/geo/_/") and http.request.uri.path ne "/geo/"`
-- Under "Path": Rewrite to → Static → `/geo/`
-- Under "Query": Preserve
+- Path: Rewrite to → Static → `/geo/`; Query: Preserve
 
 After deploying, check that Cloudflare does not collapse the `//` in embedded URLs:
 
