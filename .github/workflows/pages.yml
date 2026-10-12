@@ -1,5 +1,7 @@
 # Publish web/ as-is to GitHub Pages
 # One-time setup: repo Settings -> Pages -> Source: "GitHub Actions".
+# Switching source deploys nothing by itself: the old branch build stays
+# live until this workflow runs (a push touching web/ or this file).
 name: Deploy web viewer to GitHub Pages
 
 on:
