@@ -119,4 +119,18 @@ test("maps.json invariants", async () => {
   assert.ok(data.maps.filter((m) => inRegion(m, { lat: "35.68", lon: "139.76" }, data.regions)).some((m) => m.n === "地理院地図"));
   // A link from a collected service parses through the data patterns.
   assert.equal(canonical(/** @type {any} */ (parse("https://www.komoot.com/plan/@42.36,-71.13,12z", data))), "/geo/42.36,-71.13&z=12");
+  // Per-service patterns beat the generic map=z/lat/lon fallback: OpenSnowMap's hash is lon first,
+  // and its stale query string is ignored.
+  assert.equal(
+    canonical(/** @type {any} */ (parse("https://www.opensnowmap.org/?zoom=15&lat=42.382341&lon=-71.130333#map=11/-70.713/44.312&b=snowmap&m=false&h=false", data))),
+    "/geo/44.312,-70.713&z=11",
+  );
+  assert.equal(canonical(/** @type {any} */ (parse("https://www.opensnowmap.org/#map=11.4/-70.713/44.312&b=snowmap&m=false&h=false", data))), "/geo/44.312,-70.713&z=11");
+  assert.equal(canonical(/** @type {any} */ (parse("https://opentopomap.org/#map=12/42.36/-71.13", data))), "/geo/42.36,-71.13&z=12");
+  // Percent-encoded separators (%7E, %2C, %7C) as the address bar copies them.
+  for (const [url, want] of [
+    ["https://www.bing.com/maps/search?style=3d&sp=Point.42.365634_-71.104001_cambridge%2C+ma___&cp=42.365634%7E-71.104001&lvl=15&pi=45&eh=-24", "/geo/42.365634,-71.104001"],
+    ["https://trailrouter.com/#wps=42.36562,-71.10401%7C42.36591,-71.11604%7C42.37297,-71.12630%7C42.36562,-71.10401&ss=&rt=true&td=5000&aus=false&aus2=false&ah=0&ar=false&pga=0.8&im=false", "/geo/42.36562,-71.10401"],
+    ["https://wego.here.com/location/?map=42.39464%2C-71.17856%2C15.76&t=terrain&msg=fish", "/geo/42.39464,-71.17856&z=16"],
+  ]) assert.equal(canonical(/** @type {any} */ (parse(url, data))), want);
 });

@@ -19,7 +19,11 @@ const BUILTIN = [
   String.raw`google\.[^/]+/maps/.*@(?<lat>${NUM}),(?<lon>${NUM})(?:,(?:(?<z>[\d.]+)z|(?<m>[\d.]+)m))?`,
   String.raw`google\.[^/]+/maps/place/(?<lat>${NUM}),\s*(?<lon>${NUM})`,
   String.raw`google\.[^/]+/maps.*[?&](?:query|center|ll|q|destination)=(?<lat>${NUM}),\s*(?<lon>${NUM})(?:.*[?&]zoom=(?<z>\d+))?`,
-  // Generic fallbacks used by many providers.
+].map((p) => new RegExp(p));
+
+// Generic fallbacks used by many providers. Tried after the per-service patterns in
+// maps.json: a service may put lon first in the same shape (OpenSnowMap's #map=z/lon/lat).
+const GENERIC = [
   String.raw`[?&#/]map=(?<z>[\d.]+)/(?<lat>${NUM})/(?<lon>${NUM})`,
   String.raw`[?&]center=(?<lat>${NUM}),\s*(?<lon>${NUM})(?:.*[?&]zoom=(?<z>[\d.]+))?`,
 ].map((p) => new RegExp(p));
@@ -172,7 +176,7 @@ export function parse(raw, data) {
 /** @param {string} head @param {MapData} [data] @returns {State | null} */
 function parsePatterns(head, data) {
   const extra = (data?.maps ?? []).flatMap((d) => (d.p ?? []).map((p) => new RegExp(p)));
-  for (const re of [...BUILTIN, ...extra]) {
+  for (const re of [...BUILTIN, ...extra, ...GENERIC]) {
     const g = head.match(re)?.groups;
     if (g?.lat && g?.lon) return { lat: g.lat, lon: g.lon, z: zoomOf(g) };
   }

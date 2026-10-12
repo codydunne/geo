@@ -14,12 +14,13 @@
  "maps": [
   {
    "id": "acme-mapper",
-   "n": "ACME Mapper",
+   "n": "ACME Mapper ★",
    "c": "Main",
    "u": "https://mapper.acme.com/?ll={lat},{lon}&z={z}&t=M&marker0={lat},{lon},{a}",
    "s": [
     "gh"
-   ]
+   ],
+   "f": true
   },
   {
    "id": "apple",
@@ -59,6 +60,15 @@
    ]
   },
   {
+   "id": "baidu-maps",
+   "n": "Baidu Maps (百度地图)",
+   "c": "Main",
+   "u": "http://map.baidu.com/?latlng={lat},{lon}&title={a}&content={a}&autoOpen=true&l=",
+   "s": [
+    "gh"
+   ]
+  },
+  {
    "id": "bing-maps-3d",
    "n": "Bing Maps 3D",
    "c": "Main",
@@ -72,6 +82,9 @@
    "n": "Bing Maps ★",
    "c": "Main",
    "u": "https://www.bing.com/maps?cp={lat}~{lon}&style=r&lvl={z}&sp=Point.{lat}_{lon}_{a}___",
+   "p": [
+    "bing\\.com/maps.*[?&]cp=(?<lat>[-+]?\\d+(?:\\.\\d+)?)~(?<lon>[-+]?\\d+(?:\\.\\d+)?)(?:.*[?&]lvl=(?<z>[\\d.]+))?"
+   ],
    "s": [
     "gh"
    ]
@@ -100,23 +113,13 @@
    ]
   },
   {
-   "id": "here-maps",
-   "n": "here maps",
-   "c": "Main",
-   "u": "https://wego.here.com/?map={lat},{lon},{z},normal",
-   "p": [
-    ".*\\.here\\.com\\/\\?map=(?<lat>-?\\d[0-9.]*),(?<lon>-?\\d[0-9.]*),(?<z>\\d{1,2})"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
    "id": "here",
    "n": "HERE WeGo",
    "c": "Main",
    "u": "https://wego.here.com/location/?map={lat},{lon},{z}&t=normal&msg={a}",
+   "p": [
+    "here\\.com/.*[?&]map=(?<lat>[-+]?\\d+(?:\\.\\d+)?),(?<lon>[-+]?\\d+(?:\\.\\d+)?)(?:,(?<z>[\\d.]+))?"
+   ],
    "s": [
     "gh"
    ]
@@ -201,7 +204,7 @@
   },
   {
    "id": "osmapp",
-   "n": "OsmAPP",
+   "n": "OsmAPP ★",
    "c": "Main",
    "u": "https://osmapp.org/{lat},{lon}#{z}",
    "p": [
@@ -226,7 +229,7 @@
   },
   {
    "id": "wikimapia",
-   "n": "wikimapia",
+   "n": "Wikimapia",
    "c": "Main",
    "u": "https://wikimapia.org/#lat={lat}&lon={lon}&z={z}",
    "s": [
@@ -358,6 +361,9 @@
    "n": "Trail Router ★",
    "c": "Routing",
    "u": "https://trailrouter.com/#wps={lat},{lon}&ss=&rt=true&td=5000&aus=false&aus2=false&ah=0&ar=true&pga=0.8&im=false",
+   "p": [
+    "trailrouter\\.com/.*#wps=(?<lat>[-+]?\\d+(?:\\.\\d+)?),(?<lon>[-+]?\\d+(?:\\.\\d+)?)"
+   ],
    "s": [
     "osm",
     "osmw"
@@ -436,12 +442,13 @@
   },
   {
    "id": "acme-mapper-topo",
-   "n": "ACME Mapper Topo",
+   "n": "ACME Mapper Topo ★",
    "c": "Outdoor",
    "u": "https://mapper.acme.com/?ll={lat},{lon}&z={z}&t=T&marker0={lat},{lon},{a}",
    "s": [
     "gh"
-   ]
+   ],
+   "f": true
   },
   {
    "id": "alltrails",
@@ -496,7 +503,7 @@
   },
   {
    "id": "google-maps-terrain",
-   "n": "Google Maps Terrain",
+   "n": "Google Maps Terrain ★",
    "c": "Outdoor",
    "u": "https://www.google.com/maps/place//@{lat},{lon},{z}z/data=!4m2!3m1!1s0x0:0x0!5m1!1e4?hl=en",
    "s": [
@@ -505,7 +512,7 @@
   },
   {
    "id": "here-wego-terrain",
-   "n": "HERE WeGo Terrain",
+   "n": "HERE WeGo Terrain ★",
    "c": "Outdoor",
    "u": "https://wego.here.com/location/?map={lat},{lon},{z}&t=terrain&msg={a}",
    "s": [
@@ -523,7 +530,7 @@
   },
   {
    "id": "nakarte",
-   "n": "nakarte",
+   "n": "Nakarte ★",
    "c": "Outdoor",
    "u": "https://nakarte.me/#m={z}/{lat}/{lon}&l=O",
    "p": [
@@ -537,7 +544,7 @@
   },
   {
    "id": "opencyclemap",
-   "n": "OpenCycleMap",
+   "n": "OpenCycleMap ★",
    "c": "Outdoor",
    "u": "https://www.opencyclemap.org/?zoom={z}&lat={lat}&lon={lon}",
    "s": [
@@ -550,7 +557,10 @@
    "id": "opensnowmap",
    "n": "OpenSnowMap",
    "c": "Outdoor",
-   "u": "https://www.opensnowmap.org/?zoom={z}&lat={lat}&lon={lon}",
+   "u": "https://www.opensnowmap.org/#map={z}/{lon}/{lat}&b=snowmap&m=false&h=false",
+   "p": [
+    "opensnowmap\\.org/.*#map=(?<z>[\\d.]+)/(?<lon>[-+]?\\d+(?:\\.\\d+)?)/(?<lat>[-+]?\\d+(?:\\.\\d+)?)"
+   ],
    "s": [
     "osm",
     "osmw"
@@ -587,7 +597,7 @@
   },
   {
    "id": "strava",
-   "n": "STRAVA",
+   "n": "Strava",
    "c": "Outdoor",
    "u": "https://www.strava.com/maps/global-heatmap#{z}/{lat}/{lon}",
    "p": [
@@ -602,7 +612,7 @@
   },
   {
    "id": "strava-cycle",
-   "n": "Strava: Cycling",
+   "n": "Strava Cycling",
    "c": "Outdoor",
    "u": "https://www.strava.com/maps/global-heatmap?sport=RideLike&style=standard#{z}/{lat}/{lon}",
    "s": [
@@ -626,12 +636,13 @@
   },
   {
    "id": "acme-mapper-satellite",
-   "n": "ACME Mapper Satellite",
+   "n": "ACME Mapper Satellite ★",
    "c": "Imagery/Satellite/Aerial",
    "u": "https://mapper.acme.com/?ll={lat},{lon}&z={z}&t=SL&marker0={lat},{lon},{a}",
    "s": [
     "gh"
-   ]
+   ],
+   "f": true
   },
   {
    "id": "apple-maps-satellite",
@@ -644,7 +655,7 @@
   },
   {
    "id": "bing-maps-aerial",
-   "n": "Bing Maps Aerial",
+   "n": "Bing Maps Satellite ★",
    "c": "Imagery/Satellite/Aerial",
    "u": "https://www.bing.com/maps?cp={lat}~{lon}&style=h&lvl={z}&sp=Point.{lat}_{lon}_{a}___",
    "s": [
@@ -1116,7 +1127,8 @@
    ],
    "s": [
     "gh"
-   ]
+   ],
+   "f": true
   },
   {
    "id": "nasa-msfc-goes",
@@ -2506,19 +2518,6 @@
    "n": "Amap (高德地图)",
    "c": "China",
    "u": "https://ditu.amap.com/regeo?lng={lon}&lat={lat}&name={a}",
-   "r": [
-    "CN"
-   ],
-   "s": [
-    "gh"
-   ],
-   "f": true
-  },
-  {
-   "id": "baidu-maps",
-   "n": "Baidu Maps (百度地图)",
-   "c": "China",
-   "u": "https://map.baidu.com/?latlng={lat},{lon}&title={a}&content={a}&autoOpen=true&l=",
    "r": [
     "CN"
    ],
