@@ -29,6 +29,9 @@ Anything after `/geo/` is parsed, then replaced by the canonical form:
 - GeoHack `geohack.php?params=` URLs, RideWithGPS, OpenStreetMap `#map=`, and about 90 other services' URLs (the `p` patterns in `maps.json`)
 - `/geo/?<input>` and `/geo/#<input>` work too
 
+Clicking a map that permits framing (`"f": true` in `maps.json`, about 200 of them) shows it in place of the pin map, with an Open ↗ link to the service itself and a Back to pin button; Ctrl/⌘/middle-click still opens it directly.
+Google, Bing, Apple, OpenStreetMap, and others refuse to be framed, and `http://`-only services cannot be framed from an `https://` page, so those stay plain links.
+
 Map IDs are listed in [`web/_/maps.json`](web/_/maps.json); curated short ones include `osm`, `google`, `apple`, `osmcycle`, `rwgps`, and `alltrails`.
 Short links such as `maps.app.goo.gl` are not supported: resolving them needs a server-side proxy.
 
@@ -60,7 +63,9 @@ git diff web/_/maps.json       # review before committing
 The collector fetches GeoHack's [`Template:GeoTemplate`](https://en.wikipedia.org/wiki/Template:GeoTemplate) wikitext and OpenSwitchMaps' `maps.js` (both repos, pinned commits), and Natural Earth country outlines for regional bboxes.
 It parses the JavaScript with regexes and never runs it.
 It then applies [`scripts/maps-overrides.json`](scripts/maps-overrides.json): curated IDs, category names, region aliases, and hand-added services.
+An override with `"dup": "<id>"` marks a duplicate of that map: it is kept, suffixed with 👥, and listed right after it in the same category and region.
 Published IDs never change: the collector reuses IDs from the previous `maps.json`, keeps entries that vanish upstream until an override marks them `"drop": true`, and refuses to write if a published ID would disappear.
+`uv run scripts/collect_maps.py --frames` also re-probes every service for the `f` flag (one request each; `X-Frame-Options` and CSP `frame-ancestors` only) and upgrades an `http://` template to `https://` when the service answers there. Without it, flags and upgrades carry over from the previous `maps.json`, and an override's `"f": true` or `false` always wins (use it when a framed service turns out not to work). Slow or bot-blocking hosts can flip between probes; review the diff.
 It prints what it could not translate (computed URLs, unsupported GeoHack placeholders, parse patterns that fail to round-trip).
 
 ## Deployment

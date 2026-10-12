@@ -6,6 +6,9 @@
 """Collect map link formats from GeoHack and OpenSwitchMaps into web/_/maps.json.
 
 Run `uv run scripts/collect_maps.py`, review the diff, and commit by hand.
+Add `--frames` to re-probe which services may be shown in an iframe and which
+http:// templates also answer on https:// (one request per map; otherwise the
+previous run's `f` flags and https:// upgrades are carried forward).
 Third-party JS is parsed with regexes, never executed.
 """
 
@@ -18,6 +21,7 @@ import sys
 import unicodedata
 import urllib.request
 from collections import Counter
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlsplit
@@ -297,6 +301,7 @@ def js_pattern(fn: str) -> str | None:
     return name_groups(lit[0], [group[v] for v in vars_])
 
 
+DUP_MARK = ' 👥'  # name suffix for an override with "dup": "<id of the best version>"
 LOCAL_CATEGORIES = {'LOCAL_CATEGORY', 'OSM_LOCAL_CATEGORY'}
 NOT_CCTLD = {'io', 'me', 'co', 'tv', 'ai', 'app', 'xyz'}
 
@@ -419,6 +424,40 @@ def check_patterns(maps: list[Map]) -> None:
             m['p'] = ok
         else:
             m.pop('p', None)
+
+
+def probe(m: Map) -> tuple[str, bool]:
+    """The template to publish, and whether the service lets another site show it in
+    an iframe, by the rules a browser applies to the final response: CSP
+    frame-ancestors if present, else X-Frame-Options. Headers only, so script
+    frame-busters go unnoticed (the page sandboxes the frame against those); an
+    error or bot block counts as no.
+
+    An http:// template is probed as https:// and upgraded when that answers;
+    otherwise it stays http://, which is mixed content on an https page."""
+    if m.get('disabled'):
+        return m['u'], False
+    t = re.sub(r'^http://', 'https://', m['u'])
+    u = re.sub(r'\{(\w+)\}', lambda g: SAMPLE[g[1]], t)
+    req = urllib.request.Request(
+        u,
+        headers={
+            'User-Agent': 'dunne.dev/geo collector (c.dunne@northeastern.edu)',
+            'Accept': 'text/html,*/*',
+        },
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=20) as r:
+            # A redirect back down to http:// is no https service.
+            if not r.url.startswith('https://'):
+                return m['u'], False
+            csp = ';'.join(r.headers.get_all('Content-Security-Policy') or [])
+            xfo = ','.join(r.headers.get_all('X-Frame-Options') or [])
+    except (OSError, ValueError):
+        return m['u'], False
+    if fa := re.findall(r'frame-ancestors([^;]*)', csp, re.IGNORECASE):
+        return t, all({'*', 'https:'} & set(v.split()) for v in fa)
+    return t, not re.search(r'deny|sameorigin', xfo, re.IGNORECASE)
 
 
 def apply_overrides(
@@ -589,7 +628,8 @@ def main() -> None:
 
     # IDs first, so an entry that kept its name+host but changed its template
     # inherits its published id instead of leaving a stale copy behind.
-    assign_ids(maps, prev)
+    # A dropped id is never handed to a surviving map that shares its URL or name.
+    assign_ids(maps, [p for p in prev if p['id'] not in dropped_ids])
     # Keep previously published entries that vanished upstream until explicitly dropped.
     have = {ukey(m['u']) for m in maps} | {m['id'] for m in maps}
     kept = [
@@ -600,14 +640,41 @@ def main() -> None:
         and ukey(m['u']) not in have
     ]
     for m in kept:
+        m.pop('f', None)  # re-decided below, like every other map
         print(f'  kept (gone upstream): {m["id"]}', file=sys.stderr)
     maps += kept
     for m in maps:
         m.pop('disabled', None)
         if m['id'] in disabled_ids:
             m['disabled'] = True
+    # An override's "f" wins; otherwise probe, or keep what the last probe found.
+    todo = [m for m in maps if 'f' not in m]
+    if '--frames' in sys.argv:
+        print(f'probing {len(todo)} maps for framing...', file=sys.stderr)
+        with ThreadPoolExecutor(16) as pool:
+            for m, (u, f) in zip(todo, pool.map(probe, todo)):
+                m['u'], m['f'] = u, f
+    else:
+        prev_f = {p['id'] for p in prev if p.get('f')}
+        prev_u = {p['id']: p['u'] for p in prev}
+        for m in todo:
+            m['f'] = m['id'] in prev_f and not m.get('disabled')
+            # Upstream still lists http://; keep the https:// the last probe found.
+            if prev_u.get(m['id']) == re.sub(r'^http://', 'https://', m['u']):
+                m['u'] = prev_u[m['id']]
     if unknown := disabled_ids - {m['id'] for m in maps}:
         print(f'  disabled ids not found: {sorted(unknown)}', file=sys.stderr)
+
+    # A duplicate lists under its best version: same category and region, sorted right after it.
+    by_id = {m['id']: m for m in maps}
+    for m in maps:
+        if best := by_id.get(m.pop('dup', '')):
+            m['n'] += DUP_MARK
+            m['c'] = best['c']
+            m.pop('r', None)
+            if 'r' in best:
+                m['r'] = list(best['r'])
+            m['_best'] = best['n']
 
     check_patterns(maps)
     reg = regions(maps, ov)
@@ -617,15 +684,18 @@ def main() -> None:
             order.get(m['c'], len(order)),
             'r' in m,
             m['c'],
+            m.get('_best', m['n']).casefold(),
+            '_best' in m,
             m['n'].casefold(),
         )
     )
-    keys = ['id', 'n', 'c', 'u', 'p', 'r', 's', 'disabled']
+    keys = ['id', 'n', 'c', 'u', 'p', 'r', 's', 'f', 'disabled']
     data = {
         'v': 1,
         'src': SOURCES,
         'geocoders': ov['geocoders'],
-        'maps': [{k: m[k] for k in keys if k in m} for m in maps],
+        # "f" is written only when true.
+        'maps': [{k: m[k] for k in keys if k in m and m[k] is not False} for m in maps],
         'regions': reg,
     }
     check(data, prev, dropped_ids)
@@ -641,7 +711,8 @@ def main() -> None:
         file=sys.stderr,
     )
     print(
-        f'  with parse patterns: {sum("p" in m for m in maps)}; new ids: {len(new)}',
+        f'  with parse patterns: {sum("p" in m for m in maps)}; '
+        f'framable: {sum(bool(m.get("f")) for m in maps)}; new ids: {len(new)}',
         file=sys.stderr,
     )
     for reason, n in sorted(dropped.items()):

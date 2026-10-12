@@ -100,6 +100,7 @@ test("maps.json invariants", async () => {
     const bad = [...m.u.matchAll(/\{(\w*)\}/g)].map((x) => x[1]).filter((k) => !PLACEHOLDERS.includes(k));
     assert.deepEqual(bad, [], `${m.id} placeholders`);
     assert.match(fill(m.u, st), /^https?:\/\/[^{}]+$/, `${m.id} fill`);
+    assert.ok(!m.f || (m.u.startsWith("https://") && !m.disabled), `${m.id} framable`);
     for (const r of m.r ?? []) assert.ok(typeof r !== "string" || data.regions[r], `${m.id} region ${r}`);
     for (const p of m.p ?? []) {
       const g = fill(m.u, st).match(new RegExp(p))?.groups;

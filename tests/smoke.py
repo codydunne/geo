@@ -117,6 +117,56 @@ def main() -> None:
                 ), open_href
                 assert page.url.endswith('/geo/42.3646,-71.1313&z=12&m=rwgps'), page.url
 
+                # A framable map opens in place of the pin map; the URL does not change.
+                page.route(
+                    'https://opentopomap.org/**',
+                    lambda r: r.fulfill(content_type='text/html', body='stub'),
+                )
+                visit(page, '/geo/42.3646,-71.1313&m=opentopomap')
+                page.click('#featured a')
+                frame = page.locator('#pane iframe')
+                src = frame.get_attribute('src')
+                assert src and '42.3646' in src, src
+                assert 'allow-top-navigation' not in (
+                    frame.get_attribute('sandbox') or 'allow-top-navigation'
+                )
+                assert page.locator('#pane-open').get_attribute('href') == src
+                assert page.locator('#map').is_hidden()
+                assert page.locator('#pane').is_visible()
+                assert page.url.endswith('/geo/42.3646,-71.1313&m=opentopomap')
+                # It follows the location.
+                page.fill('#q', '42.37,-71.11')
+                page.press('#q', 'Enter')
+                page.wait_for_function(
+                    'document.querySelector("#pane iframe")?.src.includes("42.37")'
+                )
+                assert page.locator('#pane iframe').count() == 1
+                # Side by side, only the list scrolls: the page is one window tall.
+                assert viewport['width'] < 768 or page.evaluate(
+                    'document.documentElement.scrollHeight <= innerHeight'
+                )
+                # Expand covers the window; the same button puts it back.
+                narrow = page.locator('#pane').bounding_box()['width']
+                page.click('#pane-wide')
+                assert (
+                    page.locator('#pane').bounding_box()['width']
+                    == page.viewport_size['width']
+                )
+                page.click('#pane-wide')
+                assert page.locator('#pane').bounding_box()['width'] == narrow
+                page.click('#pane-close')
+                assert page.locator('#pane').is_hidden()
+                assert page.locator('#pane iframe').count() == 0
+                assert page.locator('#map').is_visible()
+                # A service that refuses framing stays a plain link.
+                page.route(
+                    'https://www.google.com/**',
+                    lambda r: r.fulfill(content_type='text/html', body='stub'),
+                )
+                visit(page, '/geo/42.3646,-71.1313&m=google')
+                page.click('#featured a')
+                page.wait_for_url('https://www.google.com/**')
+
                 # Query and hash forms canonicalize to the path form.
                 visit(page, '/geo/?42.36,-71.13')
                 assert page.evaluate('location.pathname') == '/geo/42.36,-71.13'
@@ -187,6 +237,19 @@ def main() -> None:
                 page.wait_for_function('location.pathname.startsWith("/geo/42.364667")')
 
                 # Zoom control updates the URL.
+                visit(page, '/geo/42.36,-71.13')
+
+                # Clearing the location box resets the location but keeps the map view,
+                # so the next map click drops a pin in the same area.
+                assert page.input_value('#q') == '42.36,-71.13'
+                page.click('#q-clear')
+                assert page.input_value('#q') == ''
+                assert page.locator('#q-clear').is_hidden()
+                assert page.evaluate('location.pathname') == '/geo/'
+                assert page.locator('.leaflet-marker-icon').count() == 0
+                assert page.locator('#list a').count() == 0
+                page.click('#map', position={'x': 150, 'y': 150})
+                page.wait_for_function('location.pathname.startsWith("/geo/42.3")')
                 visit(page, '/geo/42.36,-71.13')
                 page.click('.leaflet-control-zoom-in')
                 page.wait_for_function('location.pathname === "/geo/42.36,-71.13&z=16"')

@@ -117,8 +117,14 @@
  "maps": [
   {
    "id": "osm",
-   "match": "OpenStreetMap",
+   "match": "Open Street Map",
    "n": "OpenStreetMap ★"
+  },
+  {
+   "id": "open-street-map",
+   "match": "OpenStreetMap",
+   "dup": "osm",
+   "drop": true
   },
   {
    "id": "google",
@@ -130,9 +136,21 @@
    "match": "Apple Maps"
   },
   {
+   "id": "duckduckgo",
+   "match": "DuckDuckGo",
+   "dup": "apple-maps-via-duckduckgo",
+   "drop": true
+  },
+  {
    "id": "bing",
    "match": "Bing Maps",
    "n": "Bing Maps ★"
+  },
+  {
+   "id": "bing-2",
+   "match": "Bing",
+   "dup": "bing",
+   "drop": true
   },
   {
    "id": "here",
@@ -141,6 +159,7 @@
   {
    "id": "waze",
    "match": "Waze",
+   "n": "Waze",
    "c": "Routing"
   },
   {
@@ -175,6 +194,12 @@
    "n": "Google Street View",
    "c": "Street-level",
    "u": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint={lat},{lon}"
+  },
+  {
+   "id": "google-maps-street-view",
+   "match": "Google Maps Street View",
+   "dup": "google-streetview",
+   "drop": true
   },
   {
    "id": "ventusky",
@@ -232,6 +257,13 @@
    "c": "Imagery/Satellite/Aerial"
   },
   {
+   "id": "acme-doq",
+   "match": "ACME DOQ",
+   "u": "https://mapper.acme.com/?ll={lat},{lon}&z={z}&t=S&marker0={lat},{lon},{a}",
+   "dup": "acme-mapper-satellite",
+   "drop": true
+  },
+  {
    "match": "Apple Maps Satellite",
    "c": "Imagery/Satellite/Aerial"
   },
@@ -265,11 +297,15 @@
   },
   {
    "match": "Mapy.com Aerial",
-   "c": "Imagery/Satellite/Aerial"
+   "c": "Imagery/Satellite/Aerial",
+   "f": false
   },
   {
+   "id": "wikimapia-satellite",
    "match": "Wikimapia Satellite",
-   "c": "Imagery/Satellite/Aerial"
+   "c": "Imagery/Satellite/Aerial",
+   "u": "https://wikimapia.org/#lang=en&lat={lat}&lon={lon}&z={z}&m=b",
+   "f": true
   },
   {
    "match": "OpenAerialMap",
@@ -586,7 +622,8 @@
    "id": "gpx-studio",
    "n": "gpx.studio ★",
    "c": "Routing",
-   "u": "https://gpx.studio/app#{z}/{lat}/{lon}"
+   "u": "https://gpx.studio/app#{z}/{lat}/{lon}",
+   "f": false
   },
   {
    "id": "cycle-travel-overnight",
@@ -730,7 +767,11 @@
   {
    "id": "viamichelin",
    "match": "ViaMichelin",
-   "c": "Routing"
+   "c": "Routing",
+   "u": "https://www.viamichelin.com/?center={lon}~{lat}&selectedAddress=%7B%22address%22%3A%22{lat}%2C{lon}%22%2C%22entityType%22%3A%22CITY%22%2C%22coordinates%22%3A%7B%22lng%22%3A{lon}%2C%22lat%22%3A{lat}%7D%2C%22boundsSync%22%3Afalse%7D",
+   "p": [
+    "viamichelin\\.com/.*[?&]center=(?<lon>[-+]?\\d+(?:\\.\\d+)?)~(?<lat>[-+]?\\d+(?:\\.\\d+)?)"
+   ]
   },
   {
    "id": "locusmap",
@@ -765,12 +806,13 @@
   {
    "id": "peakfinder-org",
    "match": "PeakFinder.org",
-   "c": "Outdoor"
+   "dup": "peakfinder"
   },
   {
    "id": "mapy-com-outdoor",
    "match": "Mapy.com Outdoor",
-   "c": "Outdoor"
+   "c": "Outdoor",
+   "f": false
   },
   {
    "id": "strava",
@@ -786,7 +828,15 @@
   {
    "id": "acme-mapper-terrain",
    "match": "ACME Mapper Terrain",
-   "c": "Outdoor"
+   "dup": "acme-mapper",
+   "drop": true
+  },
+  {
+   "id": "acme-mapper-mapnik",
+   "match": "ACME Mapper Mapnik",
+   "dup": "acme-mapper",
+   "u": "https://mapper.acme.com/?ll={lat},{lon}&z={z}&t=M&marker0={lat},{lon},{a}",
+   "drop": true
   },
   {
    "id": "acme-mapper-topo",
@@ -837,11 +887,6 @@
    "id": "nasa-firms",
    "match": "NASA FIRMS",
    "c": "Imagery/Satellite/Aerial"
-  },
-  {
-   "id": "google-maps-street-view",
-   "match": "Google Maps Street View",
-   "c": "Street-level"
   },
   {
    "id": "kartaview",
@@ -896,7 +941,8 @@
   {
    "id": "acme-nexrad",
    "match": "ACME NEXRAD",
-   "c": "Weather"
+   "c": "Weather",
+   "u": "https://mapper.acme.com/?ll={lat},{lon}&z={z}&t=MN&marker0={lat},{lon},{a}"
   },
   {
    "id": "nasa-msfc-goes",
@@ -946,7 +992,8 @@
   {
    "id": "open-sea-map",
    "match": "Open Sea Map",
-   "c": "Transport"
+   "dup": "openseamap",
+   "drop": true
   },
   {
    "id": "lights-of-the-sea-online",
@@ -954,14 +1001,16 @@
    "c": "Transport"
   },
   {
-   "id": "open-historical-map",
+   "id": "openhistoricalmap",
    "match": "Open Historical Map",
-   "c": "Historical"
+   "dup": "open-historical-map",
+   "drop": true
   },
   {
-   "id": "openhistoricalmap",
+   "id": "open-historical-map",
    "match": "OpenHistoricalMap",
-   "c": "Historical"
+   "c": "Historical",
+   "n": "Open Historical Map"   
   },
   {
    "id": "old-maps-online",
@@ -1114,9 +1163,15 @@
    "c": "Main"
   },
   {
+   "id": "mapy-com",
+   "match": "Mapy.com",
+   "f": false
+  },
+  {
    "id": "mapy-cz",
    "match": "MAPY.CZ",
-   "c": "Main"
+   "c": "Main",
+   "f": false
   },
   {
    "id": "osmand",
@@ -1134,6 +1189,12 @@
    "c": "Main"
   },
   {
+   "id": "wikimapia-old-places",
+   "match": "Wikimapia + old places",
+   "u": "https://wikimapia.org/#lang=en&lat={lat}&lon={lon}&z={z}&m=b&v=8",
+   "f": true
+  },
+  {
    "id": "wikimedia-maps",
    "match": "Wikimedia maps",
    "c": "Main"
@@ -1148,15 +1209,17 @@
    "match": "Launch RapiD editor",
    "c": "Tools"
   },
-  {
+    {
    "id": "launch-waze-map-editor",
    "match": "Launch waze map editor",
+   "n": "Waze Editor",
    "c": "Tools"
   },
   {
    "id": "waze-editor",
    "match": "Waze Editor",
-   "c": "Tools"
+   "dup": "launch-waze-map-editor",
+   "drop": true
   },
   {
    "id": "gribrouillon",
@@ -1191,7 +1254,7 @@
   {
    "id": "navi-jp-2",
    "match": "いつもNAVI(JP)",
-   "c": "Japan"
+   "dup": "its-mo-navi"
   },
   {
    "id": "gis",
@@ -1264,6 +1327,12 @@
    "c": "Russia"
   },
   {
+   "id": "2gis-2",
+   "match": "2GIS / 2ГИС",
+   "dup": "2gis-ru",
+   "drop": true
+  },
+  {
    "id": "vk-maps",
    "match": "VK maps",
    "c": "Russia"
@@ -1327,6 +1396,15 @@
    "id": "osmchina",
    "match": "OSMChina",
    "c": "China"
+  },
+  {
+   "id": "baidu",
+   "match": "Baidu",
+   "dup": "baidu-maps"
+  },
+  {
+   "id": "baidu-maps",
+   "match": "Baidu Maps (百度地图)"
   }
  ]
 }

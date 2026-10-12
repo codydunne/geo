@@ -3,6 +3,7 @@ import { DEFAULT_Z, canonical, fill, fmt, inRegion, inputOf, parse, trunc6 } fro
 
 /** @typedef {import("./geo.js").State} State */
 /** @typedef {import("./geo.js").MapData} MapData */
+/** @typedef {import("./geo.js").MapDef} MapDef */
 
 /** Leaflet's UMD global; untyped on purpose (no @types dependency). @type {any} */
 const L = /** @type {any} */ (globalThis).L;
@@ -14,6 +15,7 @@ const filter = /** @type {HTMLInputElement} */ ($("filter"));
 const q = /** @type {HTMLInputElement} */ ($("q"));
 const showDisabled = /** @type {HTMLInputElement} */ ($("show-disabled"));
 const showRegions = /** @type {HTMLInputElement} */ ($("show-regions"));
+const pane = $("pane");
 
 /** @type {MapData} */
 const data = await (await fetch("_/maps.json")).json();
@@ -23,6 +25,8 @@ let st = {};
 let map;
 /** @type {any} */
 let pin;
+/** The service shown in the pane in place of the pin map, if any. @type {MapDef | undefined} */
+let framed;
 
 /** @param {string} text @param {"error" | "ok"} [kind] */
 function say(text, kind = "error") {
@@ -95,7 +99,9 @@ function updateUrl() {
 /**
  * A disabled map (dead service, kept so its published id still resolves) stays a link
  * so it can still be tried, but is marked as broken.
- * @param {import("./geo.js").MapDef} d @param {string} text @param {string} [cls]
+ * A framable map opens in the pane on a plain click; the href stays real, so
+ * middle-click, modifier-click, and "open in new tab" still leave the page.
+ * @param {MapDef} d @param {string} text @param {string} [cls]
  */
 function link(d, text, cls = "") {
   const el = document.createElement("a");
@@ -104,7 +110,60 @@ function link(d, text, cls = "") {
   el.href = fill(d.u, st);
   el.rel = "noopener";
   if (d.disabled) el.title = "This service appears to no longer work";
+  else if (d.f) {
+    el.classList.add("f"); // style.css draws the icon
+    el.title = "Opens here, in place of the pin map";
+    el.addEventListener("click", (e) => {
+      if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
+      e.preventDefault();
+      showPane(d);
+      pane.scrollIntoView({ block: "nearest" }); // the list is below the pane on phones
+    });
+  }
   return el;
+}
+
+/**
+ * Show a service in the pane, or (with no argument) go back to the pin map.
+ * @param {MapDef} [d]
+ */
+function showPane(d) {
+  const url = d ? fill(d.u, st) : "";
+  const old = pane.querySelector("iframe");
+  if (d === framed && old?.dataset.u === url) return;
+  framed = d;
+  // A fresh element per load: changing `src` would add a history entry, so Back
+  // would step through maps instead of leaving the page.
+  old?.remove();
+  pane.hidden = !d;
+  $("map").hidden = !!d;
+  if (!d) {
+    widen(false);
+    // Leaflet may have measured a hidden, zero-size container meanwhile.
+    map.invalidateSize();
+    return renderMap();
+  }
+  $("pane-name").textContent = d.n;
+  /** @type {HTMLAnchorElement} */ ($("pane-open")).href = url;
+  const f = document.createElement("iframe");
+  f.title = d.n;
+  f.dataset.u = url;
+  // No allow-top-navigation: a framed site must not be able to replace this page.
+  f.setAttribute("sandbox", "allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox");
+  f.referrerPolicy = "no-referrer";
+  f.allowFullscreen = true;
+  f.src = url;
+  pane.append(f);
+}
+
+/**
+ * Let the pane cover the whole window, or put it back in its column.
+ * @param {boolean} on
+ */
+function widen(on) {
+  pane.classList.toggle("wide", on);
+  $("pane-wide").textContent = on ? "Shrink" : "Expand";
+  $("pane-wide").ariaPressed = String(on);
 }
 
 function renderFeatured() {
@@ -198,6 +257,8 @@ function update(moveMap = true) {
   if (document.activeElement !== q) q.value = st.lat !== undefined ? `${st.lat},${st.lon}` : "";
   $("q-clear").hidden = !q.value;
   if (moveMap) renderMap();
+  // Follow the location, or close when it is cleared.
+  if (framed) showPane(st.lat === undefined ? undefined : framed);
   renderFeatured();
   renderList();
 }
@@ -230,6 +291,8 @@ async function load(next) {
 
 // With no location yet, show Cambridge, MA at greater-Boston zoom; a click drops the first pin.
 map = L.map("map", { worldCopyJump: true }).setView([42.3736, -71.1097], 10);
+// The map flexes with the column (a message appearing, the window resizing).
+new ResizeObserver(() => map.invalidateSize()).observe($("map"));
 map.on("click", (/** @type {any} */ e) => {
   if (st.lat !== undefined) return; // after the first pin, move it by dragging
   load({ lat: fmt(e.latlng.lat), lon: fmt(L.Util.wrapNum(e.latlng.lng, [-180, 180], true)), z: map.getZoom(), m: st.m });
@@ -262,6 +325,8 @@ $("q-clear").addEventListener("click", () => {
   q.focus();
 });
 
+$("pane-close").addEventListener("click", () => showPane());
+$("pane-wide").addEventListener("click", () => widen(!pane.classList.contains("wide")));
 filter.addEventListener("input", applyFilter);
 showDisabled.addEventListener("change", renderList);
 showRegions.addEventListener("change", renderList);

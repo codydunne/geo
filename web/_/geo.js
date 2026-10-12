@@ -3,7 +3,8 @@
 /**
  * @typedef {{lat?: string, lon?: string, z?: number, m?: string, a?: string}} State
  *   lat/lon stay strings so the digits a user typed survive canonicalization.
- * @typedef {{id: string, n: string, c: string, u: string, p?: string[], r?: (string | number[])[], s?: string[], disabled?: boolean}} MapDef
+ * @typedef {{id: string, n: string, c: string, u: string, p?: string[], r?: (string | number[])[], s?: string[], f?: boolean, disabled?: boolean}} MapDef
+ *   f: the service allows being shown in an iframe (probed by the collector).
  * @typedef {{v: number, geocoders?: string[], maps: MapDef[], regions: Record<string, number[][]>}} MapData
  */
 

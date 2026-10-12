@@ -34,6 +34,14 @@
         </div>
         <p id="msg" class="message" role="status" hidden></p>
         <div id="map" role="region" aria-label="Map of the location; drag the pin to move it"></div>
+        <div id="pane" hidden>
+          <div class="panebar">
+            <strong id="pane-name"></strong>
+            <a id="pane-open" class="button" target="_blank" rel="noopener">Open ↗</a>
+            <button type="button" class="secondary" id="pane-wide" aria-pressed="false">Expand</button>
+            <button type="button" class="secondary" id="pane-close">Back to pin</button>
+          </div>
+        </div>
       </div>
       <div class="right">
         <div id="featured" class="featured" hidden></div>
@@ -46,17 +54,17 @@
           <label><input type="checkbox" id="show-disabled"> Show disabled</label>
           <label><input type="checkbox" id="show-regions"> Show other regions</label>
         </div>
+        <footer>
+          Credits: Map links collected from
+          <a href="https://geohack.toolforge.org/">GeoHack</a> (<a href="https://en.wikipedia.org/wiki/Template:GeoTemplate">Template:GeoTemplate</a>, CC BY-SA 4.0) and
+          <a href="https://github.com/tankaru/OpenSwitchMapsWeb">OpenSwitchMaps</a> (MIT).
+          Geocoding by <a href="https://nominatim.org/">Nominatim</a> and <a href="https://photon.komoot.io/">Photon</a>.
+          Region outlines from <a href="https://www.naturalearthdata.com/">Natural Earth</a>.
+          Map by <a href="https://leafletjs.com/">Leaflet</a> with
+          <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> tiles.
+        </footer>
       </div>
     </div>
-    <footer>
-      Credits: Map links collected from
-      <a href="https://geohack.toolforge.org/">GeoHack</a> (<a href="https://en.wikipedia.org/wiki/Template:GeoTemplate">Template:GeoTemplate</a>, CC BY-SA 4.0) and
-      <a href="https://github.com/tankaru/OpenSwitchMapsWeb">OpenSwitchMaps</a> (MIT).
-      Geocoding by <a href="https://nominatim.org/">Nominatim</a> and <a href="https://photon.komoot.io/">Photon</a>.
-      Region outlines from <a href="https://www.naturalearthdata.com/">Natural Earth</a>.
-      Map by <a href="https://leafletjs.com/">Leaflet</a> with
-      <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> tiles.
-    </footer>
   </div>
 </body>
 </html>
