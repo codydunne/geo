@@ -5,16 +5,18 @@
  ],
  "order": [
   "Main",
+  "Routing",
+  "Travel time",
   "Outdoor",
   "Imagery/Satellite/Aerial",
   "Street-level",
-  "Weather",
   "Photos",
+  "Weather",
+  "Transport",
+  "Historical",
   "Wikipedia",
   "Info",
-  "OSM tools",
-  "Apps",
-  "Travel time",
+  "Tools",
   "Other"
  ],
  "categories": {
@@ -23,9 +25,9 @@
   "Other maps": "Other",
   "Specials": "Other",
   "Local maps": "Other",
-  "OSM local chapter": "OSM tools",
-  "Utilities": "OSM tools",
-  "External App": "Apps",
+  "OSM local chapter": "Tools",
+  "Utilities": "Tools",
+  "External App": "Tools",
   "Map portal": "Other",
   "Wikimedia maps": "Wikipedia",
   "Wikipedia articles": "Wikipedia",
@@ -138,7 +140,8 @@
   },
   {
    "id": "waze",
-   "match": "Waze"
+   "match": "Waze",
+   "c": "Routing"
   },
   {
    "id": "osmcycle",
@@ -149,7 +152,7 @@
   {
    "id": "rwgps",
    "n": "RideWithGPS ★",
-   "c": "Outdoor",
+   "c": "Routing",
    "u": "https://ridewithgps.com/routes/new?center={lat}%2C{lon}&zoom={z}",
    "p": [
     "ridewithgps\\.com/.*[?&]center=(?<lat>[-+]?\\d+(?:\\.\\d+)?)(?:%2C|,)(?<lon>[-+]?\\d+(?:\\.\\d+)?)(?:.*[?&]zoom=(?<z>\\d+))?"
@@ -182,7 +185,7 @@
   {
    "id": "yelp",
    "n": "Yelp",
-   "c": "Other",
+   "c": "Info",
    "u": "https://www.yelp.com/search?l=g%3A{e}%2C{n}%2C{w}%2C{s}"
   },
   {
@@ -200,25 +203,29 @@
    "match": "地理院地図",
    "r": [
     "JP"
-   ]
+   ],
+   "c": "Japan"
   },
   {
    "match": "JapanMapCompare",
    "r": [
     "JP"
-   ]
+   ],
+   "c": "Japan"
   },
   {
    "match": "cmap.dev: リアルタイム被害予測(JP)",
    "r": [
     "JP"
-   ]
+   ],
+   "c": "Japan"
   },
   {
    "match": "聖地巡礼マップ",
    "r": [
     "JP"
-   ]
+   ],
+   "c": "Japan"
   },
   {
    "match": "ACME Mapper Satellite",
@@ -578,7 +585,7 @@
   {
    "id": "gpx-studio",
    "n": "gpx.studio ★",
-   "c": "Outdoor",
+   "c": "Routing",
    "u": "https://gpx.studio/app#{z}/{lat}/{lon}"
   },
   {
@@ -614,25 +621,25 @@
   {
    "id": "bbbike-compare-9",
    "n": "Map compare (BBBike, 9 general) ★",
-   "c": "OSM tools",
+   "c": "Tools",
    "u": "https://mc.bbbike.org/mc/?lon={lon}&lat={lat}&zoom={z}&num=9&mt0=google-hybrid&mt1=bing-hybrid&mt2=esri-satellite&mt3=usgs-topo&mt4=esri-topo-usa&mt5=google-map&mt6=bing-map&mt7=cyclosm&mt8=cyclemap"
   },
   {
    "id": "bbbike-compare-topo",
    "n": "Map compare (BBBike, 10 topo) ★",
-   "c": "OSM tools",
+   "c": "Tools",
    "u": "https://mc.bbbike.org/mc/?lon={lon}&lat={lat}&zoom={z}&num=10&mt0=stamen-terrain&mt1=tracestrack-topo&mt2=esri-satellite&mt3=usgs-topo&mt4=esri-topo-usa&mt5=usgs-imagery-topo&mt6=opentopomap&mt7=cyclosm&mt8=cyclemap&mt9=tomtom-sat"
   },
   {
    "id": "geofabrik-compare-cycle",
    "n": "Map compare (Geofabrik, cycling)",
-   "c": "OSM tools",
+   "c": "Tools",
    "u": "https://tools.geofabrik.de/mc/#{z}/{lat}/{lon}&num=4&mt0=cyclosm&mt1=cyclemap&mt2=thunderforest-cycle&mt3=geofabrik-topo"
   },
   {
    "id": "nls-side-by-side",
    "n": "National Library of Scotland side by side",
-   "c": "Other",
+   "c": "Historical",
    "u": "https://maps.nls.uk/geo/explore/side-by-side/#zoom={z}&lat={lat}&lon={lon}&layers=ESRIWorld&right=GoogleSat"
   },
   {
@@ -644,7 +651,8 @@
   {
    "id": "national-weather-service",
    "match": "National Weather Service",
-   "n": "National Weather Service ★"
+   "n": "National Weather Service ★",
+   "c": "Weather"
   },
   {
    "id": "map-compare-bbbike",
@@ -654,17 +662,20 @@
   {
    "id": "opentopomap",
    "match": "OpenTopoMap",
-   "n": "OpenTopoMap ★"
+   "n": "OpenTopoMap ★",
+   "c": "Outdoor"
   },
   {
    "id": "openrailwaymap",
    "match": "OpenRailwayMap",
-   "n": "OpenRailwayMap ★"
+   "n": "OpenRailwayMap ★",
+   "c": "Transport"
   },
   {
    "id": "trail-router",
    "match": "Trail Router",
-   "n": "Trail Router ★"
+   "n": "Trail Router ★",
+   "c": "Routing"
   },
   {
    "id": "historic-aerials",
@@ -685,6 +696,637 @@
    "id": "usgs-topoview",
    "match": "USGS TopoView",
    "n": "USGS TopoView ★"
+  },
+  {
+   "id": "brouter-web",
+   "match": "BRouter-Web",
+   "c": "Routing"
+  },
+  {
+   "id": "openrouteservice",
+   "match": "openrouteservice",
+   "c": "Routing"
+  },
+  {
+   "id": "komoot",
+   "match": "komoot",
+   "c": "Routing"
+  },
+  {
+   "id": "waze-navigate",
+   "match": "Waze Navigate",
+   "c": "Routing"
+  },
+  {
+   "id": "waze-open",
+   "match": "Waze Open",
+   "c": "Routing"
+  },
+  {
+   "id": "tomtom",
+   "match": "TomTom",
+   "c": "Routing"
+  },
+  {
+   "id": "viamichelin",
+   "match": "ViaMichelin",
+   "c": "Routing"
+  },
+  {
+   "id": "locusmap",
+   "match": "locusmap",
+   "c": "Routing"
+  },
+  {
+   "id": "opencyclemap",
+   "match": "OpenCycleMap",
+   "c": "Outdoor"
+  },
+  {
+   "id": "waymarked-trails",
+   "match": "Waymarked Trails",
+   "c": "Outdoor"
+  },
+  {
+   "id": "opensnowmap",
+   "match": "OpenSnowMap",
+   "c": "Outdoor"
+  },
+  {
+   "id": "nakarte",
+   "match": "nakarte",
+   "c": "Outdoor"
+  },
+  {
+   "id": "peakfinder",
+   "match": "PeakFinder",
+   "c": "Outdoor"
+  },
+  {
+   "id": "peakfinder-org",
+   "match": "PeakFinder.org",
+   "c": "Outdoor"
+  },
+  {
+   "id": "mapy-com-outdoor",
+   "match": "Mapy.com Outdoor",
+   "c": "Outdoor"
+  },
+  {
+   "id": "strava",
+   "match": "STRAVA",
+   "c": "Outdoor"
+  },
+  {
+   "id": "strava-cycle",
+   "n": "Strava: Cycling",
+   "c": "Outdoor",
+   "u": "https://www.strava.com/maps/global-heatmap?sport=RideLike&style=standard#{z}/{lat}/{lon}"
+  },
+  {
+   "id": "acme-mapper-terrain",
+   "match": "ACME Mapper Terrain",
+   "c": "Outdoor"
+  },
+  {
+   "id": "acme-mapper-topo",
+   "match": "ACME Mapper Topo",
+   "c": "Outdoor"
+  },
+  {
+   "id": "google-maps-terrain",
+   "match": "Google Maps Terrain",
+   "c": "Outdoor"
+  },
+  {
+   "id": "here-wego-terrain",
+   "match": "HERE WeGo Terrain",
+   "c": "Outdoor"
+  },
+  {
+   "id": "geocaching-com",
+   "match": "Geocaching.com",
+   "c": "Outdoor"
+  },
+  {
+   "id": "geocaching-com-map-this-location",
+   "match": "Geocaching.com Map this location",
+   "c": "Outdoor"
+  },
+  {
+   "id": "blue-marble-navigator",
+   "match": "Blue Marble Navigator",
+   "c": "Imagery/Satellite/Aerial"
+  },
+  {
+   "id": "blue-marble-navigator-night-lights",
+   "match": "Blue Marble Navigator Night Lights",
+   "c": "Imagery/Satellite/Aerial"
+  },
+  {
+   "id": "copernicus-browser-sentinel-2",
+   "match": "Copernicus Browser (Sentinel-2)",
+   "c": "Imagery/Satellite/Aerial"
+  },
+  {
+   "id": "eo-browser",
+   "match": "EO Browser",
+   "c": "Imagery/Satellite/Aerial"
+  },
+  {
+   "id": "nasa-firms",
+   "match": "NASA FIRMS",
+   "c": "Imagery/Satellite/Aerial"
+  },
+  {
+   "id": "google-maps-street-view",
+   "match": "Google Maps Street View",
+   "c": "Street-level"
+  },
+  {
+   "id": "kartaview",
+   "match": "KartaView",
+   "c": "Street-level"
+  },
+  {
+   "id": "mapillary",
+   "match": "Mapillary",
+   "c": "Street-level"
+  },
+  {
+   "id": "panoramax",
+   "match": "Panoramax",
+   "c": "Street-level"
+  },
+  {
+   "id": "yandex-panorama",
+   "match": "Yandex panorama",
+   "c": "Street-level"
+  },
+  {
+   "id": "flickr",
+   "match": "flickr",
+   "c": "Photos"
+  },
+  {
+   "id": "pic4carto",
+   "match": "Pic4Carto",
+   "c": "Photos"
+  },
+  {
+   "id": "openweathermap-org",
+   "match": "OpenWeatherMap.org",
+   "c": "Weather"
+  },
+  {
+   "id": "weather-underground",
+   "match": "Weather Underground",
+   "c": "Weather"
+  },
+  {
+   "id": "jaxa-global-rainfall-watch",
+   "match": "JAXA Global Rainfall Watch",
+   "c": "Weather"
+  },
+  {
+   "id": "lightningmaps-org",
+   "match": "LightningMaps.org",
+   "c": "Weather"
+  },
+  {
+   "id": "acme-nexrad",
+   "match": "ACME NEXRAD",
+   "c": "Weather"
+  },
+  {
+   "id": "nasa-msfc-goes",
+   "match": "NASA/MSFC GOES",
+   "c": "Weather"
+  },
+  {
+   "id": "national-weather-service-graphical-hourly-pinpoint-forecast",
+   "match": "National Weather Service Graphical hourly pinpoint forecast",
+   "c": "Weather"
+  },
+  {
+   "id": "weatherusa",
+   "match": "WeatherUSA",
+   "c": "Weather"
+  },
+  {
+   "id": "openstationmap",
+   "match": "OpenStationMap",
+   "c": "Transport"
+  },
+  {
+   "id": "opnvkarte",
+   "match": "ÖPNVKarte",
+   "c": "Transport"
+  },
+  {
+   "id": "marinetraffic",
+   "match": "MarineTraffic",
+   "c": "Transport"
+  },
+  {
+   "id": "flightradar24",
+   "match": "Flightradar24",
+   "c": "Transport"
+  },
+  {
+   "id": "skyvector",
+   "match": "SkyVector",
+   "c": "Transport"
+  },
+  {
+   "id": "openseamap",
+   "match": "OpenSeaMap",
+   "c": "Transport"
+  },
+  {
+   "id": "open-sea-map",
+   "match": "Open Sea Map",
+   "c": "Transport"
+  },
+  {
+   "id": "lights-of-the-sea-online",
+   "match": "Lights of the sea online",
+   "c": "Transport"
+  },
+  {
+   "id": "open-historical-map",
+   "match": "Open Historical Map",
+   "c": "Historical"
+  },
+  {
+   "id": "openhistoricalmap",
+   "match": "OpenHistoricalMap",
+   "c": "Historical"
+  },
+  {
+   "id": "old-maps-online",
+   "match": "Old Maps Online",
+   "c": "Historical"
+  },
+  {
+   "id": "national-library-of-scotland",
+   "match": "National Library of Scotland",
+   "c": "Historical"
+  },
+  {
+   "id": "historic-place",
+   "match": "Historic Place",
+   "c": "Historical"
+  },
+  {
+   "id": "megalithic-portal",
+   "match": "Megalithic Portal",
+   "c": "Historical"
+  },
+  {
+   "id": "owl-map",
+   "match": "OWL Map",
+   "c": "Wikipedia"
+  },
+  {
+   "id": "geonames",
+   "match": "GeoNames",
+   "c": "Info"
+  },
+  {
+   "id": "geonames-text-xml",
+   "match": "GeoNames Text (XML)",
+   "c": "Info"
+  },
+  {
+   "id": "open-street-map-nominatim-reverse-geocoding",
+   "match": "Open Street Map Nominatim (reverse geocoding)",
+   "c": "Info"
+  },
+  {
+   "id": "open-historical-map-nominatim-reverse-geocoding",
+   "match": "Open Historical Map Nominatim (reverse geocoding)",
+   "c": "Info"
+  },
+  {
+   "id": "what3words",
+   "match": "what3words",
+   "c": "Info"
+  },
+  {
+   "id": "wolfram-alpha",
+   "match": "Wolfram Alpha",
+   "c": "Info"
+  },
+  {
+   "id": "twitter",
+   "match": "Twitter",
+   "c": "Info"
+  },
+  {
+   "id": "opentripmap",
+   "match": "OpenTripMap",
+   "c": "Info"
+  },
+  {
+   "id": "macrostrat",
+   "match": "Macrostrat",
+   "c": "Info"
+  },
+  {
+   "id": "openlandmap",
+   "match": "OpenLandMap",
+   "c": "Info"
+  },
+  {
+   "id": "open-infrastructure-map",
+   "match": "Open Infrastructure Map",
+   "c": "Info"
+  },
+  {
+   "id": "openaedmap",
+   "match": "OpenAEDMap",
+   "c": "Info"
+  },
+  {
+   "id": "surveillance-under-surveillance",
+   "match": "Surveillance under Surveillance",
+   "c": "Info"
+  },
+  {
+   "id": "shademap",
+   "match": "ShadeMap",
+   "c": "Info"
+  },
+  {
+   "id": "shadowmap",
+   "match": "Shadowmap",
+   "c": "Info"
+  },
+  {
+   "id": "deepstate-map",
+   "match": "DeepState Map",
+   "c": "Info"
+  },
+  {
+   "id": "live-universal-awareness-map",
+   "match": "Live Universal Awareness Map",
+   "c": "Info"
+  },
+  {
+   "id": "projectowl-ukraine",
+   "match": "ProjectOwl: Ukraine",
+   "c": "Info"
+  },
+  {
+   "id": "indoor",
+   "match": "indoor=",
+   "c": "Info"
+  },
+  {
+   "id": "openindoor",
+   "match": "OpenIndoor",
+   "c": "Info"
+  },
+  {
+   "id": "openlevelup",
+   "match": "OpenLevelUp!",
+   "c": "Info"
+  },
+  {
+   "id": "openstreetbrowser",
+   "match": "OpenStreetBrowser",
+   "c": "Info"
+  },
+  {
+   "id": "waterwaymap",
+   "match": "WaterwayMap",
+   "c": "Info"
+  },
+  {
+   "id": "apple-maps-for-apple-device",
+   "match": "Apple maps (for Apple device)",
+   "c": "Main"
+  },
+  {
+   "id": "here-maps",
+   "match": "here maps",
+   "c": "Main"
+  },
+  {
+   "id": "mapy-cz",
+   "match": "MAPY.CZ",
+   "c": "Main"
+  },
+  {
+   "id": "osmand",
+   "match": "OsmAnd",
+   "c": "Main"
+  },
+  {
+   "id": "osmapp",
+   "match": "OsmAPP",
+   "c": "Main"
+  },
+  {
+   "id": "wikimapia",
+   "match": "wikimapia",
+   "c": "Main"
+  },
+  {
+   "id": "wikimedia-maps",
+   "match": "Wikimedia maps",
+   "c": "Main"
+  },
+  {
+   "id": "osm-buildings",
+   "match": "OSM Buildings",
+   "c": "Main"
+  },
+  {
+   "id": "launch-rapid-editor",
+   "match": "Launch RapiD editor",
+   "c": "Tools"
+  },
+  {
+   "id": "launch-waze-map-editor",
+   "match": "Launch waze map editor",
+   "c": "Tools"
+  },
+  {
+   "id": "waze-editor",
+   "match": "Waze Editor",
+   "c": "Tools"
+  },
+  {
+   "id": "gribrouillon",
+   "match": "Gribrouillon",
+   "c": "Tools"
+  },
+  {
+   "id": "walking-town-map-maker",
+   "match": "Walking Town Map Maker",
+   "c": "Tools"
+  },
+  {
+   "id": "mapbox-cartogram",
+   "match": "mapbox Cartogram",
+   "c": "Tools"
+  },
+  {
+   "id": "mapfan-jp",
+   "match": "MapFan (JP)",
+   "c": "Japan"
+  },
+  {
+   "id": "mapion-jp",
+   "match": "Mapion (JP)",
+   "c": "Japan"
+  },
+  {
+   "id": "yahoo-map-jp",
+   "match": "Yahoo Map (JP)",
+   "c": "Japan"
+  },
+  {
+   "id": "navi-jp-2",
+   "match": "いつもNAVI(JP)",
+   "c": "Japan"
+  },
+  {
+   "id": "gis",
+   "match": "ひなたGIS",
+   "c": "Japan"
+  },
+  {
+   "id": "rekichizu-jp",
+   "match": "れきちず",
+   "c": "Japan"
+  },
+  {
+   "id": "jp",
+   "match": "今昔マップ(JP)",
+   "c": "Japan"
+  },
+  {
+   "id": "q-jp",
+   "match": "全国Q地図：橋梁マップ(JP)",
+   "c": "Japan"
+  },
+  {
+   "id": "q-jp-2",
+   "match": "全国Q地図：トンネルマップ(JP)",
+   "c": "Japan"
+  },
+  {
+   "id": "q-jp-3",
+   "match": "全国Q地図：シェッドマップ(JP)",
+   "c": "Japan"
+  },
+  {
+   "id": "q-jp-4",
+   "match": "全国Q地図：カルバートマップ(JP)",
+   "c": "Japan"
+  },
+  {
+   "id": "q-jp-5",
+   "match": "全国Q地図：横断歩道橋マップ(JP)",
+   "c": "Japan"
+  },
+  {
+   "id": "q-jp-6",
+   "match": "全国Q地図：門型標識等マップ(JP)",
+   "c": "Japan"
+  },
+  {
+   "id": "q-jp-7",
+   "match": "全国Q地図：農業用ため池マップ(JP)",
+   "c": "Japan"
+  },
+  {
+   "id": "navi-jp",
+   "match": "地質図Navi (JP)",
+   "c": "Japan"
+  },
+  {
+   "id": "jp-2",
+   "match": "市区町村境界時系列マップ(仮)(JP)",
+   "c": "Japan"
+  },
+  {
+   "id": "osm-jp",
+   "match": "OSM.jp",
+   "c": "Japan"
+  },
+  {
+   "id": "2gis-ru",
+   "match": "2gis(RU)",
+   "c": "Russia"
+  },
+  {
+   "id": "vk-maps",
+   "match": "VK maps",
+   "c": "Russia"
+  },
+  {
+   "id": "osm-ru",
+   "match": "OSM.ru",
+   "c": "Russia"
+  },
+  {
+   "id": "ign-geoportail-fr",
+   "match": "IGN Géoportail (FR)",
+   "c": "France"
+  },
+  {
+   "id": "osm-bzh",
+   "match": "osm.bzh",
+   "c": "France"
+  },
+  {
+   "id": "osm-fr",
+   "match": "osm.fr",
+   "c": "France"
+  },
+  {
+   "id": "ordnance-survey-uk",
+   "match": "Ordnance Survey(UK)",
+   "c": "Great Britain"
+  },
+  {
+   "id": "openstreetmap-nederland",
+   "match": "OpenStreetMap Nederland",
+   "c": "Netherlands"
+  },
+  {
+   "id": "osm-cl",
+   "match": "OSM.cl",
+   "c": "Chile"
+  },
+  {
+   "id": "osm-de",
+   "match": "OSM.de",
+   "c": "Germany"
+  },
+  {
+   "id": "osm-in",
+   "match": "OSM.in",
+   "c": "India"
+  },
+  {
+   "id": "osm-kr",
+   "match": "osm.kr",
+   "c": "South Korea"
+  },
+  {
+   "id": "osm-org-ar",
+   "match": "OSM.org.ar",
+   "c": "Argentina"
+  },
+  {
+   "id": "osmchina",
+   "match": "OSMChina",
+   "c": "China"
   }
  ]
 }

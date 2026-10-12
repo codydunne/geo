@@ -4,6 +4,10 @@ A small static page at [dunne.dev/geo](https://dunne.dev/geo/) that opens a loca
 It takes coordinates, a map URL, or an address, rewrites the address bar to a short canonical link, and lists links into every map that applies at that point.
 The map list is the union of [GeoHack](https://geohack.toolforge.org/), [OpenSwitchMaps](https://github.com/tankaru/OpenSwitchMapsWeb), and [mapfwd](https://mapfwd.com/), plus RideWithGPS and AllTrails.
 
+## TODO
+
+add descriptive text for each
+
 ## URLs
 
 ```text
@@ -68,12 +72,14 @@ dunne.dev is proxied by Cloudflare.
 A Transform Rule makes every `/geo/…` path return HTTP 200 with `index.html`.
 Without the rule, GitHub's `404.html` fallback still serves the page, but with status 404.
 
-**Rules → Transform Rules → Rewrite URL → Create rule** (proposed; verify in the dashboard):
+**Rules → Overview → Create Rule → URL Rewrite Rule**:
 
-- *When incoming requests match* (custom expression):
+- Enter a rule name, e.g.: "transform for /geo/ so it doesn't hit 404s"
+- Under "If incoming requests match…", choose "Custom filter expression"
+- Select "Edit expression" and paste the whole expression there, not into the builder's Value box or the "Wildcard pattern" Request URL box (both read it as a URL pattern and warn that DNS is not proxying it):
   `starts_with(http.request.uri.path, "/geo/") and not starts_with(http.request.uri.path, "/geo/_/") and http.request.uri.path ne "/geo/"`
-- *Path*: Rewrite to → Static → `/geo/`
-- *Query*: Preserve
+- Under "Path": Rewrite to → Static → `/geo/`
+- Under "Query": Preserve
 
 After deploying, check that Cloudflare does not collapse the `//` in embedded URLs:
 

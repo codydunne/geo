@@ -31,30 +31,22 @@
    ]
   },
   {
-   "id": "acme-mapper-terrain",
-   "n": "ACME Mapper Terrain",
-   "c": "Main",
-   "u": "https://mapper.acme.com/?ll={lat},{lon}&z={z}&t=R&marker0={lat},{lon},{a}",
-   "s": [
-    "gh"
-   ]
-  },
-  {
-   "id": "acme-mapper-topo",
-   "n": "ACME Mapper Topo",
-   "c": "Main",
-   "u": "https://mapper.acme.com/?ll={lat},{lon}&z={z}&t=T&marker0={lat},{lon},{a}",
-   "s": [
-    "gh"
-   ]
-  },
-  {
    "id": "apple",
    "n": "Apple Maps",
    "c": "Main",
    "u": "https://maps.apple.com/?ll={lat},{lon}&t=m",
    "s": [
     "gh"
+   ]
+  },
+  {
+   "id": "apple-maps-for-apple-device",
+   "n": "Apple maps (for Apple device)",
+   "c": "Main",
+   "u": "http://maps.apple.com/?ll={lat},{lon}&z={z}",
+   "s": [
+    "osm",
+    "osmw"
    ]
   },
   {
@@ -114,33 +106,6 @@
    ]
   },
   {
-   "id": "blue-marble-navigator",
-   "n": "Blue Marble Navigator",
-   "c": "Main",
-   "u": "https://blue-marble.de?lon={lon}&nlat={lat}&borders&geonames&townnames&zoom&overlay=14&base=7",
-   "s": [
-    "gh"
-   ]
-  },
-  {
-   "id": "blue-marble-navigator-night-lights",
-   "n": "Blue Marble Navigator Night Lights",
-   "c": "Main",
-   "u": "https://blue-marble.de/nightlights?ll={lat},{lon}",
-   "s": [
-    "gh"
-   ]
-  },
-  {
-   "id": "copernicus-browser-sentinel-2",
-   "n": "Copernicus Browser (Sentinel-2)",
-   "c": "Main",
-   "u": "https://browser.dataspace.copernicus.eu/?zoom={z}&lat={lat}&lng={lon}&themeId=DEFAULT-THEME",
-   "s": [
-    "gh"
-   ]
-  },
-  {
    "id": "duckduckgo",
    "n": "DuckDuckGo",
    "c": "Main",
@@ -164,42 +129,6 @@
    ]
   },
   {
-   "id": "geonames",
-   "n": "GeoNames",
-   "c": "Main",
-   "u": "http://www.geonames.org/maps/google_{lat}_{lon}.html",
-   "s": [
-    "gh"
-   ]
-  },
-  {
-   "id": "geonames-text-xml",
-   "n": "GeoNames Text (XML)",
-   "c": "Main",
-   "u": "http://sws.geonames.org/extendedFindNearby?lat={lat}&lng={lon}",
-   "s": [
-    "gh"
-   ]
-  },
-  {
-   "id": "google-maps-street-view",
-   "n": "Google Maps Street View",
-   "c": "Main",
-   "u": "https://www.google.com/maps?ll={lat},{lon}&q={lat},{lon}&hl=en&t=h&z={z}&layer=c&cbll={lat},{lon}",
-   "s": [
-    "gh"
-   ]
-  },
-  {
-   "id": "google-maps-terrain",
-   "n": "Google Maps Terrain",
-   "c": "Main",
-   "u": "https://www.google.com/maps/place//@{lat},{lon},{z}z/data=!4m2!3m1!1s0x0:0x0!5m1!1e4?hl=en",
-   "s": [
-    "gh"
-   ]
-  },
-  {
    "id": "google",
    "n": "Google Maps ★",
    "c": "Main",
@@ -209,30 +138,12 @@
    ]
   },
   {
-   "id": "here",
-   "n": "HERE WeGo",
+   "id": "here-maps",
+   "n": "here maps",
    "c": "Main",
-   "u": "https://wego.here.com/location/?map={lat},{lon},{z}&t=normal&msg={a}",
-   "s": [
-    "gh"
-   ]
-  },
-  {
-   "id": "here-wego-terrain",
-   "n": "HERE WeGo Terrain",
-   "c": "Main",
-   "u": "https://wego.here.com/location/?map={lat},{lon},{z}&t=terrain&msg={a}",
-   "s": [
-    "gh"
-   ]
-  },
-  {
-   "id": "kartaview",
-   "n": "KartaView",
-   "c": "Main",
-   "u": "https://kartaview.org/map/@{lat},{lon},{z}z",
+   "u": "https://wego.here.com/?map={lat},{lon},{z},normal",
    "p": [
-    "kartaview\\.org.*@(?<lat>-?\\d[0-9.]*),(?<lon>-?\\d[0-9.]*),(?<z>\\d{1,2})"
+    ".*\\.here\\.com\\/\\?map=(?<lat>-?\\d[0-9.]*),(?<lon>-?\\d[0-9.]*),(?<z>\\d{1,2})"
    ],
    "s": [
     "osm",
@@ -240,14 +151,12 @@
    ]
   },
   {
-   "id": "mapillary",
-   "n": "Mapillary",
+   "id": "here",
+   "n": "HERE WeGo",
    "c": "Main",
-   "u": "https://www.mapillary.com/app/?lat={lat}&lng={lon}&z={z}",
+   "u": "https://wego.here.com/location/?map={lat},{lon},{z}&t=normal&msg={a}",
    "s": [
-    "gh",
-    "osm",
-    "osmw"
+    "gh"
    ]
   },
   {
@@ -278,56 +187,23 @@
    ]
   },
   {
-   "id": "mapy-com-outdoor",
-   "n": "Mapy.com Outdoor",
+   "id": "mapy-cz",
+   "n": "MAPY.CZ",
    "c": "Main",
-   "u": "https://mapy.com/en/turisticka?x={lon}&y={lat}&z={z}&source=coor&id={lon},{lat}",
-   "s": [
-    "gh"
-   ]
-  },
-  {
-   "id": "nasa-firms",
-   "n": "NASA FIRMS",
-   "c": "Main",
-   "u": "https://firms.modaps.eosdis.nasa.gov/map/#d:today;@{lon},{lat},14.00z",
-   "s": [
-    "gh"
-   ]
-  },
-  {
-   "id": "open-historical-map",
-   "n": "Open Historical Map",
-   "c": "Main",
-   "u": "https://www.openhistoricalmap.org/?mlat={lat}&mlon={lon}&zoom={z}&layers=O",
-   "s": [
-    "gh"
-   ]
-  },
-  {
-   "id": "open-historical-map-nominatim-reverse-geocoding",
-   "n": "Open Historical Map Nominatim (reverse geocoding)",
-   "c": "Main",
-   "u": "https://nominatim-api.openhistoricalmap.org/reverse?lat={lat}&lon={lon}&zoom={mqzoom}",
-   "s": [
-    "gh"
+   "u": "https://en.mapy.cz/zakladni?x={lon}&y={lat}&z={z}",
+   "p": [
+    "mapy\\.cz\\/zakladni\\?x=(?<lon>-?\\d[0-9.]*)&y=(?<lat>-?\\d[0-9.]*)&z=(?<z>\\d{1,2})"
    ],
-   "disabled": true
+   "s": [
+    "osm",
+    "osmw"
+   ]
   },
   {
    "id": "open-street-map",
    "n": "Open Street Map",
    "c": "Main",
    "u": "https://www.openstreetmap.org/?mlat={lat}&mlon={lon}&zoom={z}&layers=M",
-   "s": [
-    "gh"
-   ]
-  },
-  {
-   "id": "open-street-map-nominatim-reverse-geocoding",
-   "n": "Open Street Map Nominatim (reverse geocoding)",
-   "c": "Main",
-   "u": "https://nominatim.openstreetmap.org/reverse?lat={lat}&lon={lon}&zoom={mqzoom}",
    "s": [
     "gh"
    ]
@@ -343,10 +219,39 @@
    ]
   },
   {
-   "id": "panoramax",
-   "n": "Panoramax",
+   "id": "osm-buildings",
+   "n": "OSM Buildings",
    "c": "Main",
-   "u": "https://api.panoramax.xyz/#focus=map&map={z}/{lat}/{lon}&speed=250",
+   "u": "https://osmbuildings.org/?lat={lat}&lon={lon}&zoom={z}&tilt=30",
+   "p": [
+    "osmbuildings\\.org\\/\\?lat=(?<lat>-?\\d[0-9.]*)&lon=(?<lon>-?\\d[0-9.]*)&zoom=(?<z>\\d[0-9.]*)"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "osmand",
+   "n": "OsmAnd",
+   "c": "Main",
+   "u": "https://osmand.net/map#{z}/{lat}/{lon}",
+   "p": [
+    "osmand\\.net\\/map.*?#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "osmapp",
+   "n": "OsmAPP",
+   "c": "Main",
+   "u": "https://osmapp.org/#{z}/{lat}/{lon}",
+   "p": [
+    "osmapp\\.org\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
    "s": [
     "osm",
     "osmw"
@@ -364,39 +269,14 @@
    "disabled": true
   },
   {
-   "id": "tomtom",
-   "n": "TomTom",
+   "id": "wikimapia",
+   "n": "wikimapia",
    "c": "Main",
-   "u": "https://plan.tomtom.com/en?p={lat},{lon}",
+   "u": "https://wikimapia.org/#lat={lat}&lon={lon}&z={z}",
    "s": [
-    "gh"
-   ]
-  },
-  {
-   "id": "waze-editor",
-   "n": "Waze Editor",
-   "c": "Main",
-   "u": "https://www.waze.com/editor/?lon={lon}&lat={lat}",
-   "s": [
-    "gh"
-   ]
-  },
-  {
-   "id": "waze-navigate",
-   "n": "Waze Navigate",
-   "c": "Main",
-   "u": "http://waze.to/?ll={lat},{lon}&navigate=yes",
-   "s": [
-    "gh"
-   ]
-  },
-  {
-   "id": "waze-open",
-   "n": "Waze Open",
-   "c": "Main",
-   "u": "http://waze.to/?ll={lat},{lon}",
-   "s": [
-    "gh"
+    "gh",
+    "osm",
+    "osmw"
    ]
   },
   {
@@ -406,6 +286,19 @@
    "u": "http://wikimapia.org/#lang=en&lat={lat}&lon={lon}&z={z}&m=b&v=8",
    "s": [
     "gh"
+   ]
+  },
+  {
+   "id": "wikimedia-maps",
+   "n": "Wikimedia maps",
+   "c": "Main",
+   "u": "https://maps.wikimedia.org/#{z}/{lat}/{lon}",
+   "p": [
+    "maps\\.wikimedia\\.org\\/#(?<z>\\d[0-9]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "s": [
+    "osm",
+    "osmw"
    ]
   },
   {
@@ -419,30 +312,179 @@
    ]
   },
   {
-   "id": "yandex-panorama",
-   "n": "Yandex panorama",
-   "c": "Main",
-   "u": "https://yandex.com/maps/?l=stv%2Csta&ll={lon}%2C{lat}&panorama%5Bdirection%5D=0%2C0&panorama%5Bfull%5D=true&panorama%5Bpoint%5D={lon}%2C{lat}&panorama%5Bspan%5D=0%2C0&z={z}",
+   "id": "brouter-web",
+   "n": "BRouter-Web",
+   "c": "Routing",
+   "u": "https://brouter.de/brouter-web/#map={z}/{lat}/{lon}/cyclosm",
+   "p": [
+    "brouter\\.de\\/brouter-web\\/#map=(?<z>\\d{1,2})\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
    "s": [
     "osm",
     "osmw"
    ]
   },
   {
-   "id": "maps-gsi-go-jp",
-   "n": "地理院地図",
-   "c": "Main",
-   "u": "https://maps.gsi.go.jp/#{z}/{lat}/{lon}/",
+   "id": "gpx-studio",
+   "n": "gpx.studio ★",
+   "c": "Routing",
+   "u": "https://gpx.studio/app#{z}/{lat}/{lon}",
+   "s": [
+    "x"
+   ]
+  },
+  {
+   "id": "komoot",
+   "n": "komoot",
+   "c": "Routing",
+   "u": "https://www.komoot.com/plan/@{lat},{lon},{z}z",
    "p": [
-    "maps\\.gsi\\.go\\.jp.*#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+    "komoot\\.com\\/plan\\/@(?<lat>-?\\d[0-9.]*),(?<lon>-?\\d[0-9.]*),(?<z>\\d[0-9.]*)z"
    ],
-   "r": [
-    "JP"
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "locusmap",
+   "n": "locusmap",
+   "c": "Routing",
+   "u": "https://web.locusmap.app/en/?lat={lat}&lng={lon}&z={z}",
+   "p": [
+    "web\\.locusmap\\.app\\/en\\/\\?lat=(?<lat>-?\\d[0-9.]*)&lng=(?<lon>-?\\d[0-9.]*)&z=(?<z>\\d[0-9.]*)"
    ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "openrouteservice",
+   "n": "openrouteservice",
+   "c": "Routing",
+   "u": "https://maps.openrouteservice.org/directions?n1={lat}&n2={lon}&n3={z}",
+   "p": [
+    "maps\\.openrouteservice\\.org\\/directions\\?n1=(?<lat>-?\\d[0-9.]*)&n2=(?<lon>-?\\d[0-9.]*)&n3=(?<z>\\d{1,2})"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "rwgps",
+   "n": "RideWithGPS ★",
+   "c": "Routing",
+   "u": "https://ridewithgps.com/routes/new?center={lat}%2C{lon}&zoom={z}",
+   "p": [
+    "ridewithgps\\.com/.*[?&]center=(?<lat>[-+]?\\d+(?:\\.\\d+)?)(?:%2C|,)(?<lon>[-+]?\\d+(?:\\.\\d+)?)(?:.*[?&]zoom=(?<z>\\d+))?"
+   ],
+   "s": [
+    "x"
+   ]
+  },
+  {
+   "id": "tomtom",
+   "n": "TomTom",
+   "c": "Routing",
+   "u": "https://plan.tomtom.com/en?p={lat},{lon}",
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "trail-router",
+   "n": "Trail Router ★",
+   "c": "Routing",
+   "u": "https://trailrouter.com/#wps={lat},{lon}&ss=&rt=true&td=5000&aus=false&aus2=false&ah=0&ar=true&pga=0.8&im=false",
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "viamichelin",
+   "n": "ViaMichelin",
+   "c": "Routing",
+   "u": "https://www.viamichelin.com/web/maps?position={lat};{lon};{z}",
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "waze",
+   "n": "waze",
+   "c": "Routing",
+   "u": "https://www.waze.com/ul?ll={lat}%2C{lon}&navigate=yes&zoom={z}",
    "s": [
     "gh",
     "osm",
     "osmw"
+   ]
+  },
+  {
+   "id": "waze-navigate",
+   "n": "Waze Navigate",
+   "c": "Routing",
+   "u": "http://waze.to/?ll={lat},{lon}&navigate=yes",
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "waze-open",
+   "n": "Waze Open",
+   "c": "Routing",
+   "u": "http://waze.to/?ll={lat},{lon}",
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "commutetimemap",
+   "n": "CommuteTimeMap",
+   "c": "Travel time",
+   "u": "https://commutetimemap.com/map?places={lat}%253B{lon}%253B2%253B2400%253B%25234143f4",
+   "s": [
+    "x"
+   ]
+  },
+  {
+   "id": "mapbox-isochrone",
+   "n": "Mapbox Isochrone Playground",
+   "c": "Travel time",
+   "u": "https://docs.mapbox.com/playground/isochrone/",
+   "s": [
+    "x"
+   ]
+  },
+  {
+   "id": "traveltime",
+   "n": "TravelTime (45 min)",
+   "c": "Travel time",
+   "u": "https://app.traveltime.com/?o={lat},{lon},45",
+   "s": [
+    "x"
+   ]
+  },
+  {
+   "id": "acme-mapper-terrain",
+   "n": "ACME Mapper Terrain",
+   "c": "Outdoor",
+   "u": "https://mapper.acme.com/?ll={lat},{lon}&z={z}&t=R&marker0={lat},{lon},{a}",
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "acme-mapper-topo",
+   "n": "ACME Mapper Topo",
+   "c": "Outdoor",
+   "u": "https://mapper.acme.com/?ll={lat},{lon}&z={z}&t=T&marker0={lat},{lon},{a}",
+   "s": [
+    "gh"
    ]
   },
   {
@@ -477,24 +519,153 @@
    ]
   },
   {
-   "id": "gpx-studio",
-   "n": "gpx.studio ★",
+   "id": "geocaching-com",
+   "n": "Geocaching.com",
    "c": "Outdoor",
-   "u": "https://gpx.studio/app#{z}/{lat}/{lon}",
+   "u": "https://www.geocaching.com/seek/nearest.aspx?origin_lat={lat}&origin_long={lon}&dist=20&submit3=Search",
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "geocaching-com-map-this-location",
+   "n": "Geocaching.com Map this location",
+   "c": "Outdoor",
+   "u": "https://www.geocaching.com/map/default.aspx?lat={lat}&lng={lon}",
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "google-maps-terrain",
+   "n": "Google Maps Terrain",
+   "c": "Outdoor",
+   "u": "https://www.google.com/maps/place//@{lat},{lon},{z}z/data=!4m2!3m1!1s0x0:0x0!5m1!1e4?hl=en",
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "here-wego-terrain",
+   "n": "HERE WeGo Terrain",
+   "c": "Outdoor",
+   "u": "https://wego.here.com/location/?map={lat},{lon},{z}&t=terrain&msg={a}",
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "mapy-com-outdoor",
+   "n": "Mapy.com Outdoor",
+   "c": "Outdoor",
+   "u": "https://mapy.com/en/turisticka?x={lon}&y={lat}&z={z}&source=coor&id={lon},{lat}",
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "nakarte",
+   "n": "nakarte",
+   "c": "Outdoor",
+   "u": "https://nakarte.me/#m={z}/{lat}/{lon}&l=O",
+   "p": [
+    "nakarte\\.me\\/#m=(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "opencyclemap",
+   "n": "OpenCycleMap",
+   "c": "Outdoor",
+   "u": "http://www.opencyclemap.org/?zoom={z}&lat={lat}&lon={lon}",
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "opensnowmap",
+   "n": "OpenSnowMap",
+   "c": "Outdoor",
+   "u": "http://www.opensnowmap.org/?zoom={z}&lat={lat}&lon={lon}",
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "opentopomap",
+   "n": "OpenTopoMap ★",
+   "c": "Outdoor",
+   "u": "https://opentopomap.org/#map={z}/{lat}/{lon}",
+   "p": [
+    "opentopomap\\.org\\/#map=(?<z>\\d{1,2})\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "s": [
+    "gh",
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "peakfinder",
+   "n": "PeakFinder",
+   "c": "Outdoor",
+   "u": "https://www.peakfinder.org/?lat={lat}&lng={lon}&azi=0&zoom={z}",
+   "p": [
+    "www\\.peakfinder\\.org\\/.*\\?lat=(?<lat>-?\\d[0-9.]*)&lng=(?<lon>-?\\d[0-9.]*)&azi=[0-9]*&zoom=(?<z>\\d[0-9.]*)"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "peakfinder-org",
+   "n": "PeakFinder.org",
+   "c": "Outdoor",
+   "u": "https://www.peakfinder.org/?lat={lat}&lng={lon}&name={a}",
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "strava",
+   "n": "STRAVA",
+   "c": "Outdoor",
+   "u": "https://www.strava.com/maps/global-heatmap#{z}/{lat}/{lon}",
+   "p": [
+    "www\\.strava\\.com\\/.*#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "s": [
+    "gh",
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "strava-cycle",
+   "n": "Strava: Cycling",
+   "c": "Outdoor",
+   "u": "https://www.strava.com/maps/global-heatmap?sport=RideLike&style=standard#{z}/{lat}/{lon}",
    "s": [
     "x"
    ]
   },
   {
-   "id": "rwgps",
-   "n": "RideWithGPS ★",
+   "id": "waymarked-trails",
+   "n": "Waymarked Trails",
    "c": "Outdoor",
-   "u": "https://ridewithgps.com/routes/new?center={lat}%2C{lon}&zoom={z}",
+   "u": "https://hiking.waymarkedtrails.org/#?map={z}/{lat}/{lon}",
    "p": [
-    "ridewithgps\\.com/.*[?&]center=(?<lat>[-+]?\\d+(?:\\.\\d+)?)(?:%2C|,)(?<lon>[-+]?\\d+(?:\\.\\d+)?)(?:.*[?&]zoom=(?<z>\\d+))?"
+    "waymarkedtrails\\.org\\/#.*\\?map=(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
    ],
    "s": [
-    "x"
+    "osm",
+    "osmw"
    ]
   },
   {
@@ -522,6 +693,43 @@
    "u": "https://www.bing.com/maps?cp={lat}~{lon}&style=h&lvl={z}&sp=Point.{lat}_{lon}_{a}___",
    "s": [
     "gh"
+   ]
+  },
+  {
+   "id": "blue-marble-navigator",
+   "n": "Blue Marble Navigator",
+   "c": "Imagery/Satellite/Aerial",
+   "u": "https://blue-marble.de?lon={lon}&nlat={lat}&borders&geonames&townnames&zoom&overlay=14&base=7",
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "blue-marble-navigator-night-lights",
+   "n": "Blue Marble Navigator Night Lights",
+   "c": "Imagery/Satellite/Aerial",
+   "u": "https://blue-marble.de/nightlights?ll={lat},{lon}",
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "copernicus-browser-sentinel-2",
+   "n": "Copernicus Browser (Sentinel-2)",
+   "c": "Imagery/Satellite/Aerial",
+   "u": "https://browser.dataspace.copernicus.eu/?zoom={z}&lat={lat}&lng={lon}&themeId=DEFAULT-THEME",
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "eo-browser",
+   "n": "EO Browser",
+   "c": "Imagery/Satellite/Aerial",
+   "u": "https://apps.sentinel-hub.com/eo-browser/?lat={lat}&lng={lon}&zoom={z}",
+   "s": [
+    "osm",
+    "osmw"
    ]
   },
   {
@@ -624,6 +832,15 @@
    ]
   },
   {
+   "id": "nasa-firms",
+   "n": "NASA FIRMS",
+   "c": "Imagery/Satellite/Aerial",
+   "u": "https://firms.modaps.eosdis.nasa.gov/map/#d:today;@{lon},{lat},14.00z",
+   "s": [
+    "gh"
+   ]
+  },
+  {
    "id": "openaerialmap",
    "n": "OpenAerialMap",
    "c": "Imagery/Satellite/Aerial",
@@ -698,6 +915,15 @@
    ]
   },
   {
+   "id": "google-maps-street-view",
+   "n": "Google Maps Street View",
+   "c": "Street-level",
+   "u": "https://www.google.com/maps?ll={lat},{lon}&q={lat},{lon}&hl=en&t=h&z={z}&layer=c&cbll={lat},{lon}",
+   "s": [
+    "gh"
+   ]
+  },
+  {
    "id": "google-streetview",
    "n": "Google Street View",
    "c": "Street-level",
@@ -707,21 +933,47 @@
    ]
   },
   {
-   "id": "surfline",
-   "n": "Surfline ★",
-   "c": "Weather",
-   "u": "https://www.surfline.com/surf-reports-forecasts-cams-map/@{lat},{lon},{z}z",
+   "id": "kartaview",
+   "n": "KartaView",
+   "c": "Street-level",
+   "u": "https://kartaview.org/map/@{lat},{lon},{z}z",
+   "p": [
+    "kartaview\\.org.*@(?<lat>-?\\d[0-9.]*),(?<lon>-?\\d[0-9.]*),(?<z>\\d{1,2})"
+   ],
    "s": [
-    "x"
+    "osm",
+    "osmw"
    ]
   },
   {
-   "id": "ventusky",
-   "n": "Ventusky",
-   "c": "Weather",
-   "u": "https://www.ventusky.com/?p={lat};{lon};{z}",
+   "id": "mapillary",
+   "n": "Mapillary",
+   "c": "Street-level",
+   "u": "https://www.mapillary.com/app/?lat={lat}&lng={lon}&z={z}",
    "s": [
-    "x"
+    "gh",
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "panoramax",
+   "n": "Panoramax",
+   "c": "Street-level",
+   "u": "https://api.panoramax.xyz/#focus=map&map={z}/{lat}/{lon}&speed=250",
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "yandex-panorama",
+   "n": "Yandex panorama",
+   "c": "Street-level",
+   "u": "https://yandex.com/maps/?l=stv%2Csta&ll={lon}%2C{lat}&panorama%5Bdirection%5D=0%2C0&panorama%5Bfull%5D=true&panorama%5Bpoint%5D={lon}%2C{lat}&panorama%5Bspan%5D=0%2C0&z={z}",
+   "s": [
+    "osm",
+    "osmw"
    ]
   },
   {
@@ -761,6 +1013,17 @@
    ]
   },
   {
+   "id": "flickr",
+   "n": "flickr",
+   "c": "Photos",
+   "u": "https://www.flickr.com/map?&fLat={lat}&fLon={lon}&zl={z}",
+   "s": [
+    "gh",
+    "osm",
+    "osmw"
+   ]
+  },
+  {
    "id": "flickr-listing",
    "n": "Flickr Listing",
    "c": "Photos",
@@ -779,12 +1042,329 @@
    ]
   },
   {
+   "id": "pic4carto",
+   "n": "Pic4Carto",
+   "c": "Photos",
+   "u": "http://projets.pavie.info/pic4carto/index.html?#{z}/{lat}/{lon}",
+   "p": [
+    "projets\\.pavie\\.info\\/pic4carto\\/index\\.html.*#(?<z>\\d{1,2})\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
    "id": "virtualglobetrotting",
    "n": "VirtualGlobetrotting",
    "c": "Photos",
    "u": "https://virtualglobetrotting.com/ll/{lat},{lon}",
    "s": [
     "gh"
+   ]
+  },
+  {
+   "id": "jaxa-global-rainfall-watch",
+   "n": "JAXA Global Rainfall Watch",
+   "c": "Weather",
+   "u": "https://sharaku.eorc.jaxa.jp/GSMaP/index.htm?lon={lon}&lat={lat}&zoom={z}",
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "lightningmaps-org",
+   "n": "LightningMaps.org",
+   "c": "Weather",
+   "u": "https://www.lightningmaps.org/?lang=fr#y={lat};x={lon};z=12;t=1;m=oss;r=0;s=201;o=0;b=0.00;n=0;d=2;dl=2;dc=0;ts=0;",
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "openweathermap-org",
+   "n": "OpenWeatherMap.org",
+   "c": "Weather",
+   "u": "https://openweathermap.org/weathermap?lat={lat}&lon={lon}&zoom={z}",
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "surfline",
+   "n": "Surfline ★",
+   "c": "Weather",
+   "u": "https://www.surfline.com/surf-reports-forecasts-cams-map/@{lat},{lon},{z}z",
+   "s": [
+    "x"
+   ]
+  },
+  {
+   "id": "ventusky",
+   "n": "Ventusky",
+   "c": "Weather",
+   "u": "https://www.ventusky.com/?p={lat};{lon};{z}",
+   "s": [
+    "x"
+   ]
+  },
+  {
+   "id": "weather-underground",
+   "n": "Weather Underground",
+   "c": "Weather",
+   "u": "https://www.wunderground.com/weather/{lat},{lon}",
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "windy-com",
+   "n": "Windy.com ★",
+   "c": "Weather",
+   "u": "https://www.windy.com/?{lat},{lon},{z},i:pressure",
+   "p": [
+    "www\\.windy\\.com.*[,\\?](?<lat>-?\\d[0-9.]+),(?<lon>-?\\d[0-9.]+),(?<z>\\d{1,2})"
+   ],
+   "s": [
+    "gh",
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "acme-nexrad",
+   "n": "ACME NEXRAD",
+   "c": "Weather",
+   "u": "https://mapper.acme.com/?ll={lat},{lon}&z={z}&t=N&marker0={lat},{lon},{a}",
+   "r": [
+    "US"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "nasa-msfc-goes",
+   "n": "NASA/MSFC GOES",
+   "c": "Weather",
+   "u": "https://weather.msfc.nasa.gov/cgi-bin/get-goes?satellite=GOES-E%20CONUS&lat={lat}&lon={lon}&zoom=1&info=ir&palette=spect.pal&width=600&height=500",
+   "r": [
+    "US"
+   ],
+   "s": [
+    "gh"
+   ],
+   "disabled": true
+  },
+  {
+   "id": "national-weather-service-graphical-hourly-pinpoint-forecast",
+   "n": "National Weather Service Graphical hourly pinpoint forecast",
+   "c": "Weather",
+   "u": "https://forecast.weather.gov/MapClick.php?lat={lat}&lon={lon}&unit=0&lg=english&FcstType=graphical",
+   "r": [
+    "US"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "national-weather-service",
+   "n": "National Weather Service ★",
+   "c": "Weather",
+   "u": "https://forecast.weather.gov/MapClick.php?textField1={lat}&textField2={lon}",
+   "r": [
+    "US"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "weatherusa",
+   "n": "WeatherUSA",
+   "c": "Weather",
+   "u": "https://www.weatherusa.net/weathernet/live/?q={lat},{lon}&zoom={z}&layers=obs-t,radar,alerts",
+   "r": [
+    "US"
+   ],
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "flightradar24",
+   "n": "Flightradar24",
+   "c": "Transport",
+   "u": "https://www.flightradar24.com/{lat},{lon}/{z}",
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "lights-of-the-sea-online",
+   "n": "Lights of the sea online",
+   "c": "Transport",
+   "u": "http://beacons.schmirler.de/en/world.html#map={z}/{lat}/{lon}&layers=OS5&details=18",
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "marinetraffic",
+   "n": "MarineTraffic",
+   "c": "Transport",
+   "u": "https://www.marinetraffic.com/en/ais/home/centerx:{lon}/centery:{lat}/zoom:{z}",
+   "p": [
+    "www\\.marinetraffic\\.com.*centerx:(?<lon>-?\\d[0-9.]*)\\/centery:(?<lat>-?\\d[0-9.]*)\\/zoom:(?<z>\\d{1,2})"
+   ],
+   "s": [
+    "gh",
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "open-sea-map",
+   "n": "Open Sea Map",
+   "c": "Transport",
+   "u": "https://map.openseamap.org/?zoom=14&lat={lat}&lon={lon}",
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "openrailwaymap",
+   "n": "OpenRailwayMap ★",
+   "c": "Transport",
+   "u": "https://www.openrailwaymap.org/?lat={lat}&lon={lon}&zoom={z}",
+   "s": [
+    "gh",
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "openseamap",
+   "n": "OpenSeaMap",
+   "c": "Transport",
+   "u": "https://map.openseamap.org/?zoom={z}&mlat={lat}&mlon={lon}&layers=BTTFFFTFFFF0TFFTFTFF",
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "openstationmap",
+   "n": "OpenStationMap",
+   "c": "Transport",
+   "u": "https://openstationmap.org/#{z}/{lat}/{lon}",
+   "p": [
+    "openstationmap\\.org\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "skyvector",
+   "n": "SkyVector",
+   "c": "Transport",
+   "u": "https://skyvector.com/?ll={lat},{lon}&chart=301&zoom=2",
+   "s": [
+    "gh",
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "opnvkarte",
+   "n": "ÖPNVKarte",
+   "c": "Transport",
+   "u": "http://www.xn--pnvkarte-m4a.de/?#{lon};{lat};{z}",
+   "p": [
+    "www\\.xn--pnvkarte-m4a\\.de\\/\\?#(?<lon>-?\\d[0-9.]*);(?<lat>-?\\d[0-9.]*);(?<z>-?\\d[0-9.]*)"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "historic-place",
+   "n": "Historic Place",
+   "c": "Historical",
+   "u": "http://gk.historic.place/historische_objekte/translate/en/index-en.html?zoom={z}&lat={lat}&lon={lon}",
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "megalithic-portal",
+   "n": "Megalithic Portal",
+   "c": "Historical",
+   "u": "https://www.megalithic.co.uk/article.php?long={lon}&lat={lat}",
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "national-library-of-scotland",
+   "n": "National Library of Scotland",
+   "c": "Historical",
+   "u": "https://maps.nls.uk/geo/explore/#zoom={z}&lat={lat}&lon={lon}",
+   "p": [
+    "#zoom=(?<z>\\d[0-9.]*)&lat=(?<lat>-?\\d[0-9.]*)&lon=(?<lon>-?\\d[0-9.]*)"
+   ],
+   "s": [
+    "gh",
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "nls-side-by-side",
+   "n": "National Library of Scotland side by side",
+   "c": "Historical",
+   "u": "https://maps.nls.uk/geo/explore/side-by-side/#zoom={z}&lat={lat}&lon={lon}&layers=ESRIWorld&right=GoogleSat",
+   "s": [
+    "x"
+   ]
+  },
+  {
+   "id": "old-maps-online",
+   "n": "Old Maps Online",
+   "c": "Historical",
+   "u": "http://www.oldmapsonline.org/?lat={lat}&lon={lon}",
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "open-historical-map",
+   "n": "Open Historical Map",
+   "c": "Historical",
+   "u": "https://www.openhistoricalmap.org/?mlat={lat}&mlon={lon}&zoom={z}&layers=O",
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "openhistoricalmap",
+   "n": "OpenHistoricalMap",
+   "c": "Historical",
+   "u": "https://www.openhistoricalmap.org/#map={z}/{lat}/{lon}&layers=O",
+   "p": [
+    "www\\.openhistoricalmap\\.org\\/#map=(?<z>-?\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "s": [
+    "osm",
+    "osmw"
    ]
   },
   {
@@ -842,12 +1422,26 @@
    ]
   },
   {
-   "id": "flightradar24",
-   "n": "Flightradar24",
-   "c": "Info",
-   "u": "https://www.flightradar24.com/{lat},{lon}/{z}",
+   "id": "owl-map",
+   "n": "OWL Map",
+   "c": "Wikipedia",
+   "u": "https://map.osm.wikidata.link/map/{z}/{lat}/{lon}?radius=5",
    "s": [
-    "gh"
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "deepstate-map",
+   "n": "DeepState Map",
+   "c": "Info",
+   "u": "https://www.deepstatemap.live/en#{z}/{lat}/{lon}",
+   "p": [
+    "deepstatemap\\.live\\/en#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "s": [
+    "osm",
+    "osmw"
    ]
   },
   {
@@ -855,24 +1449,6 @@
    "n": "FM-DX Maps",
    "c": "Info",
    "u": "https://maps.fmdx.org/#lat={lat}&lon={lon}&r=50",
-   "s": [
-    "gh"
-   ]
-  },
-  {
-   "id": "geocaching-com",
-   "n": "Geocaching.com",
-   "c": "Info",
-   "u": "https://www.geocaching.com/seek/nearest.aspx?origin_lat={lat}&origin_long={lon}&dist=20&submit3=Search",
-   "s": [
-    "gh"
-   ]
-  },
-  {
-   "id": "geocaching-com-map-this-location",
-   "n": "Geocaching.com Map this location",
-   "c": "Info",
-   "u": "https://www.geocaching.com/map/default.aspx?lat={lat}&lng={lon}",
    "s": [
     "gh"
    ]
@@ -887,12 +1463,57 @@
    ]
   },
   {
-   "id": "lightningmaps-org",
-   "n": "LightningMaps.org",
+   "id": "geonames",
+   "n": "GeoNames",
    "c": "Info",
-   "u": "https://www.lightningmaps.org/?lang=fr#y={lat};x={lon};z=12;t=1;m=oss;r=0;s=201;o=0;b=0.00;n=0;d=2;dl=2;dc=0;ts=0;",
+   "u": "http://www.geonames.org/maps/google_{lat}_{lon}.html",
    "s": [
     "gh"
+   ]
+  },
+  {
+   "id": "geonames-text-xml",
+   "n": "GeoNames Text (XML)",
+   "c": "Info",
+   "u": "http://sws.geonames.org/extendedFindNearby?lat={lat}&lng={lon}",
+   "s": [
+    "gh"
+   ]
+  },
+  {
+   "id": "indoor",
+   "n": "indoor=",
+   "c": "Info",
+   "u": "https://indoorequal.org/#map={z}/{lat}/{lon}",
+   "p": [
+    "indoorequal\\.org\\/#map=(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "live-universal-awareness-map",
+   "n": "Live Universal Awareness Map",
+   "c": "Info",
+   "u": "https://liveuamap.com/?zoom={z}&ll={lat},{lon}",
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "macrostrat",
+   "n": "Macrostrat",
+   "c": "Info",
+   "u": "https://macrostrat.org/map/#x={lon}&y={lat}&z={z}",
+   "p": [
+    "macrostrat\\.org\\/map\\/#x=(?<lon>-?\\d[0-9.]*)&y=(?<lat>-?\\d[0-9.]*)&z=(?<z>\\d[0-9.]*)"
+   ],
+   "s": [
+    "osm",
+    "osmw"
    ]
   },
   {
@@ -900,15 +1521,6 @@
    "n": "MapIt (from mySociety)",
    "c": "Info",
    "u": "https://global.mapit.mysociety.org/point/4326/{lon},{lat}.html",
-   "s": [
-    "gh"
-   ]
-  },
-  {
-   "id": "megalithic-portal",
-   "n": "Megalithic Portal",
-   "c": "Info",
-   "u": "https://www.megalithic.co.uk/article.php?long={lon}&lat={lat}",
    "s": [
     "gh"
    ]
@@ -923,36 +1535,218 @@
    ]
   },
   {
-   "id": "old-maps-online",
-   "n": "Old Maps Online",
+   "id": "open-historical-map-nominatim-reverse-geocoding",
+   "n": "Open Historical Map Nominatim (reverse geocoding)",
    "c": "Info",
-   "u": "http://www.oldmapsonline.org/?lat={lat}&lon={lon}",
+   "u": "https://nominatim-api.openhistoricalmap.org/reverse?lat={lat}&lon={lon}&zoom={mqzoom}",
+   "s": [
+    "gh"
+   ],
+   "disabled": true
+  },
+  {
+   "id": "open-infrastructure-map",
+   "n": "Open Infrastructure Map",
+   "c": "Info",
+   "u": "https://openinframap.org/#{z}/{lat}/{lon}",
+   "p": [
+    "openinframap\\.org\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "s": [
+    "gh",
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "open-street-map-nominatim-reverse-geocoding",
+   "n": "Open Street Map Nominatim (reverse geocoding)",
+   "c": "Info",
+   "u": "https://nominatim.openstreetmap.org/reverse?lat={lat}&lon={lon}&zoom={mqzoom}",
    "s": [
     "gh"
    ]
   },
   {
-   "id": "openseamap",
-   "n": "OpenSeaMap",
+   "id": "openaedmap",
+   "n": "OpenAEDMap",
    "c": "Info",
-   "u": "https://map.openseamap.org/?zoom={z}&mlat={lat}&mlon={lon}&layers=BTTFFFTFFFF0TFFTFTFF",
+   "u": "https://openaedmap.org/#map={z}/{lat}/{lon}",
+   "p": [
+    "openaedmap\\.org\\/#map=(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
    "s": [
-    "gh"
+    "osm",
+    "osmw"
    ]
   },
   {
-   "id": "peakfinder-org",
-   "n": "PeakFinder.org",
+   "id": "openindoor",
+   "n": "OpenIndoor",
    "c": "Info",
-   "u": "https://www.peakfinder.org/?lat={lat}&lng={lon}&name={a}",
+   "u": "https://app.openindoor.io/#{z}/{lat}/{lon}",
+   "p": [
+    "app\\.openindoor\\.io\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
    "s": [
-    "gh"
+    "osm",
+    "osmw"
+   ],
+   "disabled": true
+  },
+  {
+   "id": "openlandmap",
+   "n": "OpenLandMap",
+   "c": "Info",
+   "u": "https://openlandmap.org/?center={lon}%2C{lat}&zoom={z}&opacity=72&base=OpenStreetMap&layer=lc_glc.fcs30d&time=2022",
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "openlevelup",
+   "n": "OpenLevelUp!",
+   "c": "Info",
+   "u": "https://openlevelup.net/#{z}/{lat}/{lon}",
+   "p": [
+    "openlevelup\\.net\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "openstreetbrowser",
+   "n": "OpenStreetBrowser",
+   "c": "Info",
+   "u": "https://www.openstreetbrowser.org/#map={z}/{lat}/{lon}",
+   "p": [
+    "www\\.openstreetbrowser\\.org\\/#map=(?<z>\\d{1,2})\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "s": [
+    "gh",
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "opentripmap",
+   "n": "OpenTripMap",
+   "c": "Info",
+   "u": "https://opentripmap.com/en/#{z}/{lat}/{lon}",
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "projectowl-ukraine",
+   "n": "ProjectOwl: Ukraine",
+   "c": "Info",
+   "u": "https://www.google.com/maps/d/u/0/viewer?mid=180u1IkUjtjpdJWnIC0AxTKSiqK4G6Pez&ll={lat}%2C{lon}&z={z}",
+   "p": [
+    "www\\.google\\.com\\/maps\\S{2,6}\\/viewer\\?mid=180u1IkUjtjpdJWnIC0AxTKSiqK4G6Pez&ll=(?<lat>-?\\d[0-9.]*)%2C(?<lon>-?\\d[0-9.]*)&z=(?<z>\\d[0-9]*)"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "shademap",
+   "n": "ShadeMap",
+   "c": "Info",
+   "u": "https://shademap.app/@{lat},{lon},{z}z",
+   "p": [
+    "shademap\\.app\\/@(?<lat>-?\\d[0-9.]*),(?<lon>-?\\d[0-9.]*),(?<z>\\d[0-9.]*)z"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "shadowmap",
+   "n": "Shadowmap",
+   "c": "Info",
+   "u": "https://app.shadowmap.org/?lat={lat}&lng={lon}&zoom={z}",
+   "p": [
+    "shadowmap\\.org\\/\\?lat=(?<lat>-?\\d[0-9.]*)&lng=(?<lon>-?\\d[0-9.]*)&zoom=(?<z>\\d[0-9.]*)"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "surveillance-under-surveillance",
+   "n": "Surveillance under Surveillance",
+   "c": "Info",
+   "u": "https://sunders.uber.space/?lat={lat}&lon={lon}&zoom={z}",
+   "p": [
+    "unders\\.uber\\.space\\/\\?lat=(?<lat>-?\\d[0-9.]*)&lon=(?<lon>-?\\d[0-9.]*)&zoom=(?<z>\\d[0-9.]*)"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "twitter",
+   "n": "Twitter",
+   "c": "Info",
+   "u": "https://twitter.com/search?q=geocode%3A{lat}%2C{lon}%2C5km",
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "waterwaymap",
+   "n": "WaterwayMap",
+   "c": "Info",
+   "u": "https://waterwaymap.org/#map={z}/{lat}/{lon}",
+   "s": [
+    "gh",
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "what3words",
+   "n": "what3words",
+   "c": "Info",
+   "u": "https://map.what3words.com/{lat},{lon}",
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "wolfram-alpha",
+   "n": "Wolfram Alpha",
+   "c": "Info",
+   "u": "https://www.wolframalpha.com/input?i={lat}N+{lon}E",
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "yelp",
+   "n": "Yelp",
+   "c": "Info",
+   "u": "https://www.yelp.com/search?l=g%3A{e}%2C{n}%2C{w}%2C{s}",
+   "s": [
+    "x"
    ]
   },
   {
    "id": "bigmap-2",
    "n": "BigMap 2",
-   "c": "OSM tools",
+   "c": "Tools",
    "u": "http://bigmap.osmz.ru/index.html#map={z}/{lat}/{lon}",
    "s": [
     "osm",
@@ -962,7 +1756,7 @@
   {
    "id": "boulter",
    "n": "boulter",
-   "c": "OSM tools",
+   "c": "Tools",
    "u": "https://boulter.com/gps/#{lat}%2C{lon}",
    "s": [
     "osm",
@@ -972,7 +1766,7 @@
   {
    "id": "field-papers",
    "n": "Field Papers",
-   "c": "OSM tools",
+   "c": "Tools",
    "u": "http://fieldpapers.org/compose#{z}/{lat}/{lon}",
    "p": [
     "fieldpapers\\.org\\/.*#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
@@ -985,7 +1779,7 @@
   {
    "id": "geojson-io",
    "n": "geojson.io",
-   "c": "OSM tools",
+   "c": "Tools",
    "u": "https://geojson.io/#map={z}/{lat}/{lon}",
    "p": [
     "geojson\\.io\\/#map=(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
@@ -998,8 +1792,21 @@
   {
    "id": "gpx-editor",
    "n": "GPX Editor",
-   "c": "OSM tools",
+   "c": "Tools",
    "u": "https://www.gpxeditor.co.uk/?location={lat},{lon}&zoom={z}",
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "gribrouillon",
+   "n": "Gribrouillon",
+   "c": "Tools",
+   "u": "https://gribrouillon.fr/#{z}/{lat}/{lon}",
+   "p": [
+    "gribrouillon\\.fr\\/.*(?<z>\\d{1,2})\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
    "s": [
     "osm",
     "osmw"
@@ -1008,7 +1815,7 @@
   {
    "id": "kontur",
    "n": "Kontur",
-   "c": "OSM tools",
+   "c": "Tools",
    "u": "https://disaster.ninja/active/?map={z}/{lat}/{lon}",
    "p": [
     "disaster\\.ninja\\/.*?map=(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
@@ -1021,7 +1828,7 @@
   {
    "id": "latest-osm-edits-per-tile",
    "n": "Latest OSM Edits per Tile",
-   "c": "OSM tools",
+   "c": "Tools",
    "u": "https://resultmaps.neis-one.org/osm-change-tiles#{z}/{lat}/{lon}",
    "p": [
     "resultmaps\\.neis-one\\.org\\/osm-change-tiles#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
@@ -1032,357 +1839,9 @@
    ]
   },
   {
-   "id": "map-compare",
-   "n": "Map compare",
-   "c": "OSM tools",
-   "u": "http://tools.geofabrik.de/mc/#{z}/{lat}/{lon}",
-   "p": [
-    "tools\\.geofabrik\\.de\\/mc\\/#(?<z>\\d{1,2})\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "map-compare-bbbike",
-   "n": "Map compare (BBBike) ★",
-   "c": "OSM tools",
-   "u": "http://mc.bbbike.org/mc/#{z}/{lat}/{lon}",
-   "p": [
-    "mc\\.bbbike\\.org\\/mc\\/#(?<z>\\d{1,2})\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "bbbike-compare-topo",
-   "n": "Map compare (BBBike, 10 topo) ★",
-   "c": "OSM tools",
-   "u": "https://mc.bbbike.org/mc/?lon={lon}&lat={lat}&zoom={z}&num=10&mt0=stamen-terrain&mt1=tracestrack-topo&mt2=esri-satellite&mt3=usgs-topo&mt4=esri-topo-usa&mt5=usgs-imagery-topo&mt6=opentopomap&mt7=cyclosm&mt8=cyclemap&mt9=tomtom-sat",
-   "s": [
-    "x"
-   ]
-  },
-  {
-   "id": "bbbike-compare-9",
-   "n": "Map compare (BBBike, 9 general) ★",
-   "c": "OSM tools",
-   "u": "https://mc.bbbike.org/mc/?lon={lon}&lat={lat}&zoom={z}&num=9&mt0=google-hybrid&mt1=bing-hybrid&mt2=esri-satellite&mt3=usgs-topo&mt4=esri-topo-usa&mt5=google-map&mt6=bing-map&mt7=cyclosm&mt8=cyclemap",
-   "s": [
-    "x"
-   ]
-  },
-  {
-   "id": "geofabrik-compare-cycle",
-   "n": "Map compare (Geofabrik, cycling)",
-   "c": "OSM tools",
-   "u": "https://tools.geofabrik.de/mc/#{z}/{lat}/{lon}&num=4&mt0=cyclosm&mt1=cyclemap&mt2=thunderforest-cycle&mt3=geofabrik-topo",
-   "s": [
-    "x"
-   ]
-  },
-  {
-   "id": "multimapas",
-   "n": "Multimapas",
-   "c": "OSM tools",
-   "u": "http://javier.jimenezshaw.com/mapas/mapas.html?z={z}&c={lat},{lon}",
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "osm-address-editor",
-   "n": "OSM address editor",
-   "c": "OSM tools",
-   "u": "https://yuiseki.github.io/osm-address-editor-vite/#{z}/{lat}/{lon}",
-   "p": [
-    "osm-address-editor-vite\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "osm-latest-changes",
-   "n": "OSM Latest Changes",
-   "c": "OSM tools",
-   "u": "https://rene78.github.io/latest-changes/#{z}/{lat}/{lon}",
-   "p": [
-    "latest-changes\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "osm-notes-heatmap",
-   "n": "OSM Notes Heatmap",
-   "c": "OSM tools",
-   "u": "https://notes-heatmap.openstreetmap.fr/?pos={lat},{lon},{z}",
-   "p": [
-    "pos=(?<lat>-?\\d[0-9.]*),(?<lon>-?\\d[0-9.]*),(?<z>\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "osmose",
-   "n": "Osmose",
-   "c": "OSM tools",
-   "u": "http://osmose.openstreetmap.fr/map/#zoom={z}&lat={lat}&lon={lon}",
-   "p": [
-    "osmose\\.openstreetmap\\.fr.*#zoom=(?<z>\\d{1,2})&lat=(?<lat>-?\\d[0-9.]*)&lon=(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "overpass-turbo",
-   "n": "Overpass-turbo",
-   "c": "OSM tools",
-   "u": "http://overpass-turbo.eu/?Q=&C={lat};{lon};{z}",
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "pic4carto",
-   "n": "Pic4Carto",
-   "c": "OSM tools",
-   "u": "http://projets.pavie.info/pic4carto/index.html?#{z}/{lat}/{lon}",
-   "p": [
-    "projets\\.pavie\\.info\\/pic4carto\\/index\\.html.*#(?<z>\\d{1,2})\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "tiles-a-la-google-maps",
-   "n": "Tiles à la Google Maps",
-   "c": "OSM tools",
-   "u": "https://www.maptiler.com/google-maps-coordinates-tile-bounds-projection/#{z}/{lon}/{lat}",
-   "p": [
-    "maptiler\\.com\\/google-maps-coordinates-tile-bounds-projection\\/#(?<z>\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "japanmapcompare",
-   "n": "JapanMapCompare",
-   "c": "OSM tools",
-   "u": "https://mapcompare.jp/3/{z}/{lat}/{lon}/osm/gRoad/mapSatellite",
-   "p": [
-    "mapcompare\\.jp\\/\\d+\\/(?<z>\\d{1,2})\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "r": [
-    "JP"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "openstreetmap-nederland",
-   "n": "OpenStreetMap Nederland",
-   "c": "OSM tools",
-   "u": "https://www.openstreetmap.app/#map={z}/{lat}/{lon}",
-   "p": [
-    "www\\.openstreetmap\\.app\\/.*#map=(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "r": [
-    "NL"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "osm-bzh",
-   "n": "osm.bzh",
-   "c": "OSM tools",
-   "u": "https://kartenn.openstreetmap.bzh/#map={z}/{lat}/{lon}",
-   "p": [
-    "openstreetmap\\.bzh\\/#map=(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "r": [
-    "FR"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "osm-cl",
-   "n": "OSM.cl",
-   "c": "OSM tools",
-   "u": "https://www.openstreetmap.cl/#{z}/{lat}/{lon}",
-   "p": [
-    "openstreetmap\\.cl\\/#(?<z>\\d{1,2})\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "r": [
-    "CL"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "osm-de",
-   "n": "OSM.de",
-   "c": "OSM tools",
-   "u": "https://www.openstreetmap.de/karte/?zoom={z}&lat={lat}&lon={lon}",
-   "r": [
-    "DE"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "osm-fr",
-   "n": "osm.fr",
-   "c": "OSM tools",
-   "u": "https://tile.openstreetmap.fr/?zoom={z}&lat={lat}&lon={lon}&layers=B00000000FFFFFF",
-   "r": [
-    "FR"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "osm-in",
-   "n": "OSM.in",
-   "c": "OSM tools",
-   "u": "https://openstreetmap.in/#{z}/{lat}/{lon}",
-   "p": [
-    "openstreetmap\\.in\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "r": [
-    "IN"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "osm-jp",
-   "n": "OSM.jp",
-   "c": "OSM tools",
-   "u": "https://tile.openstreetmap.jp/styles/osm-bright/#{z}/{lat}/{lon}",
-   "p": [
-    "tile\\.openstreetmap\\.jp\\/.*#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "r": [
-    "JP"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "osm-kr",
-   "n": "osm.kr",
-   "c": "OSM tools",
-   "u": "https://tiles.osm.kr/#{z}/{lat}/{lon}",
-   "p": [
-    "osm\\.kr\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "r": [
-    "KR"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "osm-org-ar",
-   "n": "OSM.org.ar",
-   "c": "OSM tools",
-   "u": "https://openstreetmap.org.ar/#{z}/{lat}/{lon}",
-   "p": [
-    "openstreetmap\\.org\\.ar\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "r": [
-    "AR"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "osm-ru",
-   "n": "OSM.ru",
-   "c": "OSM tools",
-   "u": "https://openstreetmap.ru/#map={z}/{lat}/{lon}",
-   "p": [
-    "openstreetmap\\.ru\\/#map=(?<z>\\d{1,2})\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "r": [
-    "RU"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "osmchina",
-   "n": "OSMChina",
-   "c": "OSM tools",
-   "u": "https://map.osmchina.org/#map={z}/{lat}/{lon}",
-   "p": [
-    "osmchina\\.org\\/#map=(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "r": [
-    "CN"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ],
-   "disabled": true
-  },
-  {
-   "id": "apple-maps-for-apple-device",
-   "n": "Apple maps (for Apple device)",
-   "c": "Apps",
-   "u": "http://maps.apple.com/?ll={lat},{lon}&z={z}",
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
    "id": "launch-rapid-editor",
    "n": "Launch RapiD editor",
-   "c": "Apps",
+   "c": "Tools",
    "u": "https://mapwith.ai/rapid#background=fb-mapwithai-maxar&disable_features=boundaries&map={z}/{lat}/{lon}",
    "p": [
     "mapwith\\.ai\\/rapid.*&map=(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
@@ -1395,7 +1854,7 @@
   {
    "id": "launch-waze-map-editor",
    "n": "Launch waze map editor",
-   "c": "Apps",
+   "c": "Tools",
    "u": "https://www.waze.com/editor?lon={lon}&lat={lat}&zoom=7",
    "s": [
     "osm",
@@ -1403,43 +1862,176 @@
    ]
   },
   {
-   "id": "commutetimemap",
-   "n": "CommuteTimeMap",
-   "c": "Travel time",
-   "u": "https://commutetimemap.com/map?places={lat}%253B{lon}%253B2%253B2400%253B%25234143f4",
-   "s": [
-    "x"
-   ]
-  },
-  {
-   "id": "mapbox-isochrone",
-   "n": "Mapbox Isochrone Playground",
-   "c": "Travel time",
-   "u": "https://docs.mapbox.com/playground/isochrone/",
-   "s": [
-    "x"
-   ]
-  },
-  {
-   "id": "traveltime",
-   "n": "TravelTime (45 min)",
-   "c": "Travel time",
-   "u": "https://app.traveltime.com/?o={lat},{lon},45",
-   "s": [
-    "x"
-   ]
-  },
-  {
-   "id": "brouter-web",
-   "n": "BRouter-Web",
-   "c": "Other",
-   "u": "https://brouter.de/brouter-web/#map={z}/{lat}/{lon}/cyclosm",
+   "id": "map-compare",
+   "n": "Map compare",
+   "c": "Tools",
+   "u": "http://tools.geofabrik.de/mc/#{z}/{lat}/{lon}",
    "p": [
-    "brouter\\.de\\/brouter-web\\/#map=(?<z>\\d{1,2})\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+    "tools\\.geofabrik\\.de\\/mc\\/#(?<z>\\d{1,2})\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
    ],
    "s": [
     "osm",
     "osmw"
+   ]
+  },
+  {
+   "id": "map-compare-bbbike",
+   "n": "Map compare (BBBike) ★",
+   "c": "Tools",
+   "u": "http://mc.bbbike.org/mc/#{z}/{lat}/{lon}",
+   "p": [
+    "mc\\.bbbike\\.org\\/mc\\/#(?<z>\\d{1,2})\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "bbbike-compare-topo",
+   "n": "Map compare (BBBike, 10 topo) ★",
+   "c": "Tools",
+   "u": "https://mc.bbbike.org/mc/?lon={lon}&lat={lat}&zoom={z}&num=10&mt0=stamen-terrain&mt1=tracestrack-topo&mt2=esri-satellite&mt3=usgs-topo&mt4=esri-topo-usa&mt5=usgs-imagery-topo&mt6=opentopomap&mt7=cyclosm&mt8=cyclemap&mt9=tomtom-sat",
+   "s": [
+    "x"
+   ]
+  },
+  {
+   "id": "bbbike-compare-9",
+   "n": "Map compare (BBBike, 9 general) ★",
+   "c": "Tools",
+   "u": "https://mc.bbbike.org/mc/?lon={lon}&lat={lat}&zoom={z}&num=9&mt0=google-hybrid&mt1=bing-hybrid&mt2=esri-satellite&mt3=usgs-topo&mt4=esri-topo-usa&mt5=google-map&mt6=bing-map&mt7=cyclosm&mt8=cyclemap",
+   "s": [
+    "x"
+   ]
+  },
+  {
+   "id": "geofabrik-compare-cycle",
+   "n": "Map compare (Geofabrik, cycling)",
+   "c": "Tools",
+   "u": "https://tools.geofabrik.de/mc/#{z}/{lat}/{lon}&num=4&mt0=cyclosm&mt1=cyclemap&mt2=thunderforest-cycle&mt3=geofabrik-topo",
+   "s": [
+    "x"
+   ]
+  },
+  {
+   "id": "mapbox-cartogram",
+   "n": "mapbox Cartogram",
+   "c": "Tools",
+   "u": "https://apps.mapbox.com/cartogram/#{z}/{lat}/{lon}",
+   "p": [
+    "apps\\.mapbox\\.com\\/cartogram\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "multimapas",
+   "n": "Multimapas",
+   "c": "Tools",
+   "u": "http://javier.jimenezshaw.com/mapas/mapas.html?z={z}&c={lat},{lon}",
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "osm-address-editor",
+   "n": "OSM address editor",
+   "c": "Tools",
+   "u": "https://yuiseki.github.io/osm-address-editor-vite/#{z}/{lat}/{lon}",
+   "p": [
+    "osm-address-editor-vite\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "osm-latest-changes",
+   "n": "OSM Latest Changes",
+   "c": "Tools",
+   "u": "https://rene78.github.io/latest-changes/#{z}/{lat}/{lon}",
+   "p": [
+    "latest-changes\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "osm-notes-heatmap",
+   "n": "OSM Notes Heatmap",
+   "c": "Tools",
+   "u": "https://notes-heatmap.openstreetmap.fr/?pos={lat},{lon},{z}",
+   "p": [
+    "pos=(?<lat>-?\\d[0-9.]*),(?<lon>-?\\d[0-9.]*),(?<z>\\d[0-9.]*)"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "osmose",
+   "n": "Osmose",
+   "c": "Tools",
+   "u": "http://osmose.openstreetmap.fr/map/#zoom={z}&lat={lat}&lon={lon}",
+   "p": [
+    "osmose\\.openstreetmap\\.fr.*#zoom=(?<z>\\d{1,2})&lat=(?<lat>-?\\d[0-9.]*)&lon=(?<lon>-?\\d[0-9.]*)"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "overpass-turbo",
+   "n": "Overpass-turbo",
+   "c": "Tools",
+   "u": "http://overpass-turbo.eu/?Q=&C={lat};{lon};{z}",
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "tiles-a-la-google-maps",
+   "n": "Tiles à la Google Maps",
+   "c": "Tools",
+   "u": "https://www.maptiler.com/google-maps-coordinates-tile-bounds-projection/#{z}/{lon}/{lat}",
+   "p": [
+    "maptiler\\.com\\/google-maps-coordinates-tile-bounds-projection\\/#(?<z>\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "walking-town-map-maker",
+   "n": "Walking Town Map Maker",
+   "c": "Tools",
+   "u": "https://armd-02.github.io/mapmaker/#{z}/{lat}/{lon}",
+   "p": [
+    "armd-02\\.github\\.io\\/mapmaker\\/#(?<z>-?\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "waze-editor",
+   "n": "Waze Editor",
+   "c": "Tools",
+   "u": "https://www.waze.com/editor/?lon={lon}&lat={lat}",
+   "s": [
+    "gh"
    ]
   },
   {
@@ -1455,89 +2047,6 @@
     "osmw"
    ],
    "disabled": true
-  },
-  {
-   "id": "deepstate-map",
-   "n": "DeepState Map",
-   "c": "Other",
-   "u": "https://www.deepstatemap.live/en#{z}/{lat}/{lon}",
-   "p": [
-    "deepstatemap\\.live\\/en#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "eo-browser",
-   "n": "EO Browser",
-   "c": "Other",
-   "u": "https://apps.sentinel-hub.com/eo-browser/?lat={lat}&lng={lon}&zoom={z}",
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "flickr",
-   "n": "flickr",
-   "c": "Other",
-   "u": "https://www.flickr.com/map?&fLat={lat}&fLon={lon}&zl={z}",
-   "s": [
-    "gh",
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "gribrouillon",
-   "n": "Gribrouillon",
-   "c": "Other",
-   "u": "https://gribrouillon.fr/#{z}/{lat}/{lon}",
-   "p": [
-    "gribrouillon\\.fr\\/.*(?<z>\\d{1,2})\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "here-maps",
-   "n": "here maps",
-   "c": "Other",
-   "u": "https://wego.here.com/?map={lat},{lon},{z},normal",
-   "p": [
-    ".*\\.here\\.com\\/\\?map=(?<lat>-?\\d[0-9.]*),(?<lon>-?\\d[0-9.]*),(?<z>\\d{1,2})"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "historic-place",
-   "n": "Historic Place",
-   "c": "Other",
-   "u": "http://gk.historic.place/historische_objekte/translate/en/index-en.html?zoom={z}&lat={lat}&lon={lon}",
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "indoor",
-   "n": "indoor=",
-   "c": "Other",
-   "u": "https://indoorequal.org/#map={z}/{lat}/{lon}",
-   "p": [
-    "indoorequal\\.org\\/#map=(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
   },
   {
    "id": "ingress-intel-map",
@@ -1563,94 +2072,12 @@
    ]
   },
   {
-   "id": "jaxa-global-rainfall-watch",
-   "n": "JAXA Global Rainfall Watch",
-   "c": "Other",
-   "u": "https://sharaku.eorc.jaxa.jp/GSMaP/index.htm?lon={lon}&lat={lat}&zoom={z}",
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "komoot",
-   "n": "komoot",
-   "c": "Other",
-   "u": "https://www.komoot.com/plan/@{lat},{lon},{z}z",
-   "p": [
-    "komoot\\.com\\/plan\\/@(?<lat>-?\\d[0-9.]*),(?<lon>-?\\d[0-9.]*),(?<z>\\d[0-9.]*)z"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "lights-of-the-sea-online",
-   "n": "Lights of the sea online",
-   "c": "Other",
-   "u": "http://beacons.schmirler.de/en/world.html#map={z}/{lat}/{lon}&layers=OS5&details=18",
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "live-universal-awareness-map",
-   "n": "Live Universal Awareness Map",
-   "c": "Other",
-   "u": "https://liveuamap.com/?zoom={z}&ll={lat},{lon}",
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "locusmap",
-   "n": "locusmap",
-   "c": "Other",
-   "u": "https://web.locusmap.app/en/?lat={lat}&lng={lon}&z={z}",
-   "p": [
-    "web\\.locusmap\\.app\\/en\\/\\?lat=(?<lat>-?\\d[0-9.]*)&lng=(?<lon>-?\\d[0-9.]*)&z=(?<z>\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "macrostrat",
-   "n": "Macrostrat",
-   "c": "Other",
-   "u": "https://macrostrat.org/map/#x={lon}&y={lat}&z={z}",
-   "p": [
-    "macrostrat\\.org\\/map\\/#x=(?<lon>-?\\d[0-9.]*)&y=(?<lat>-?\\d[0-9.]*)&z=(?<z>\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
    "id": "map-orhyginal",
    "n": "map.orhyginal",
    "c": "Other",
    "u": "http://map.orhyginal.fr/#{z}/{lat}/{lon}",
    "p": [
     "map\\.orhyginal\\.fr.*#(?<z>\\d[0-9]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "mapbox-cartogram",
-   "n": "mapbox Cartogram",
-   "c": "Other",
-   "u": "https://apps.mapbox.com/cartogram/#{z}/{lat}/{lon}",
-   "p": [
-    "apps\\.mapbox\\.com\\/cartogram\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
    ],
    "s": [
     "osm",
@@ -1671,33 +2098,6 @@
    ]
   },
   {
-   "id": "mapy-cz",
-   "n": "MAPY.CZ",
-   "c": "Other",
-   "u": "https://en.mapy.cz/zakladni?x={lon}&y={lat}&z={z}",
-   "p": [
-    "mapy\\.cz\\/zakladni\\?x=(?<lon>-?\\d[0-9.]*)&y=(?<lat>-?\\d[0-9.]*)&z=(?<z>\\d{1,2})"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "marinetraffic",
-   "n": "MarineTraffic",
-   "c": "Other",
-   "u": "https://www.marinetraffic.com/en/ais/home/centerx:{lon}/centery:{lat}/zoom:{z}",
-   "p": [
-    "www\\.marinetraffic\\.com.*centerx:(?<lon>-?\\d[0-9.]*)\\/centery:(?<lat>-?\\d[0-9.]*)\\/zoom:(?<z>\\d{1,2})"
-   ],
-   "s": [
-    "gh",
-    "osm",
-    "osmw"
-   ]
-  },
-  {
    "id": "mpple",
    "n": "MαPPLE",
    "c": "Other",
@@ -1708,42 +2108,6 @@
    "s": [
     "osm",
     "osmw"
-   ]
-  },
-  {
-   "id": "nakarte",
-   "n": "nakarte",
-   "c": "Other",
-   "u": "https://nakarte.me/#m={z}/{lat}/{lon}&l=O",
-   "p": [
-    "nakarte\\.me\\/#m=(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "national-library-of-scotland",
-   "n": "National Library of Scotland",
-   "c": "Other",
-   "u": "https://maps.nls.uk/geo/explore/#zoom={z}&lat={lat}&lon={lon}",
-   "p": [
-    "#zoom=(?<z>\\d[0-9.]*)&lat=(?<lat>-?\\d[0-9.]*)&lon=(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "gh",
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "nls-side-by-side",
-   "n": "National Library of Scotland side by side",
-   "c": "Other",
-   "u": "https://maps.nls.uk/geo/explore/side-by-side/#zoom={z}&lat={lat}&lon={lon}&layers=ESRIWorld&right=GoogleSat",
-   "s": [
-    "x"
    ]
   },
   {
@@ -1779,52 +2143,6 @@
    ]
   },
   {
-   "id": "open-infrastructure-map",
-   "n": "Open Infrastructure Map",
-   "c": "Other",
-   "u": "https://openinframap.org/#{z}/{lat}/{lon}",
-   "p": [
-    "openinframap\\.org\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "gh",
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "open-sea-map",
-   "n": "Open Sea Map",
-   "c": "Other",
-   "u": "https://map.openseamap.org/?zoom=14&lat={lat}&lon={lon}",
-   "s": [
-    "gh"
-   ]
-  },
-  {
-   "id": "openaedmap",
-   "n": "OpenAEDMap",
-   "c": "Other",
-   "u": "https://openaedmap.org/#map={z}/{lat}/{lon}",
-   "p": [
-    "openaedmap\\.org\\/#map=(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "opencyclemap",
-   "n": "OpenCycleMap",
-   "c": "Other",
-   "u": "http://www.opencyclemap.org/?zoom={z}&lat={lat}&lon={lon}",
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
    "id": "opengeofiction",
    "n": "OpenGeofiction",
    "c": "Other",
@@ -1833,117 +2151,6 @@
     "opengeofiction\\.net.*map=(?<z>\\d{1,2})\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
    ],
    "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "openhistoricalmap",
-   "n": "OpenHistoricalMap",
-   "c": "Other",
-   "u": "https://www.openhistoricalmap.org/#map={z}/{lat}/{lon}&layers=O",
-   "p": [
-    "www\\.openhistoricalmap\\.org\\/#map=(?<z>-?\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "openindoor",
-   "n": "OpenIndoor",
-   "c": "Other",
-   "u": "https://app.openindoor.io/#{z}/{lat}/{lon}",
-   "p": [
-    "app\\.openindoor\\.io\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ],
-   "disabled": true
-  },
-  {
-   "id": "openlandmap",
-   "n": "OpenLandMap",
-   "c": "Other",
-   "u": "https://openlandmap.org/?center={lon}%2C{lat}&zoom={z}&opacity=72&base=OpenStreetMap&layer=lc_glc.fcs30d&time=2022",
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "openlevelup",
-   "n": "OpenLevelUp!",
-   "c": "Other",
-   "u": "https://openlevelup.net/#{z}/{lat}/{lon}",
-   "p": [
-    "openlevelup\\.net\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "openrailwaymap",
-   "n": "OpenRailwayMap ★",
-   "c": "Other",
-   "u": "https://www.openrailwaymap.org/?lat={lat}&lon={lon}&zoom={z}",
-   "s": [
-    "gh",
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "openrouteservice",
-   "n": "openrouteservice",
-   "c": "Other",
-   "u": "https://maps.openrouteservice.org/directions?n1={lat}&n2={lon}&n3={z}",
-   "p": [
-    "maps\\.openrouteservice\\.org\\/directions\\?n1=(?<lat>-?\\d[0-9.]*)&n2=(?<lon>-?\\d[0-9.]*)&n3=(?<z>\\d{1,2})"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "opensnowmap",
-   "n": "OpenSnowMap",
-   "c": "Other",
-   "u": "http://www.opensnowmap.org/?zoom={z}&lat={lat}&lon={lon}",
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "openstationmap",
-   "n": "OpenStationMap",
-   "c": "Other",
-   "u": "https://openstationmap.org/#{z}/{lat}/{lon}",
-   "p": [
-    "openstationmap\\.org\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "openstreetbrowser",
-   "n": "OpenStreetBrowser",
-   "c": "Other",
-   "u": "https://www.openstreetbrowser.org/#map={z}/{lat}/{lon}",
-   "p": [
-    "www\\.openstreetbrowser\\.org\\/#map=(?<z>\\d{1,2})\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "gh",
     "osm",
     "osmw"
    ]
@@ -1962,115 +2169,6 @@
    ]
   },
   {
-   "id": "opentopomap",
-   "n": "OpenTopoMap ★",
-   "c": "Other",
-   "u": "https://opentopomap.org/#map={z}/{lat}/{lon}",
-   "p": [
-    "opentopomap\\.org\\/#map=(?<z>\\d{1,2})\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "gh",
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "opentripmap",
-   "n": "OpenTripMap",
-   "c": "Other",
-   "u": "https://opentripmap.com/en/#{z}/{lat}/{lon}",
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "openweathermap-org",
-   "n": "OpenWeatherMap.org",
-   "c": "Other",
-   "u": "https://openweathermap.org/weathermap?lat={lat}&lon={lon}&zoom={z}",
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "osm-buildings",
-   "n": "OSM Buildings",
-   "c": "Other",
-   "u": "https://osmbuildings.org/?lat={lat}&lon={lon}&zoom={z}&tilt=30",
-   "p": [
-    "osmbuildings\\.org\\/\\?lat=(?<lat>-?\\d[0-9.]*)&lon=(?<lon>-?\\d[0-9.]*)&zoom=(?<z>\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "osmand",
-   "n": "OsmAnd",
-   "c": "Other",
-   "u": "https://osmand.net/map#{z}/{lat}/{lon}",
-   "p": [
-    "osmand\\.net\\/map.*?#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "osmapp",
-   "n": "OsmAPP",
-   "c": "Other",
-   "u": "https://osmapp.org/#{z}/{lat}/{lon}",
-   "p": [
-    "osmapp\\.org\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "owl-map",
-   "n": "OWL Map",
-   "c": "Other",
-   "u": "https://map.osm.wikidata.link/map/{z}/{lat}/{lon}?radius=5",
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "peakfinder",
-   "n": "PeakFinder",
-   "c": "Other",
-   "u": "https://www.peakfinder.org/?lat={lat}&lng={lon}&azi=0&zoom={z}",
-   "p": [
-    "www\\.peakfinder\\.org\\/.*\\?lat=(?<lat>-?\\d[0-9.]*)&lng=(?<lon>-?\\d[0-9.]*)&azi=[0-9]*&zoom=(?<z>\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "projectowl-ukraine",
-   "n": "ProjectOwl: Ukraine",
-   "c": "Other",
-   "u": "https://www.google.com/maps/d/u/0/viewer?mid=180u1IkUjtjpdJWnIC0AxTKSiqK4G6Pez&ll={lat}%2C{lon}&z={z}",
-   "p": [
-    "www\\.google\\.com\\/maps\\S{2,6}\\/viewer\\?mid=180u1IkUjtjpdJWnIC0AxTKSiqK4G6Pez&ll=(?<lat>-?\\d[0-9.]*)%2C(?<lon>-?\\d[0-9.]*)&z=(?<z>\\d[0-9]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
    "id": "protomaps-com",
    "n": "protomaps.com",
    "c": "Other",
@@ -2082,76 +2180,12 @@
    "disabled": true
   },
   {
-   "id": "shademap",
-   "n": "ShadeMap",
-   "c": "Other",
-   "u": "https://shademap.app/@{lat},{lon},{z}z",
-   "p": [
-    "shademap\\.app\\/@(?<lat>-?\\d[0-9.]*),(?<lon>-?\\d[0-9.]*),(?<z>\\d[0-9.]*)z"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "shadowmap",
-   "n": "Shadowmap",
-   "c": "Other",
-   "u": "https://app.shadowmap.org/?lat={lat}&lng={lon}&zoom={z}",
-   "p": [
-    "shadowmap\\.org\\/\\?lat=(?<lat>-?\\d[0-9.]*)&lng=(?<lon>-?\\d[0-9.]*)&zoom=(?<z>\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "skyvector",
-   "n": "SkyVector",
-   "c": "Other",
-   "u": "https://skyvector.com/?ll={lat},{lon}&chart=301&zoom=2",
-   "s": [
-    "gh",
-    "osm",
-    "osmw"
-   ]
-  },
-  {
    "id": "stadia-maps",
    "n": "Stadia Maps",
    "c": "Other",
    "u": "https://stadiamaps.com/explore-the-map/#map={z}/{lat}/{lon}",
    "p": [
     "stadiamaps\\.com\\/explore-the-map\\/#map=(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "strava",
-   "n": "STRAVA",
-   "c": "Other",
-   "u": "https://www.strava.com/maps/global-heatmap#{z}/{lat}/{lon}",
-   "p": [
-    "www\\.strava\\.com\\/.*#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "gh",
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "surveillance-under-surveillance",
-   "n": "Surveillance under Surveillance",
-   "c": "Other",
-   "u": "https://sunders.uber.space/?lat={lat}&lon={lon}&zoom={z}",
-   "p": [
-    "unders\\.uber\\.space\\/\\?lat=(?<lat>-?\\d[0-9.]*)&lon=(?<lon>-?\\d[0-9.]*)&zoom=(?<z>\\d[0-9.]*)"
    ],
    "s": [
     "osm",
@@ -2172,506 +2206,15 @@
    ]
   },
   {
-   "id": "trail-router",
-   "n": "Trail Router ★",
-   "c": "Other",
-   "u": "https://trailrouter.com/#wps={lat},{lon}&ss=&rt=true&td=5000&aus=false&aus2=false&ah=0&ar=true&pga=0.8&im=false",
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "twitter",
-   "n": "Twitter",
-   "c": "Other",
-   "u": "https://twitter.com/search?q=geocode%3A{lat}%2C{lon}%2C5km",
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "viamichelin",
-   "n": "ViaMichelin",
-   "c": "Other",
-   "u": "https://www.viamichelin.com/web/maps?position={lat};{lon};{z}",
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "walking-town-map-maker",
-   "n": "Walking Town Map Maker",
-   "c": "Other",
-   "u": "https://armd-02.github.io/mapmaker/#{z}/{lat}/{lon}",
+   "id": "osm-org-ar",
+   "n": "OSM.org.ar",
+   "c": "Argentina",
+   "u": "https://openstreetmap.org.ar/#{z}/{lat}/{lon}",
    "p": [
-    "armd-02\\.github\\.io\\/mapmaker\\/#(?<z>-?\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "waterwaymap",
-   "n": "WaterwayMap",
-   "c": "Other",
-   "u": "https://waterwaymap.org/#map={z}/{lat}/{lon}",
-   "s": [
-    "gh",
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "waymarked-trails",
-   "n": "Waymarked Trails",
-   "c": "Other",
-   "u": "https://hiking.waymarkedtrails.org/#?map={z}/{lat}/{lon}",
-   "p": [
-    "waymarkedtrails\\.org\\/#.*\\?map=(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "waze",
-   "n": "waze",
-   "c": "Other",
-   "u": "https://www.waze.com/ul?ll={lat}%2C{lon}&navigate=yes&zoom={z}",
-   "s": [
-    "gh",
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "weather-underground",
-   "n": "Weather Underground",
-   "c": "Other",
-   "u": "https://www.wunderground.com/weather/{lat},{lon}",
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "what3words",
-   "n": "what3words",
-   "c": "Other",
-   "u": "https://map.what3words.com/{lat},{lon}",
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "wikimapia",
-   "n": "wikimapia",
-   "c": "Other",
-   "u": "https://wikimapia.org/#lat={lat}&lon={lon}&z={z}",
-   "s": [
-    "gh",
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "wikimedia-maps",
-   "n": "Wikimedia maps",
-   "c": "Other",
-   "u": "https://maps.wikimedia.org/#{z}/{lat}/{lon}",
-   "p": [
-    "maps\\.wikimedia\\.org\\/#(?<z>\\d[0-9]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "windy-com",
-   "n": "Windy.com ★",
-   "c": "Other",
-   "u": "https://www.windy.com/?{lat},{lon},{z},i:pressure",
-   "p": [
-    "www\\.windy\\.com.*[,\\?](?<lat>-?\\d[0-9.]+),(?<lon>-?\\d[0-9.]+),(?<z>\\d{1,2})"
-   ],
-   "s": [
-    "gh",
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "wolfram-alpha",
-   "n": "Wolfram Alpha",
-   "c": "Other",
-   "u": "https://www.wolframalpha.com/input?i={lat}N+{lon}E",
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "yelp",
-   "n": "Yelp",
-   "c": "Other",
-   "u": "https://www.yelp.com/search?l=g%3A{e}%2C{n}%2C{w}%2C{s}",
-   "s": [
-    "x"
-   ]
-  },
-  {
-   "id": "opnvkarte",
-   "n": "ÖPNVKarte",
-   "c": "Other",
-   "u": "http://www.xn--pnvkarte-m4a.de/?#{lon};{lat};{z}",
-   "p": [
-    "www\\.xn--pnvkarte-m4a\\.de\\/\\?#(?<lon>-?\\d[0-9.]*);(?<lat>-?\\d[0-9.]*);(?<z>-?\\d[0-9.]*)"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "2gis-ru",
-   "n": "2gis(RU)",
-   "c": "Other",
-   "u": "https://2gis.ru/?m={lon}%2C{lat}%2F{z}",
-   "p": [
-    "2gis.*\\?m=(?<lon>-?\\d[0-9.]*)%2C(?<lat>-?\\d[0-9.]*)%2F(?<z>\\d[0-9.]*)"
+    "openstreetmap\\.org\\.ar\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
    ],
    "r": [
-    "RU"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "cmap-dev-jp",
-   "n": "cmap.dev: リアルタイム被害予測(JP)",
-   "c": "Other",
-   "u": "https://cmap.dev/#{z}/{lat}/{lon}",
-   "p": [
-    "cmap\\.dev\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "r": [
-    "JP"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "ign-geoportail-fr",
-   "n": "IGN Géoportail (FR)",
-   "c": "Other",
-   "u": "https://www.geoportail.gouv.fr/carte?c={lon},{lat}&z={z}&l0=GEOGRAPHICALGRIDSYSTEMS.MAPS.SCAN25TOUR.CV::GEOPORTAIL:OGC:WMTS(1)&permalink=yes",
-   "r": [
-    "FR"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "mapfan-jp",
-   "n": "MapFan (JP)",
-   "c": "Other",
-   "u": "https://mapfan.com/map/spots/search?c={lat},{lon},{z}",
-   "p": [
-    "mapfan\\.com\\/map\\/spots\\/search\\?c=(?<lat>-?\\d[0-9.]*),(?<lon>-?\\d[0-9.]*),(?<z>\\d{1,2})"
-   ],
-   "r": [
-    "JP"
-   ],
-   "s": [
-    "gh",
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "mapion-jp",
-   "n": "Mapion (JP)",
-   "c": "Other",
-   "u": "https://www.mapion.co.jp/m2/{lat},{lon},{z}",
-   "r": [
-    "JP"
-   ],
-   "s": [
-    "gh",
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "ordnance-survey-uk",
-   "n": "Ordnance Survey(UK)",
-   "c": "Other",
-   "u": "https://osmaps.ordnancesurvey.co.uk/{lat},{lon},{z}",
-   "p": [
-    "osmaps\\.ordnancesurvey\\.co\\.uk\\/(?<lat>-?\\d[0-9.]*),(?<lon>-?\\d[0-9.]*),(?<z>\\d[0-9.]*)"
-   ],
-   "r": [
-    "GB"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "vk-maps",
-   "n": "VK maps",
-   "c": "Other",
-   "u": "https://maps.vk.com/ru/?lng={lon}&lat={lat}&zoom={z}&style=main",
-   "p": [
-    "maps\\.vk\\.com\\/.*\\/?lng=(?<lon>-?\\d[0-9.]*)&lat=(?<lat>-?\\d[0-9.]*)&zoom=(?<z>\\d[0-9.]*)"
-   ],
-   "r": [
-    "RU"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "yahoo-map-jp",
-   "n": "Yahoo Map (JP)",
-   "c": "Other",
-   "u": "https://map.yahoo.co.jp/?lat={lat}&lon={lon}&zoom={z}",
-   "p": [
-    "lat=(?<lat>-?\\d[0-9.]*)&lon=(?<lon>-?\\d[0-9.]*)&zoom=(?<z>\\d{1,2})"
-   ],
-   "r": [
-    "JP"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "navi-jp-2",
-   "n": "いつもNAVI(JP)",
-   "c": "Other",
-   "u": "https://www.its-mo.com/maps/?lat={lat}&lon={lon}",
-   "r": [
-    "JP"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "gis",
-   "n": "ひなたGIS",
-   "c": "Other",
-   "u": "https://hgis.pref.miyazaki.lg.jp/hinata/hinata.html#{z}/{lat}/{lon}",
-   "p": [
-    "pref\\.miyazaki\\.lg\\.jp\\/hinata\\/hinata\\.html#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "r": [
-    "JP"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "rekichizu-jp",
-   "n": "れきちず",
-   "c": "Other",
-   "u": "https://rekichizu.jp/map?center={lon}%2C{lat}&zoom={z}&pitch=0&bearing=0",
-   "r": [
-    "JP"
-   ],
-   "s": [
-    "osmw"
-   ]
-  },
-  {
-   "id": "jp",
-   "n": "今昔マップ(JP)",
-   "c": "Other",
-   "u": "http://ktgis.net/kjmapw/kjmapw.html?lat={lat}&lng={lon}&zoom={z}",
-   "p": [
-    "ktgis\\.net\\/kjmapw\\/kjmapw\\.html\\?lat=(?<lat>-?\\d[0-9.]*)\\&lng=(?<lon>-?\\d[0-9.]*)\\&zoom=(?<z>\\d[0-9.]*)"
-   ],
-   "r": [
-    "JP"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "q-jp-4",
-   "n": "全国Q地図：カルバートマップ(JP)",
-   "c": "Other",
-   "u": "https://maps.qchizu.xyz/#{z}/{lat}/{lon}/&base=pale&ls=pale%7Cmlit_road2019_culvert_01&disp=11&lcd=mlit_road2019_culvert_01&vs=c1j0h0k0l0u0t0z0r0s0m0f1",
-   "p": [
-    "qchizu\\.xyz\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "r": [
-    "JP"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "q-jp-3",
-   "n": "全国Q地図：シェッドマップ(JP)",
-   "c": "Other",
-   "u": "https://maps.qchizu.xyz/#{z}/{lat}/{lon}/&base=pale&ls=pale%7Cmlit_road2019_shed_01&disp=11&lcd=mlit_road2019_shed_01&vs=c1j0h0k0l0u0t0z0r0s0m0f1",
-   "p": [
-    "qchizu\\.xyz\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "r": [
-    "JP"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "q-jp-2",
-   "n": "全国Q地図：トンネルマップ(JP)",
-   "c": "Other",
-   "u": "https://maps.qchizu.xyz/#{z}/{lat}/{lon}/&base=pale&ls=pale%7Cmlit_road2019_tunnel_01&disp=11&lcd=mlit_road2019_tunnel_01&vs=c1j0h0k0l0u0t0z0r0s0m0f1",
-   "p": [
-    "qchizu\\.xyz\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "r": [
-    "JP"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "q-jp-5",
-   "n": "全国Q地図：横断歩道橋マップ(JP)",
-   "c": "Other",
-   "u": "https://maps.qchizu.xyz/#{z}/{lat}/{lon}/&base=pale&ls=pale%7Cmlit_road2019_footbridge_01&disp=11&lcd=mlit_road2019_footbridge_01&vs=c1j0h0k0l0u0t0z0r0s0m0f1",
-   "p": [
-    "qchizu\\.xyz\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "r": [
-    "JP"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "q-jp",
-   "n": "全国Q地図：橋梁マップ(JP)",
-   "c": "Other",
-   "u": "https://maps.qchizu.xyz/#{z}/{lat}/{lon}/&base=pale&ls=pale%7Cmlit_road2019_bridge_01&disp=11&lcd=mlit_road2019_bridge_01&vs=c1j0h0k0l0u0t0z0r0s0m0f1",
-   "p": [
-    "qchizu\\.xyz\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "r": [
-    "JP"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "q-jp-7",
-   "n": "全国Q地図：農業用ため池マップ(JP)",
-   "c": "Other",
-   "u": "https://maps.qchizu.xyz/#{z}/{lat}/{lon}/&base=pale&ls=pale%7Cmaff-pond20200925-1&disp=11&lcd=maff-pond20200925-1&vs=c1j0h0k0l0u0t0z0r0s0m0f1",
-   "p": [
-    "qchizu\\.xyz\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "r": [
-    "JP"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "q-jp-6",
-   "n": "全国Q地図：門型標識等マップ(JP)",
-   "c": "Other",
-   "u": "https://maps.qchizu.xyz/#{z}/{lat}/{lon}/&base=pale&ls=pale%7Cmlit_road2019_sign_01&disp=11&lcd=mlit_road2019_sign_01&vs=c1j0h0k0l0u0t0z0r0s0m0f1",
-   "p": [
-    "qchizu\\.xyz\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
-   ],
-   "r": [
-    "JP"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "navi-jp",
-   "n": "地質図Navi (JP)",
-   "c": "Other",
-   "u": "https://gbank.gsj.jp/geonavi/geonavi.php#{z},{lat},{lon}",
-   "p": [
-    "gbank\\.gsj\\.jp\\/geonavi\\/geonavi\\.php#(?<z>\\d{1,2}),(?<lat>-?\\d[0-9.]*),(?<lon>-?\\d[0-9.]*)"
-   ],
-   "r": [
-    "JP"
-   ],
-   "s": [
-    "gh",
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "jp-2",
-   "n": "市区町村境界時系列マップ(仮)(JP)",
-   "c": "Other",
-   "u": "https://hanishina.github.io/maps/historymap.html?y={lat}&x={lon}&z={z}",
-   "p": [
-    "historymap\\.html\\?y=(?<lat>-?\\d[0-9.]*)&x=(?<lon>-?\\d[0-9.]*)&z=(?<z>\\d[0-9.]*)"
-   ],
-   "r": [
-    "JP"
-   ],
-   "s": [
-    "osm",
-    "osmw"
-   ]
-  },
-  {
-   "id": "seichimap-jp",
-   "n": "聖地巡礼マップ",
-   "c": "Other",
-   "u": "https://seichimap.jp/spots?order=nearer&lat={lat}&lng={lon}",
-   "r": [
-    "JP"
+    "AR"
    ],
    "s": [
     "osm",
@@ -2931,6 +2474,22 @@
    ]
   },
   {
+   "id": "osm-cl",
+   "n": "OSM.cl",
+   "c": "Chile",
+   "u": "https://www.openstreetmap.cl/#{z}/{lat}/{lon}",
+   "p": [
+    "openstreetmap\\.cl\\/#(?<z>\\d{1,2})\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "CL"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
    "id": "amap",
    "n": "Amap (高德地图)",
    "c": "China",
@@ -2953,6 +2512,23 @@
    "s": [
     "gh"
    ]
+  },
+  {
+   "id": "osmchina",
+   "n": "OSMChina",
+   "c": "China",
+   "u": "https://map.osmchina.org/#map={z}/{lat}/{lon}",
+   "p": [
+    "osmchina\\.org\\/#map=(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "CN"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ],
+   "disabled": true
   },
   {
    "id": "qq-map",
@@ -3292,6 +2868,19 @@
    ]
   },
   {
+   "id": "ign-geoportail-fr",
+   "n": "IGN Géoportail (FR)",
+   "c": "France",
+   "u": "https://www.geoportail.gouv.fr/carte?c={lon},{lat}&z={z}&l0=GEOGRAPHICALGRIDSYSTEMS.MAPS.SCAN25TOUR.CV::GEOPORTAIL:OGC:WMTS(1)&permalink=yes",
+   "r": [
+    "FR"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
    "id": "ign-geoportail-1756-1815-cassini",
    "n": "IGN Géoportail 1756-1815 (Cassini)",
    "c": "France",
@@ -3340,6 +2929,35 @@
    ]
   },
   {
+   "id": "osm-bzh",
+   "n": "osm.bzh",
+   "c": "France",
+   "u": "https://kartenn.openstreetmap.bzh/#map={z}/{lat}/{lon}",
+   "p": [
+    "openstreetmap\\.bzh\\/#map=(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "FR"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "osm-fr",
+   "n": "osm.fr",
+   "c": "France",
+   "u": "https://tile.openstreetmap.fr/?zoom={z}&lat={lat}&lon={lon}&layers=B00000000FFFFFF",
+   "r": [
+    "FR"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
    "id": "geoportal-de",
    "n": "Geoportal.de",
    "c": "Germany",
@@ -3349,6 +2967,19 @@
    ],
    "s": [
     "gh"
+   ]
+  },
+  {
+   "id": "osm-de",
+   "n": "OSM.de",
+   "c": "Germany",
+   "u": "https://www.openstreetmap.de/karte/?zoom={z}&lat={lat}&lon={lon}",
+   "r": [
+    "DE"
+   ],
+   "s": [
+    "osm",
+    "osmw"
    ]
   },
   {
@@ -3460,6 +3091,22 @@
    ]
   },
   {
+   "id": "ordnance-survey-uk",
+   "n": "Ordnance Survey(UK)",
+   "c": "Great Britain",
+   "u": "https://osmaps.ordnancesurvey.co.uk/{lat},{lon},{z}",
+   "p": [
+    "osmaps\\.ordnancesurvey\\.co\\.uk\\/(?<lat>-?\\d[0-9.]*),(?<lon>-?\\d[0-9.]*),(?<z>\\d[0-9.]*)"
+   ],
+   "r": [
+    "GB"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
    "id": "sabre-maps",
    "n": "SABRE Maps",
    "c": "Great Britain",
@@ -3541,6 +3188,22 @@
    ],
    "s": [
     "gh"
+   ]
+  },
+  {
+   "id": "osm-in",
+   "n": "OSM.in",
+   "c": "India",
+   "u": "https://openstreetmap.in/#{z}/{lat}/{lon}",
+   "p": [
+    "openstreetmap\\.in\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "IN"
+   ],
+   "s": [
+    "osm",
+    "osmw"
    ]
   },
   {
@@ -3983,6 +3646,22 @@
    ]
   },
   {
+   "id": "cmap-dev-jp",
+   "n": "cmap.dev: リアルタイム被害予測(JP)",
+   "c": "Japan",
+   "u": "https://cmap.dev/#{z}/{lat}/{lon}",
+   "p": [
+    "cmap\\.dev\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "JP"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
    "id": "geographical-survey-institute-cyberjapan-aerial",
    "n": "Geographical Survey Institute/CyberJapan Aerial",
    "c": "Japan",
@@ -4019,6 +3698,85 @@
    ]
   },
   {
+   "id": "japanmapcompare",
+   "n": "JapanMapCompare",
+   "c": "Japan",
+   "u": "https://mapcompare.jp/3/{z}/{lat}/{lon}/osm/gRoad/mapSatellite",
+   "p": [
+    "mapcompare\\.jp\\/\\d+\\/(?<z>\\d{1,2})\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "JP"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "mapfan-jp",
+   "n": "MapFan (JP)",
+   "c": "Japan",
+   "u": "https://mapfan.com/map/spots/search?c={lat},{lon},{z}",
+   "p": [
+    "mapfan\\.com\\/map\\/spots\\/search\\?c=(?<lat>-?\\d[0-9.]*),(?<lon>-?\\d[0-9.]*),(?<z>\\d{1,2})"
+   ],
+   "r": [
+    "JP"
+   ],
+   "s": [
+    "gh",
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "mapion-jp",
+   "n": "Mapion (JP)",
+   "c": "Japan",
+   "u": "https://www.mapion.co.jp/m2/{lat},{lon},{z}",
+   "r": [
+    "JP"
+   ],
+   "s": [
+    "gh",
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "osm-jp",
+   "n": "OSM.jp",
+   "c": "Japan",
+   "u": "https://tile.openstreetmap.jp/styles/osm-bright/#{z}/{lat}/{lon}",
+   "p": [
+    "tile\\.openstreetmap\\.jp\\/.*#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "JP"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "yahoo-map-jp",
+   "n": "Yahoo Map (JP)",
+   "c": "Japan",
+   "u": "https://map.yahoo.co.jp/?lat={lat}&lon={lon}&zoom={z}",
+   "p": [
+    "lat=(?<lat>-?\\d[0-9.]*)&lon=(?<lon>-?\\d[0-9.]*)&zoom=(?<z>\\d{1,2})"
+   ],
+   "r": [
+    "JP"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
    "id": "yahoo-japan",
    "n": "Yahoo! Japan",
    "c": "Japan",
@@ -4040,6 +3798,238 @@
    ],
    "s": [
     "gh"
+   ]
+  },
+  {
+   "id": "navi-jp-2",
+   "n": "いつもNAVI(JP)",
+   "c": "Japan",
+   "u": "https://www.its-mo.com/maps/?lat={lat}&lon={lon}",
+   "r": [
+    "JP"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "gis",
+   "n": "ひなたGIS",
+   "c": "Japan",
+   "u": "https://hgis.pref.miyazaki.lg.jp/hinata/hinata.html#{z}/{lat}/{lon}",
+   "p": [
+    "pref\\.miyazaki\\.lg\\.jp\\/hinata\\/hinata\\.html#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "JP"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "rekichizu-jp",
+   "n": "れきちず",
+   "c": "Japan",
+   "u": "https://rekichizu.jp/map?center={lon}%2C{lat}&zoom={z}&pitch=0&bearing=0",
+   "r": [
+    "JP"
+   ],
+   "s": [
+    "osmw"
+   ]
+  },
+  {
+   "id": "jp",
+   "n": "今昔マップ(JP)",
+   "c": "Japan",
+   "u": "http://ktgis.net/kjmapw/kjmapw.html?lat={lat}&lng={lon}&zoom={z}",
+   "p": [
+    "ktgis\\.net\\/kjmapw\\/kjmapw\\.html\\?lat=(?<lat>-?\\d[0-9.]*)\\&lng=(?<lon>-?\\d[0-9.]*)\\&zoom=(?<z>\\d[0-9.]*)"
+   ],
+   "r": [
+    "JP"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "q-jp-4",
+   "n": "全国Q地図：カルバートマップ(JP)",
+   "c": "Japan",
+   "u": "https://maps.qchizu.xyz/#{z}/{lat}/{lon}/&base=pale&ls=pale%7Cmlit_road2019_culvert_01&disp=11&lcd=mlit_road2019_culvert_01&vs=c1j0h0k0l0u0t0z0r0s0m0f1",
+   "p": [
+    "qchizu\\.xyz\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "JP"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "q-jp-3",
+   "n": "全国Q地図：シェッドマップ(JP)",
+   "c": "Japan",
+   "u": "https://maps.qchizu.xyz/#{z}/{lat}/{lon}/&base=pale&ls=pale%7Cmlit_road2019_shed_01&disp=11&lcd=mlit_road2019_shed_01&vs=c1j0h0k0l0u0t0z0r0s0m0f1",
+   "p": [
+    "qchizu\\.xyz\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "JP"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "q-jp-2",
+   "n": "全国Q地図：トンネルマップ(JP)",
+   "c": "Japan",
+   "u": "https://maps.qchizu.xyz/#{z}/{lat}/{lon}/&base=pale&ls=pale%7Cmlit_road2019_tunnel_01&disp=11&lcd=mlit_road2019_tunnel_01&vs=c1j0h0k0l0u0t0z0r0s0m0f1",
+   "p": [
+    "qchizu\\.xyz\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "JP"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "q-jp-5",
+   "n": "全国Q地図：横断歩道橋マップ(JP)",
+   "c": "Japan",
+   "u": "https://maps.qchizu.xyz/#{z}/{lat}/{lon}/&base=pale&ls=pale%7Cmlit_road2019_footbridge_01&disp=11&lcd=mlit_road2019_footbridge_01&vs=c1j0h0k0l0u0t0z0r0s0m0f1",
+   "p": [
+    "qchizu\\.xyz\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "JP"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "q-jp",
+   "n": "全国Q地図：橋梁マップ(JP)",
+   "c": "Japan",
+   "u": "https://maps.qchizu.xyz/#{z}/{lat}/{lon}/&base=pale&ls=pale%7Cmlit_road2019_bridge_01&disp=11&lcd=mlit_road2019_bridge_01&vs=c1j0h0k0l0u0t0z0r0s0m0f1",
+   "p": [
+    "qchizu\\.xyz\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "JP"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "q-jp-7",
+   "n": "全国Q地図：農業用ため池マップ(JP)",
+   "c": "Japan",
+   "u": "https://maps.qchizu.xyz/#{z}/{lat}/{lon}/&base=pale&ls=pale%7Cmaff-pond20200925-1&disp=11&lcd=maff-pond20200925-1&vs=c1j0h0k0l0u0t0z0r0s0m0f1",
+   "p": [
+    "qchizu\\.xyz\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "JP"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "q-jp-6",
+   "n": "全国Q地図：門型標識等マップ(JP)",
+   "c": "Japan",
+   "u": "https://maps.qchizu.xyz/#{z}/{lat}/{lon}/&base=pale&ls=pale%7Cmlit_road2019_sign_01&disp=11&lcd=mlit_road2019_sign_01&vs=c1j0h0k0l0u0t0z0r0s0m0f1",
+   "p": [
+    "qchizu\\.xyz\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "JP"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "maps-gsi-go-jp",
+   "n": "地理院地図",
+   "c": "Japan",
+   "u": "https://maps.gsi.go.jp/#{z}/{lat}/{lon}/",
+   "p": [
+    "maps\\.gsi\\.go\\.jp.*#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "JP"
+   ],
+   "s": [
+    "gh",
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "navi-jp",
+   "n": "地質図Navi (JP)",
+   "c": "Japan",
+   "u": "https://gbank.gsj.jp/geonavi/geonavi.php#{z},{lat},{lon}",
+   "p": [
+    "gbank\\.gsj\\.jp\\/geonavi\\/geonavi\\.php#(?<z>\\d{1,2}),(?<lat>-?\\d[0-9.]*),(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "JP"
+   ],
+   "s": [
+    "gh",
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "jp-2",
+   "n": "市区町村境界時系列マップ(仮)(JP)",
+   "c": "Japan",
+   "u": "https://hanishina.github.io/maps/historymap.html?y={lat}&x={lon}&z={z}",
+   "p": [
+    "historymap\\.html\\?y=(?<lat>-?\\d[0-9.]*)&x=(?<lon>-?\\d[0-9.]*)&z=(?<z>\\d[0-9.]*)"
+   ],
+   "r": [
+    "JP"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
+   "id": "seichimap-jp",
+   "n": "聖地巡礼マップ",
+   "c": "Japan",
+   "u": "https://seichimap.jp/spots?order=nearer&lat={lat}&lng={lon}",
+   "r": [
+    "JP"
+   ],
+   "s": [
+    "osm",
+    "osmw"
    ]
   },
   {
@@ -4407,6 +4397,22 @@
    ]
   },
   {
+   "id": "openstreetmap-nederland",
+   "n": "OpenStreetMap Nederland",
+   "c": "Netherlands",
+   "u": "https://www.openstreetmap.app/#map={z}/{lat}/{lon}",
+   "p": [
+    "www\\.openstreetmap\\.app\\/.*#map=(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "NL"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
    "id": "1881",
    "n": "1881",
    "c": "Norway",
@@ -4672,6 +4678,22 @@
    ]
   },
   {
+   "id": "2gis-ru",
+   "n": "2gis(RU)",
+   "c": "Russia",
+   "u": "https://2gis.ru/?m={lon}%2C{lat}%2F{z}",
+   "p": [
+    "2gis.*\\?m=(?<lon>-?\\d[0-9.]*)%2C(?<lat>-?\\d[0-9.]*)%2F(?<z>\\d[0-9.]*)"
+   ],
+   "r": [
+    "RU"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
    "id": "cheboksary-ws",
    "n": "Cheboksary.ws / Чебоксары",
    "c": "Russia",
@@ -4770,6 +4792,22 @@
    ]
   },
   {
+   "id": "osm-ru",
+   "n": "OSM.ru",
+   "c": "Russia",
+   "u": "https://openstreetmap.ru/#map={z}/{lat}/{lon}",
+   "p": [
+    "openstreetmap\\.ru\\/#map=(?<z>\\d{1,2})\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "RU"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
    "id": "progorod",
    "n": "Progorod / Прогород",
    "c": "Russia",
@@ -4793,6 +4831,22 @@
     "gh"
    ],
    "disabled": true
+  },
+  {
+   "id": "vk-maps",
+   "n": "VK maps",
+   "c": "Russia",
+   "u": "https://maps.vk.com/ru/?lng={lon}&lat={lat}&zoom={z}&style=main",
+   "p": [
+    "maps\\.vk\\.com\\/.*\\/?lng=(?<lon>-?\\d[0-9.]*)&lat=(?<lat>-?\\d[0-9.]*)&zoom=(?<z>\\d[0-9.]*)"
+   ],
+   "r": [
+    "RU"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
   },
   {
    "id": "gothere",
@@ -5099,6 +5153,22 @@
    ]
   },
   {
+   "id": "osm-kr",
+   "n": "osm.kr",
+   "c": "South Korea",
+   "u": "https://tiles.osm.kr/#{z}/{lat}/{lon}",
+   "p": [
+    "osm\\.kr\\/#(?<z>\\d[0-9.]*)\\/(?<lat>-?\\d[0-9.]*)\\/(?<lon>-?\\d[0-9.]*)"
+   ],
+   "r": [
+    "KR"
+   ],
+   "s": [
+    "osm",
+    "osmw"
+   ]
+  },
+  {
    "id": "vissir-icc",
    "n": "Vissir – ICC",
    "c": "Spain",
@@ -5287,18 +5357,6 @@
    ]
   },
   {
-   "id": "acme-nexrad",
-   "n": "ACME NEXRAD",
-   "c": "United States",
-   "u": "https://mapper.acme.com/?ll={lat},{lon}&z={z}&t=N&marker0={lat},{lon},{a}",
-   "r": [
-    "US"
-   ],
-   "s": [
-    "gh"
-   ]
-  },
-  {
    "id": "caltopo",
    "n": "CalTopo",
    "c": "United States",
@@ -5327,43 +5385,6 @@
    "n": "Historic Aerials ★",
    "c": "United States",
    "u": "https://historicaerials.com/?layer=map&zoom={z}&lat={lat}&lon={lon}",
-   "r": [
-    "US"
-   ],
-   "s": [
-    "gh"
-   ]
-  },
-  {
-   "id": "nasa-msfc-goes",
-   "n": "NASA/MSFC GOES",
-   "c": "United States",
-   "u": "https://weather.msfc.nasa.gov/cgi-bin/get-goes?satellite=GOES-E%20CONUS&lat={lat}&lon={lon}&zoom=1&info=ir&palette=spect.pal&width=600&height=500",
-   "r": [
-    "US"
-   ],
-   "s": [
-    "gh"
-   ],
-   "disabled": true
-  },
-  {
-   "id": "national-weather-service-graphical-hourly-pinpoint-forecast",
-   "n": "National Weather Service Graphical hourly pinpoint forecast",
-   "c": "United States",
-   "u": "https://forecast.weather.gov/MapClick.php?lat={lat}&lon={lon}&unit=0&lg=english&FcstType=graphical",
-   "r": [
-    "US"
-   ],
-   "s": [
-    "gh"
-   ]
-  },
-  {
-   "id": "national-weather-service",
-   "n": "National Weather Service ★",
-   "c": "United States",
-   "u": "https://forecast.weather.gov/MapClick.php?textField1={lat}&textField2={lon}",
    "r": [
     "US"
    ],
@@ -5436,18 +5457,6 @@
    "n": "USGS TopoView ★",
    "c": "United States",
    "u": "https://ngmdb.usgs.gov/topoview/viewer/#{z}/{lat}/{lon}",
-   "r": [
-    "US"
-   ],
-   "s": [
-    "gh"
-   ]
-  },
-  {
-   "id": "weatherusa",
-   "n": "WeatherUSA",
-   "c": "United States",
-   "u": "https://www.weatherusa.net/weathernet/live/?q={lat},{lon}&zoom={z}&layers=obs-t,radar,alerts",
    "r": [
     "US"
    ],
