@@ -167,7 +167,12 @@ function applyFilter() {
 }
 
 function renderMap() {
-  if (st.lat === undefined || st.lon === undefined) return;
+  if (st.lat === undefined || st.lon === undefined) {
+    // Location cleared: drop the pin but leave the view where it is.
+    pin?.remove();
+    pin = undefined;
+    return;
+  }
   const ll = [Number(st.lat), Number(st.lon)];
   const z = Math.min(st.z ?? DEFAULT_Z, 19);
   if (!pin) {
@@ -191,6 +196,7 @@ function update(moveMap = true) {
     st.lat !== undefined ? `${st.a ? st.a + " · " : ""}${st.lat}, ${st.lon}` : "Click the map to drop a pin, or enter a location above.";
   // The current location is the field's value, not its placeholder, so it can be edited; don't clobber typing.
   if (document.activeElement !== q) q.value = st.lat !== undefined ? `${st.lat},${st.lon}` : "";
+  $("q-clear").hidden = !q.value;
   if (moveMap) renderMap();
   renderFeatured();
   renderList();
@@ -246,6 +252,14 @@ $("go").addEventListener("submit", (e) => {
   const next = parse(v, data) ?? parse(`a=${encodeURIComponent(v)}`, data);
   if (next) load({ ...next, m: next.m ?? st.m });
   q.blur(); // lets update() show the resolved coordinates
+});
+
+// Resets the location (keeping any chosen map); the view stays put, so a click drops a new pin there.
+q.addEventListener("input", () => ($("q-clear").hidden = !q.value));
+$("q-clear").addEventListener("click", () => {
+  q.value = "";
+  load({ m: st.m });
+  q.focus();
 });
 
 filter.addEventListener("input", applyFilter);

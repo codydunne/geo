@@ -20,8 +20,11 @@
     <div class="layout">
       <div class="left">
         <form id="go">
-          <input type="text" id="q" aria-label="Coordinates, map URL, or address"
-                 placeholder="Coordinates, map URL, or address" autocomplete="off" enterkeyhint="go">
+          <div class="clearable">
+            <input type="text" id="q" aria-label="Coordinates, map URL, or address"
+                   placeholder="Coordinates, map URL, or address" autocomplete="off" enterkeyhint="go">
+            <button type="button" id="q-clear" aria-label="Clear location" hidden>&times;</button>
+          </div>
           <button type="submit">Go</button>
         </form>
         <div class="actions">
@@ -34,7 +37,7 @@
       </div>
       <div class="right">
         <div id="featured" class="featured" hidden></div>
-        <div class="filter">
+        <div class="clearable">
           <input type="search" id="filter" aria-label="Filter maps" placeholder="Filter maps by name or category">
           <button type="button" id="filter-clear" aria-label="Clear filter" hidden>&times;</button>
         </div>

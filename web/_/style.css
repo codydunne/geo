@@ -106,10 +106,10 @@ input[type="text"], input[type="search"] {
 input:focus { outline: none; border-color: var(--accent); }
 
 /* Own clear button: Firefox has no native one, so hide WebKit's to avoid two. */
-.filter { position: relative; }
-.filter input { padding-right: 2.25rem; }
-.filter input::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
-#filter-clear {
+.clearable { position: relative; flex: 1; min-width: 0; }
+.clearable input { padding-right: 2.25rem; }
+.clearable input::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
+.clearable > button {
   position: absolute;
   top: 50%;
   right: 0.25rem;
