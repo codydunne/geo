@@ -27,6 +27,10 @@ test("requirements.md and example-links-to-existing.md inputs", () => {
     ["https://geohack.toolforge.org/geohack.php?params=42.364678;-71.131311_dim:100", "/geo/42.364678,-71.131311&z=19"],
     ["a=My%20Place%20Name,%20City", "/geo/?a=My%20Place%20Name,%20City"],
     ["42.364678,-71.131311&a=My%20Place%20Name,%20City", "/geo/42.364678,-71.131311&a=My%20Place%20Name,%20City"],
+    ["42.36,-71.13&a=Here&tile=watercolor,strava&z=12", "/geo/42.36,-71.13&z=12&tile=watercolor,strava&a=Here"],
+    ["tile=natgeo", "/geo/?tile=natgeo"],
+    // A foreign link's own `&t=` is not ours.
+    ["https://www.google.com/maps/@42.36,-71.13,13z?hl=en&t=k", "/geo/42.36,-71.13&z=13"],
   ];
   for (const [raw, want] of cases) assert.equal(canon(raw), want, raw);
 });
@@ -109,6 +113,23 @@ test("maps.json invariants", async () => {
       assert.equal(Number(g.lon), Number(st.lon), `${m.id} lon`);
     }
   }
+  const tileIds = data.tiles.map((t) => t.id);
+  assert.equal(new Set(tileIds).size, tileIds.length, "unique tile ids");
+  for (const id of ["osm", "watercolor", "natgeo", "oilslick", "viirs", "viirs-night", "strava"]) assert.ok(tileIds.includes(id), id);
+  assert.equal(data.tiles.find((t) => t.id === "osm")?.c, "Basemaps");
+  for (const t of data.tiles) {
+    assert.match(t.u, /^https:\/\//, `${t.id} https`);
+    const bad = [...t.u.matchAll(/\{(\w*)\}/g)].map((x) => x[1]).filter((k) => !["s", "x", "y", "z", "r", "time"].includes(k));
+    assert.deepEqual(bad, [], `${t.id} placeholders`);
+    assert.ok(["Basemaps", "Overlays"].includes(t.c), `${t.id} category`);
+    // Attribution goes through Leaflet's innerHTML.
+    assert.doesNotMatch(String(t.o.attribution ?? ""), /<(?!a href="https?:\/\/[^"<>]*">|\/a>)/, `${t.id} attribution`);
+    for (const r of t.r ?? []) assert.ok(typeof r !== "string" || data.regions[r], `${t.id} region ${r}`);
+  }
+  // xyzservices bounds are lat-first; they must land as [w, s, e, n].
+  const swiss = /** @type {import("../web/_/geo.js").TileDef} */ (data.tiles.find((t) => t.id === "swissfederalgeoportal-swissimage"));
+  assert.ok(inRegion(swiss, { lat: "46.95", lon: "7.45" }, data.regions), "Bern");
+  assert.ok(!inRegion(swiss, { lat: "42.36", lon: "-71.13" }, data.regions), "Boston");
   // Country-specific services stay out of a Boston list.
   const boston = { lat: "42.36", lon: "-71.13" };
   const leaked = data.maps

@@ -266,7 +266,6 @@
    "star": true,
    "c": "Imagery/Satellite/Aerial",
    "f": true
-
   },
   {
    "id": "acme-doq",
@@ -1051,7 +1050,7 @@
    "id": "open-historical-map",
    "match": "OpenHistoricalMap",
    "c": "Historical",
-   "n": "Open Historical Map"   
+   "n": "Open Historical Map"
   },
   {
    "id": "old-maps-online",
@@ -1258,7 +1257,7 @@
    "match": "Launch RapiD editor",
    "c": "Tools"
   },
-    {
+  {
    "id": "launch-waze-map-editor",
    "match": "Launch waze map editor",
    "n": "Waze Editor",
@@ -1466,5 +1465,223 @@
    "r": [],
    "f": false
   }
- ]
+ ],
+ "tiles": {
+  "skip": [
+   "GeoportailFrance",
+   "OpenAIP",
+   "HikeBike",
+   "OneMapSG"
+  ],
+  "overlay": [
+   "OpenSeaMap",
+   "OpenRailwayMap",
+   "SafeCast",
+   "WaymarkedTrails",
+   "OpenSnowMap",
+   "Strava",
+   "Stadia.StamenTonerLines",
+   "Stadia.StamenTonerLabels",
+   "Stadia.StamenTerrainLines",
+   "Stadia.StamenTerrainLabels",
+   "BasemapAT.overlay"
+  ],
+  "maps": [
+   {
+    "id": "osm",
+    "match": "OpenStreetMap: Mapnik",
+    "n": "OpenStreetMap",
+    "star": true
+   },
+   {
+    "id": "watercolor",
+    "match": "Stadia: Stamen Watercolor",
+    "star": true
+   },
+   {
+    "id": "natgeo",
+    "match": "Esri: Nat Geo World Map",
+    "n": "Esri: National Geographic",
+    "star": true,
+    "o": {
+     "maxNativeZoom": 12
+    }
+   },
+   {
+    "id": "oilslick",
+    "n": "\"Oilslick\" color elevation",
+    "c": "Basemaps",
+    "star": true,
+    "u": "https://s3.amazonaws.com/oilslick/{z}/{x}/{y}.jpg",
+    "o": {
+     "maxNativeZoom": 11,
+     "attribution": "<a href=\"http://mrgris.com/projects/oilslick/\">Drew Roos</a>, <a href=\"http://www.viewfinderpanoramas.org/dem3.html\">Jonathan de Ferranti</a>, <a href=\"http://nsidc.org/data/nsidc-0082\">NSIDC</a>"
+    }
+   },
+   {
+    "id": "viirs-night",
+    "match": "NASAGIBS: Viirs Earth At Night2012",
+    "n": "NASA GIBS: VIIRS night lights 2012",
+    "star": true,
+    "u": "https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_CityLights_2012/default/{time}/GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpg"
+   },
+   {
+    "id": "viirs",
+    "match": "NASAGIBS: Viirs True Color CR",
+    "n": "NASA GIBS: VIIRS true color, yesterday",
+    "star": true
+   },
+   {
+    "id": "strava",
+    "match": "Strava: All",
+    "n": "Strava: heatmap",
+    "star": true,
+    "u": "https://heatmap-external-{s}.strava.com/tiles/all/blue/{z}/{x}/{y}.png?px=256",
+    "o": {
+     "subdomains": "abc",
+     "maxNativeZoom": 12
+    }
+   },
+   {
+    "id": "stadia-alidade-bright",
+    "n": "Stadia: Alidade Bright",
+    "c": "Basemaps",
+    "u": "https://tiles.stadiamaps.com/tiles/alidade_bright/{z}/{x}/{y}{r}.png",
+    "o": {
+     "maxNativeZoom": 20,
+     "attribution": "&copy; <a href=\"https://www.stadiamaps.com/\">Stadia Maps</a> &copy; <a href=\"https://openmaptiles.org/\">OpenMapTiles</a> &copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors"
+    }
+   },
+   {
+    "id": "stadia-alidade-satellite",
+    "n": "Stadia: Alidade Satellite",
+    "c": "Basemaps",
+    "u": "https://tiles.stadiamaps.com/tiles/alidade_satellite/{z}/{x}/{y}{r}.jpg",
+    "o": {
+     "maxNativeZoom": 20,
+     "attribution": "&copy; CNES, Distribution Airbus DS, &copy; Airbus DS, &copy; PlanetObserver (Contains Copernicus Data) | &copy; <a href=\"https://www.stadiamaps.com/\">Stadia Maps</a> &copy; <a href=\"https://openmaptiles.org/\">OpenMapTiles</a> &copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors"
+    }
+   },
+   {
+    "id": "osm-belgium",
+    "match": "OSM Belgium",
+    "r": [
+     "BE"
+    ]
+   },
+   {
+    "id": "osm-belgium-nl",
+    "match": "OSM Belgium NL",
+    "r": [
+     "BE"
+    ]
+   },
+   {
+    "id": "osm-belgium-fr",
+    "match": "OSM Belgium FR",
+    "r": [
+     "BE"
+    ]
+   },
+   {
+    "id": "osm-swiss-style",
+    "match": "OSM-Swiss-Style",
+    "r": [
+     "CH"
+    ]
+   },
+   {
+    "id": "cyclosm-cyclosm",
+    "match": "CyclOSM cyclosm",
+    "dup": "cyclosm",
+    "drop": true
+   },
+   {
+    "id": "opnvkarte-2",
+    "match": "ÖPNVKarte",
+    "dup": "opnvkarte",
+    "drop": true
+   },
+   {
+    "id": "opnvkarte",
+    "match": "OPNVKarte",
+    "n": "ÖPNVKarte"
+   },
+   {
+    "id": "cyclosm-lite",
+    "match": "CyclOSM cyclosm-lite",
+    "n": "CyclOSM Lite",
+    "c": "Overlays"
+   },
+   {
+    "id": "stadia-osm-bright",
+    "match": "Stadia: OSMBright",
+    "n": "Stadia: OSM Bright"
+   },
+   {
+    "id": "usgs-ustopo",
+    "match": "USGS: USTopo",
+    "n": "USGS: US Topo",
+    "r": [
+     "US"
+    ]
+   },
+   {
+    "id": "usgs-usimagery",
+    "match": "USGS: USImagery",
+    "n": "USGS: US Imagery",
+    "r": [
+     "US"
+    ]
+   },
+   {
+    "id": "usgs-usimagery-topo",
+    "match": "USGS: USImagery Topo",
+    "n": "USGS: US Imagery Topo",
+    "r": [
+     "US"
+    ]
+   },
+   {
+    "id": "gaode-normal",
+    "match": "Gaode: Normal",
+    "r": [
+     "CN"
+    ]
+   },
+   {
+    "id": "gaode-satellite",
+    "match": "Gaode: Satellite",
+    "r": [
+     "CN"
+    ]
+   },
+   {
+    "id": "basemapde-color",
+    "match": "BaseMapDE: Color",
+    "r": [
+     "DE"
+    ]
+   },
+   {
+    "id": "basemapde-grey",
+    "match": "BaseMapDE: Grey",
+    "r": [
+     "DE"
+    ]
+   },
+   {
+    "id": "nasagibs-aster-gdem",
+    "match": "NASAGIBS: ASTER_GDEM_Greyscale_Shaded_Relief",
+    "n": "NASAGIBS: ASTER GDEM shaded relief"
+   },
+   {
+    "id": "un-clear-map",
+    "match": "UN: Clear Map",
+    "o": {
+     "maxNativeZoom": 7
+    }
+   }
+  ]
+ }
 }

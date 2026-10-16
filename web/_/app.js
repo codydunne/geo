@@ -4,6 +4,7 @@ import { DEFAULT_Z, canonical, fill, fmt, inRegion, inputOf, parse, trunc6 } fro
 /** @typedef {import("./geo.js").State} State */
 /** @typedef {import("./geo.js").MapData} MapData */
 /** @typedef {import("./geo.js").MapDef} MapDef */
+/** @typedef {import("./geo.js").TileDef} TileDef */
 
 /** Leaflet's UMD global; untyped on purpose (no @types dependency). @type {any} */
 const L = /** @type {any} */ (globalThis).L;
@@ -28,6 +29,10 @@ let map;
 let pin;
 /** The service shown in the pane in place of the pin map, if any. @type {MapDef | undefined} */
 let framed;
+const tiles = new Map(data.tiles.map((t) => [t.id, t]));
+const DEFAULT_TILE = "osm";
+/** Leaflet layers on the map, by tile id. @type {Map<string, any>} */
+const layers = new Map();
 
 /** @param {string} text @param {"error" | "ok"} [kind] */
 function say(text, kind = "error") {
@@ -182,14 +187,18 @@ function renderFeatured() {
   featured.append(name, link(d, "Open", d.disabled ? "" : "button"));
 }
 
+/**
+ * Map links for the pin (none until there is one), then the tile layers, which work
+ * without a pin and are filtered by its region only once there is one.
+ */
 function renderList() {
   list.replaceChildren();
-  if (st.lat === undefined) return;
   /** @type {Map<string, HTMLElement>} */
   const groups = new Map();
-  for (const d of data.maps) {
-    if (d.disabled && !showDisabled.checked) continue;
-    if (!showRegions.checked && !inRegion(d, st, data.regions)) continue;
+  /** @param {MapDef | TileDef} d @param {HTMLElement} el */
+  const add = (d, el) => {
+    if (d.disabled && !showDisabled.checked) return;
+    if (st.lat !== undefined && !showRegions.checked && !inRegion(d, st, data.regions)) return;
     let ul = groups.get(d.c);
     if (!ul) {
       const det = document.createElement("details");
@@ -208,10 +217,71 @@ function renderList() {
     }
     const li = document.createElement("li");
     li.dataset.n = d.n.toLowerCase();
-    li.append(link(d, d.star ? `${d.n} ★` : d.n, d.star ? "" : "dim"));
+    li.append(el);
     ul.append(li);
+  };
+  if (st.lat !== undefined) for (const d of data.maps) add(d, link(d, d.star ? `${d.n} ★` : d.n, d.star ? "" : "dim"));
+  const on = chosen();
+  for (const t of data.tiles) {
+    // A permalink to this page with the layer picked, so it can open in a new tab;
+    // a plain click switches the layer in place.
+    const el = document.createElement("a");
+    el.className = t.star ? "tile" : "tile dim";
+    el.textContent = (t.star ? `${t.n} ★` : t.n) + (t.disabled ? " (disabled)" : "");
+    el.href = canonical({ ...st, tile: tileAfter(t) });
+    el.title = t.id; // the `&tile=` value
+    if (on.includes(t.id)) el.ariaCurrent = "true";
+    el.addEventListener("click", (e) => {
+      if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
+      e.preventDefault();
+      pickTile(t);
+    });
+    add(t, el);
   }
   applyFilter();
+}
+
+/** The basemap (the last listed wins) and overlays in `tile=`; unknown ids are ignored. */
+function chosen() {
+  const ids = (st.tile ?? "").split(",").filter((id) => tiles.has(id));
+  const base = ids.filter((id) => tiles.get(id)?.c === "Basemaps").at(-1) ?? DEFAULT_TILE;
+  return [base, ...new Set(ids.filter((id) => tiles.get(id)?.c === "Overlays"))];
+}
+
+/** Put the chosen layers on the map and take the rest off. */
+function renderTiles() {
+  const want = chosen();
+  for (const [id, layer] of layers) {
+    if (want.includes(id)) continue;
+    layer.remove();
+    layers.delete(id);
+  }
+  for (const id of want) {
+    const t = /** @type {TileDef} */ (tiles.get(id));
+    if (layers.has(id)) continue;
+    // maxZoom 19 on every layer (upscaling past its maxNativeZoom), so switching never
+    // clamps the map zoom and rewrites `z=`. zIndex keeps overlays above a new basemap.
+    // {time} is for NASA GIBS: the latest day often has gaps, so use slightly stale imagery.
+    const opts = { maxZoom: 19, zIndex: t.c === "Overlays" ? 2 : 1, time: gibsDay, ...t.o };
+    layers.set(id, L.tileLayer(t.u, opts).addTo(map));
+  }
+}
+
+/** `tile=` after picking t: a basemap replaces the current one; an overlay toggles. @param {TileDef} t */
+function tileAfter(t) {
+  const [base, ...over] = chosen();
+  const next =
+    t.c === "Basemaps" ? [t.id, ...over] : [base, ...(over.includes(t.id) ? over.filter((id) => id !== t.id) : [...over, t.id])];
+  return next.join(",") === DEFAULT_TILE ? undefined : next.join(",");
+}
+
+/** @param {TileDef} t */
+function pickTile(t) {
+  st = { ...st, tile: tileAfter(t) };
+  if (framed) showPane(); // back to the pin map, to see the change
+  updateUrl();
+  renderTiles();
+  renderList();
 }
 
 function applyFilter() {
@@ -262,6 +332,7 @@ function update(moveMap = true) {
   if (document.activeElement !== q) q.value = st.lat !== undefined ? `${st.lat},${st.lon}` : "";
   $("q-clear").hidden = !q.value;
   if (moveMap) renderMap();
+  renderTiles();
   // Follow the location, or close when it is cleared.
   if (framed) showPane(st.lat === undefined ? undefined : framed);
   renderFeatured();
@@ -275,7 +346,8 @@ let generation = 0;
 async function load(next) {
   const gen = ++generation;
   say("");
-  st = next;
+  // The tile layers are a view setting: they stay unless the input names its own.
+  st = { tile: st.tile, ...next };
   if (st.lat === undefined && st.a) {
     say(`Looking up "${st.a}"…`, "ok");
     try {
@@ -302,10 +374,8 @@ map.on("click", (/** @type {any} */ e) => {
   if (st.lat !== undefined) return; // after the first pin, move it by dragging
   load({ lat: fmt(e.latlng.lat), lon: fmt(L.Util.wrapNum(e.latlng.lng, [-180, 180], true)), z: map.getZoom(), m: st.m });
 });
-L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  maxZoom: 19,
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-}).addTo(map);
+const gibsDay = new Date(Date.now() - 36 * 3600e3).toISOString().slice(0, 10);
+renderTiles();
 map.on("zoomend", () => {
   if (st.lat === undefined || map.getZoom() === Math.min(st.z ?? DEFAULT_Z, 19)) return;
   st = { ...st, z: map.getZoom() };

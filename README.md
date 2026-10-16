@@ -15,6 +15,7 @@ The map list is the union of [GeoHack](https://geohack.toolforge.org/) and [Open
 | `<lat>,<lon>` | Decimal degrees; digits kept as entered, truncated past 6 decimals | — |
 | `z` | OSM-scale zoom, converted per provider | 15 |
 | `m` | Map ID to feature at the top (never auto-redirects) | none |
+| `tile` | Comma-separated tile layer IDs for the pin map: one basemap plus any overlays | `osm` |
 | `a` | Pin label; on its own (`/geo/?a=…`) it is geocoded once via Nominatim, falling back to Photon | none |
 
 A bare `/geo/` shows Cambridge, MA at zoom 10 (greater Boston) with no pin; click the map to drop one, or use the input box or My location.
@@ -29,6 +30,7 @@ A map that permits framing (`"f": true` in `maps.json`) opens in place of the pi
 The rest stay plain links: Google, Bing, Apple, OpenStreetMap, and others refuse framing, and `http://` services are blocked as mixed content.
 "Try any map in the frame" frames the `https://` ones anyway; expect most to come up blank.
 The list shows only maps covering the point; ★ marks curated picks, and dead services are hidden unless "Show disabled" is checked.
+Its last two groups, Basemaps and Overlays, switch the pin map's tile layers on a plain click; each is a permalink to this page with that layer picked, so Ctrl/⌘/middle-click opens it in a new tab. They are listed even before a pin is dropped.
 
 Map IDs are listed in [`web/_/maps.json`](web/_/maps.json); curated short ones include `osm`, `google`, `apple`, `osmcycle`, `rwgps`, and `alltrails`.
 Short links such as `maps.app.goo.gl` are not supported: resolving them needs a server-side proxy.
@@ -59,6 +61,7 @@ git diff web/_/maps.json       # review before committing
 
 The collector fetches GeoHack's [`Template:GeoTemplate`](https://en.wikipedia.org/wiki/Template:GeoTemplate) wikitext and OpenSwitchMaps' `maps.js` (both repos, pinned commits), and Natural Earth country outlines for regional bboxes.
 It parses the JavaScript with regexes and never runs it, and prints what it could not translate.
+It also collects keyless Web Mercator tile layers from [xyzservices](https://github.com/geopandas/xyzservices) (leaflet-providers as JSON) and the free rows of the OpenStreetMap wiki's [Raster tile providers](https://wiki.openstreetmap.org/wiki/Raster_tile_providers), both pinned, into `tiles`.
 It then applies [`scripts/maps-overrides.json`](scripts/maps-overrides.json): curated IDs, category names, region aliases, hand-added services, and per-map keys:
 
 | Key | Effect |
@@ -68,6 +71,11 @@ It then applies [`scripts/maps-overrides.json`](scripts/maps-overrides.json): cu
 | `"f": true`/`false` | Forces the framing flag, overriding the probe |
 | `"disabled": true` | Dead service: kept so its `&m=` link resolves, hidden by default |
 | `"drop": true` | Removes the map and retires its ID |
+
+The `tiles` section of the overrides does the same for tile layers: `skip` lists xyzservices providers or layers never to collect (all of GeoportailFrance's ~720 layers, and hosts already dead when first collected), `overlay` marks transparent ones, and its `maps` entries take the keys above plus `"o"`, merged into the Leaflet TileLayer options.
+`skip` does not retire a published layer (it would be kept as gone upstream); use `"id"` + `"disabled": true` as for maps.
+Notes the data cannot carry: Stadia authorizes by Referer (dunne.dev is registered; localhost works without a key), so its layers fail on any other domain.
+Esri still serves the retired National Geographic basemap, but native detail stops at z12 outside the US; logged-out Strava heatmap tiles stop at z12; UN Clear Map is cached only to z7.
 
 Published IDs never change: the collector reuses IDs from the previous `maps.json`, keeps entries that vanish upstream, and refuses to write if an ID would disappear without a `drop`.
 `--frames` re-probes every service for the `f` flag (one request each; `X-Frame-Options` and CSP `frame-ancestors` only) and upgrades `http://` templates that answer on `https://`; otherwise both carry over from the previous `maps.json`.

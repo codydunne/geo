@@ -3,7 +3,8 @@
 # requires-python = ">=3.12"
 # dependencies = []
 # ///
-"""Collect map link formats from GeoHack and OpenSwitchMaps into web/_/maps.json.
+"""Collect map link formats from GeoHack and OpenSwitchMaps, and tile layers from
+xyzservices and the OpenStreetMap wiki, into web/_/maps.json.
 
 Run `uv run scripts/collect_maps.py`, review the diff, and commit by hand.
 Add `--frames` to re-probe which services may be shown in an iframe and which
@@ -38,11 +39,17 @@ OSM_SOURCES = {
     'osmw': 'https://raw.githubusercontent.com/tankaru/OpenSwitchMapsWeb/04467250a81c7d19a3513a4ff52dc5b51cf8e218/maps.js',
     'osm': 'https://raw.githubusercontent.com/tankaru/OpenSwitchMaps/49ea3ffb2d4681d95744582d4cc96b153ba96112/src/maps.js',
 }
+# xyzservices' providers.json is leaflet-providers flattened to JSON.
+XYZ = 'https://raw.githubusercontent.com/geopandas/xyzservices/cec88caf48d0da5390081e647455da7328f36949/xyzservices/data/providers.json'
+# The API, since index.php refuses action=raw with an oldid.
+WIKI_TILES = 'https://wiki.openstreetmap.org/w/api.php?action=query&prop=revisions&revids=3099957&rvprop=content&rvslots=main&format=json&formatversion=2'
 NATURAL_EARTH = 'https://raw.githubusercontent.com/nvkelso/natural-earth-vector/ca96624a56bd078437bca8184e78163e5039ad19/geojson/ne_50m_admin_0_countries.geojson'
 SOURCES = {
     'gh': 'GeoHack, en.wikipedia.org Template:GeoTemplate (CC BY-SA 4.0)',
     'osmw': 'OpenSwitchMapsWeb maps.js @0446725 (MIT, (c) tankaru)',
     'osm': 'OpenSwitchMaps maps.js @49ea3ff (MIT, (c) tankaru)',
+    'xyz': 'xyzservices providers.json @cec88ca (BSD-3-Clause), from leaflet-providers (BSD-2-Clause)',
+    'osmwiki': 'OpenStreetMap Wiki, Raster tile providers rev 3099957 (CC BY-SA 2.0)',
     'ne': 'Natural Earth 1:50m admin-0 (public domain), region bboxes',
     'x': 'Hand-maintained overrides',
 }
@@ -359,7 +366,9 @@ def host(u: str) -> str:
 
 
 def ukey(u: str) -> str:
-    return re.sub(r'^https?://(www\.)?|/$', '', u.lower())
+    # Tile templates differ only in how they spell subdomains and retina.
+    u = re.sub(r'\{[sr]\}\.?', '', u.lower())
+    return re.sub(r'^https?://(www\.)?|/$', '', u)
 
 
 def nkey(m: Map) -> tuple[str, str]:
@@ -482,6 +491,8 @@ def apply_overrides(
                 maps.remove(target)
             continue
         if target:
+            if 'o' in o:  # tile layer options merge rather than replace
+                o['o'] = target.get('o', {}) | o['o']
             target.update(o)
         elif 'u' in o:
             maps.append(o | {'s': ['x']})
@@ -508,6 +519,132 @@ def assign_ids(maps: list[Map], prev: list[Map]) -> None:
                 if (c := base if i == 1 else f'{base}-{i}') not in taken
             )
         taken.add(m['id'])
+
+
+# --- Tile layers -------------------------------------------------------------------
+
+# Left for Leaflet: {s} from `subdomains`, {r} for retina, {time} from the page's date.
+TILE_VARS = {'s', 'x', 'y', 'z', 'r', 'time'}
+OSM_ATTR = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+# xyzservices key -> Leaflet TileLayer option. The page keeps maxZoom 19 and upscales.
+TILE_OPTS = {
+    'max_zoom': 'maxNativeZoom',
+    'min_zoom': 'minNativeZoom',
+    'subdomains': 'subdomains',
+    'tms': 'tms',
+    'tileSize': 'tileSize',
+    'zoomOffset': 'zoomOffset',
+    'opacity': 'opacity',
+}
+
+
+def safe_html(s: str) -> str:
+    """Attribution reaches the page through Leaflet's innerHTML: keep text and plain
+    http(s) links only."""
+
+    def a(m: re.Match[str]) -> str:
+        h = re.search(r'href="(https?://[^"<>]*)"', m[0])
+        return f'<a href="{h[1]}">' if h else ''
+
+    s = re.sub(r'<a\b[^>]*>', a, s)
+    return re.sub(r'<(?!a href="https?://[^"<>]*">|/a>)[^>]*>', '', s)
+
+
+def https(u: str) -> str:
+    # Every http:// tile host listed answered on https:// (checked 2026-10-16);
+    # http:// tiles are mixed content on the https page anyway.
+    return re.sub(r'^http://', 'https://', u)
+
+
+def xyz_tiles(data: dict[str, Any], ov: dict[str, Any]) -> list[Map]:
+    """Keyless Web Mercator layers; 'Stadia.StamenToner' -> 'Stadia: Stamen Toner'."""
+    skip = set(ov.get('skip', []))
+    overlay = set(ov.get('overlay', []))
+    out: list[Map] = []
+    for v in data.values():
+        for o in [v] if 'url' in v else v.values():
+            name = o['name']
+            if name in skip or name.split('.')[0] in skip:
+                dropped['xyz: skipped by override'] += 1
+                continue
+            if any('<insert' in str(x) for x in o.values()):
+                dropped['xyz: needs a key'] += 1
+                continue
+            if o.get('crs', 'EPSG:3857') != 'EPSG:3857' or o.get('status'):
+                dropped['xyz: not Web Mercator, or marked broken'] += 1
+                continue
+            keep = TILE_VARS - ({'time'} if o.get('time') else set())
+            u = re.sub(
+                r'\{(\w+)\}',
+                lambda g, o=o, keep=keep: (
+                    g[0] if g[1] in keep else str(o.get(g[1], g[0]))
+                ),
+                o['url'],
+            )
+            if set(re.findall(r'\{(\w+)\}', u)) - TILE_VARS:
+                dropped['xyz: unresolved placeholder'] += 1
+                continue
+            attr = o.get('html_attribution') or o.get('attribution', '')
+            opts = {'attribution': safe_html(attr)}
+            opts |= {to: o[k] for k, to in TILE_OPTS.items() if o.get(k)}
+            prov, _, var = name.partition('.')
+            t: Map = {
+                'n': f'{prov}: {re.sub(r"(?<=[a-z])(?=[A-Z])", " ", var)}'
+                if var
+                else prov,
+                # Translucent layers (opacity) are meant to sit on a basemap.
+                'c': 'Overlays'
+                if {name, prov} & overlay or 'opacity' in o
+                else 'Basemaps',
+                'u': https(u),
+                'o': opts,
+                's': ['xyz'],
+            }
+            if b := o.get('bounds'):
+                (s, w), (n, e) = b  # lat-first
+                if e - w < 359:
+                    t['r'] = [[_fl(w), _fl(s), _ce(e), _ce(n)]]
+            out.append(t)
+    return out
+
+
+def wiki_tiles(text: str) -> list[Map]:
+    """Free, keyless {{Tile server}} rows; the section says base or overlay."""
+    out: list[Map] = []
+    section = ''
+    for m in re.finditer(
+        r'^(=+)\s*([^=\n]+?)\s*\1\s*$|\{\{Tile server\n(.*?)\n\}\}',
+        text,
+        re.MULTILINE | re.DOTALL,
+    ):
+        if m[2]:
+            section = m[2]
+            continue
+        f = dict(re.findall(r'^\|\s*(\w+)\s*=(.*)$', m[3], re.MULTILINE))
+        if not f.get('free_or_commercial', '').strip().lower().startswith('free'):
+            dropped['osmwiki: not free'] += 1
+            continue
+        urls = [
+            u
+            for u in re.findall(r'https?://[^\s,<]+', f.get('url', ''))
+            if '{z}' in u and not re.search(r'key=|XXX|api=', u)
+        ]
+        for u in urls:
+            out.append(
+                {
+                    'n': clean(f.get('name', '')),
+                    'c': 'Overlays' if 'overlay' in section.lower() else 'Basemaps',
+                    'u': https(u),
+                    'o': {'attribution': OSM_ATTR},
+                    's': ['osmwiki'],
+                }
+            )
+    # Several layers of one service share a name: tell them apart by URL path.
+    names = Counter(t['n'] for t in out)
+    for t in out:
+        if names[t['n']] > 1 and (seg := re.search(r'/([^/{}]+)/\{z\}', t['u'])):
+            t['n'] += f' {seg[1]}'
+    return out
 
 
 # --- Regions ---------------------------------------------------------------------
@@ -567,7 +704,8 @@ def regions(maps: list[Map], ov: dict[str, Any]) -> dict[str, list[list[float]]]
             continue
         r: list[Any] = []
         for code in m['r']:
-            a = alias.get(code, code)
+            # Tile layers carry inline [w, s, e, n] boxes from their bounds.
+            a = alias.get(code, code) if isinstance(code, str) else [code]
             if a is None:
                 r = []
                 break
@@ -598,21 +736,63 @@ def regions(maps: list[Map], ov: dict[str, Any]) -> dict[str, list[list[float]]]
 # --- Main ------------------------------------------------------------------------
 
 
-def check(data: dict[str, Any], prev: list[Map], dropped_ids: set[str]) -> None:
-    ids = [m['id'] for m in data['maps']]
+def check_ids(items: list[Map], prev: list[Map], dropped_ids: set[str]) -> None:
+    ids = [m['id'] for m in items]
     assert len(ids) == len(set(ids)), 'duplicate ids'
     assert all(re.fullmatch(r'[a-z0-9][a-z0-9-]*', i) for i in ids), 'bad id'
     missing = {m['id'] for m in prev} - set(ids) - dropped_ids
     assert not missing, f'published ids vanished: {missing}'
+
+
+def check(
+    data: dict[str, Any], prev: dict[str, Any], dropped: dict[str, set[str]]
+) -> None:
+    check_ids(data['maps'], prev.get('maps', []), dropped['maps'])
+    check_ids(data['tiles'], prev.get('tiles', []), dropped['tiles'])
     for m in data['maps']:
         bad = set(re.findall(r'\{(\w*)\}', m['u'])) - PLACEHOLDERS
         assert not bad, f'{m["id"]}: unknown placeholders {bad}'
         assert m['u'].startswith(('https://', 'http://')), m['id']
+    for t in data['tiles']:
+        bad = set(re.findall(r'\{(\w*)\}', t['u'])) - TILE_VARS
+        assert not bad, f'{t["id"]}: unknown placeholders {bad}'
+        assert t['u'].startswith('https://'), t['id']
+        assert t['c'] in ('Basemaps', 'Overlays'), t['id']
+
+
+def publish(
+    items: list[Map], prev: list[Map], dropped_ids: set[str], disabled_ids: set[str]
+) -> list[Map]:
+    """Stable ids: reuse published ones, keep entries gone upstream until dropped."""
+    # IDs first, so an entry that kept its name+host but changed its template
+    # inherits its published id instead of leaving a stale copy behind.
+    # A dropped id is never handed to a surviving entry that shares its URL or name.
+    assign_ids(items, [p for p in prev if p['id'] not in dropped_ids])
+    have = {ukey(m['u']) for m in items} | {m['id'] for m in items}
+    kept = [
+        m
+        for m in prev
+        if m['id'] not in dropped_ids
+        and m['id'] not in have
+        and ukey(m['u']) not in have
+    ]
+    for m in kept:
+        m.pop('f', None)  # re-decided by the caller, like every other map
+        print(f'  kept (gone upstream): {m["id"]}', file=sys.stderr)
+    items += kept
+    for m in items:
+        m.pop('disabled', None)
+        if m['id'] in disabled_ids:
+            m['disabled'] = True
+    if unknown := disabled_ids - {m['id'] for m in items}:
+        print(f'  disabled ids not found: {sorted(unknown)}', file=sys.stderr)
+    return items
 
 
 def main() -> None:
     ov = json.loads(OVERRIDES.read_text())
-    prev: list[Map] = json.loads(OUT.read_text())['maps'] if OUT.exists() else []
+    prev_all: dict[str, Any] = json.loads(OUT.read_text()) if OUT.exists() else {}
+    prev: list[Map] = prev_all.get('maps', [])
 
     print('fetching GeoHack, OpenSwitchMaps...', file=sys.stderr)
     groups = [osm(fetch(url), src) for src, url in OSM_SOURCES.items()]
@@ -625,28 +805,27 @@ def main() -> None:
             else:
                 print(f'  local map without region: {m["n"]}', file=sys.stderr)
     maps, dropped_ids, disabled_ids = apply_overrides(maps, ov)
+    maps = publish(maps, prev, dropped_ids, disabled_ids)
 
-    # IDs first, so an entry that kept its name+host but changed its template
-    # inherits its published id instead of leaving a stale copy behind.
-    # A dropped id is never handed to a surviving map that shares its URL or name.
-    assign_ids(maps, [p for p in prev if p['id'] not in dropped_ids])
-    # Keep previously published entries that vanished upstream until explicitly dropped.
-    have = {ukey(m['u']) for m in maps} | {m['id'] for m in maps}
-    kept = [
-        m
-        for m in prev
-        if m['id'] not in dropped_ids
-        and m['id'] not in have
-        and ukey(m['u']) not in have
-    ]
-    for m in kept:
-        m.pop('f', None)  # re-decided below, like every other map
-        print(f'  kept (gone upstream): {m["id"]}', file=sys.stderr)
-    maps += kept
-    for m in maps:
-        m.pop('disabled', None)
-        if m['id'] in disabled_ids:
-            m['disabled'] = True
+    print('fetching xyzservices, OSM wiki tile providers...', file=sys.stderr)
+    tov: dict[str, Any] = ov['tiles']
+    tiles = merge(
+        [
+            xyz_tiles(json.loads(fetch(XYZ)), tov),
+            wiki_tiles(
+                json.loads(fetch(WIKI_TILES))['query']['pages'][0]['revisions'][0][
+                    'slots'
+                ]['main']['content']
+            ),
+        ]
+    )
+    # Wiki rows carry no attribution; borrow the style's credit from a layer on the same host.
+    credit = {host(t['u']): t['o']['attribution'] for t in tiles if 'xyz' in t['s']}
+    for t in tiles:
+        if t['s'] == ['osmwiki'] and host(t['u']) in credit:
+            t['o']['attribution'] = credit[host(t['u'])]
+    tiles, t_dropped, t_disabled = apply_overrides(tiles, {'maps': tov['maps']})
+    tiles = publish(tiles, prev_all.get('tiles', []), t_dropped, t_disabled)
     # An override's "f" wins; otherwise probe, or keep what the last probe found.
     todo = [m for m in maps if 'f' not in m]
     if '--frames' in sys.argv:
@@ -662,9 +841,6 @@ def main() -> None:
             # Upstream still lists http://; keep the https:// the last probe found.
             if prev_u.get(m['id']) == re.sub(r'^http://', 'https://', m['u']):
                 m['u'] = prev_u[m['id']]
-    if unknown := disabled_ids - {m['id'] for m in maps}:
-        print(f'  disabled ids not found: {sorted(unknown)}', file=sys.stderr)
-
     # A duplicate lists under its best version: same category and region, sorted right after it.
     by_id = {m['id']: m for m in maps}
     for m in maps:
@@ -677,7 +853,7 @@ def main() -> None:
             m['_best'] = best['n']
 
     check_patterns(maps)
-    reg = regions(maps, ov)
+    reg = regions(maps + tiles, ov)
     order = {c: i for i, c in enumerate(ov.get('order', []))}
     maps.sort(
         key=lambda m: (
@@ -696,14 +872,26 @@ def main() -> None:
         'geocoders': ov['geocoders'],
         # "f" is written only when true.
         'maps': [{k: m[k] for k in keys if k in m and m[k] is not False} for m in maps],
+        'tiles': [
+            {
+                k: t[k]
+                for k in ['id', 'n', 'c', 'u', 'o', 'r', 's', 'star', 'disabled']
+                if k in t
+            }
+            for t in sorted(
+                tiles,
+                key=lambda t: (t['c'], 'r' in t, not t.get('star'), t['n'].casefold()),
+            )
+        ],
         'regions': reg,
     }
-    check(data, prev, dropped_ids)
+    check(data, prev_all, {'maps': dropped_ids, 'tiles': t_dropped})
     OUT.write_text(json.dumps(data, ensure_ascii=False, indent=1) + '\n')
 
     new = {m['id'] for m in maps} - {m['id'] for m in prev}
     print(
-        f'wrote {OUT.relative_to(ROOT)}: {len(maps)} maps, {len(reg)} regions',
+        f'wrote {OUT.relative_to(ROOT)}: {len(maps)} maps, {len(tiles)} tiles, '
+        f'{len(reg)} regions',
         file=sys.stderr,
     )
     print(

@@ -40,7 +40,7 @@ def wait_for_server() -> None:
 def visit(page: Page, path: str) -> None:
     page.goto(BASE + path)
     page.wait_for_function(
-        'document.querySelector("#list a") || !document.querySelector("#msg").hidden'
+        'document.querySelector("#list a:not(.tile)") || !document.querySelector("#msg").hidden'
     )
 
 
@@ -87,7 +87,12 @@ def main() -> None:
                 page = context.new_page()
                 errors: list[str] = []
                 page.on('pageerror', lambda e, errors=errors: errors.append(str(e)))
-                page.route('https://tile.openstreetmap.org/**', lambda r: r.abort())
+                for host in (
+                    'tile.openstreetmap.org',
+                    'tiles.stadiamaps.com',
+                    '*.strava.com',
+                ):
+                    page.route(f'https://{host}/**', lambda r: r.abort())
                 page.route('https://nominatim.openstreetmap.org/**', nominatim)
                 page.route('https://photon.komoot.io/**', photon)
 
@@ -100,10 +105,10 @@ def main() -> None:
                     page.evaluate('location.pathname + location.search')
                     == '/geo/42.364678,-71.131311'
                 ), page.url
-                n = page.locator('#list a').count()
+                n = page.locator('#list a:not(.tile)').count()
                 assert n > 100, n
                 href = page.locator(
-                    '#list a', has_text='OpenStreetMap'
+                    '#list a:not(.tile)', has_text='OpenStreetMap'
                 ).first.get_attribute('href')
                 assert href and '42.364678' in href, href
 
@@ -238,7 +243,7 @@ def main() -> None:
                     page.url
                 )
                 page.reload()
-                page.wait_for_selector('#list a')
+                page.wait_for_selector('#list a:not(.tile)')
                 assert len(nominatim_calls) == before + 1, nominatim_calls
 
                 # Nominatim miss -> Photon fallback.
@@ -264,7 +269,7 @@ def main() -> None:
                 assert page.locator('#q-clear').is_hidden()
                 assert page.evaluate('location.pathname') == '/geo/'
                 assert page.locator('.leaflet-marker-icon').count() == 0
-                assert page.locator('#list a').count() == 0
+                assert page.locator('#list a:not(.tile)').count() == 0
                 page.click('#map', position={'x': 150, 'y': 150})
                 page.wait_for_function('location.pathname.startsWith("/geo/42.3")')
                 visit(page, '/geo/42.36,-71.13')
@@ -272,7 +277,7 @@ def main() -> None:
                 page.wait_for_function('location.pathname === "/geo/42.36,-71.13&z=16"')
 
                 # Dragging the pin moves the point, the URL, and every link.
-                osm = page.locator('#list a', has_text='OpenStreetMap').first
+                osm = page.locator('#list a:not(.tile)', has_text='OpenStreetMap').first
                 before_href = osm.get_attribute('href')
                 box = page.locator('.leaflet-marker-icon').bounding_box()
                 assert box
@@ -313,9 +318,9 @@ def main() -> None:
                     'document.querySelector("#where").textContent.startsWith("Click")'
                 )
                 assert page.locator('.leaflet-marker-icon').count() == 0
-                assert page.locator('#list a').count() == 0
+                assert page.locator('#list a:not(.tile)').count() == 0
                 page.click('#map', position={'x': 40, 'y': 120})
-                page.wait_for_selector('#list a')
+                page.wait_for_selector('#list a:not(.tile)')
                 path = page.evaluate('location.pathname')
                 lat, lon = (
                     float(v)
@@ -325,6 +330,44 @@ def main() -> None:
                     path.endswith('&z=10') and 42.0 < lat < 42.8 and -71.6 < lon < -70.6
                 ), path
                 assert page.locator('.leaflet-marker-icon').count() == 1
+
+                # Tile layers: listed before a pin, a basemap replaces, an overlay toggles,
+                # and the choice lives in the URL and survives a new location.
+                page.goto(BASE + '/geo/')
+                page.wait_for_selector('#list a.tile')
+                base = page.locator(
+                    '#list a.tile', has_text='Stadia: Stamen Watercolor'
+                )
+                base.click()
+                page.wait_for_function('location.search === "?tile=watercolor"')
+                assert base.get_attribute('aria-current') == 'true'
+                # The links are permalinks, for opening in a new tab.
+                strava = page.locator('#list a.tile', has_text='Strava: heatmap')
+                assert strava.get_attribute('href') == '/geo/?tile=watercolor,strava'
+                with context.expect_page() as tab:
+                    strava.click(modifiers=['ControlOrMeta'])
+                tab.value.close()
+                assert page.evaluate('location.search') == '?tile=watercolor'
+                assert (
+                    page.locator(
+                        '.leaflet-tile-pane img[src*="stamen_watercolor"]'
+                    ).count()
+                    > 0
+                )
+                assert (
+                    page.locator('.leaflet-tile-pane img[src*="openstreetmap"]').count()
+                    == 0
+                )
+                page.locator('#list a.tile', has_text='Strava: heatmap').click()
+                page.wait_for_function('location.search === "?tile=watercolor,strava"')
+                page.fill('#q', '42.36,-71.13')
+                page.press('#q', 'Enter')
+                page.wait_for_function(
+                    'location.pathname === "/geo/42.36,-71.13&tile=watercolor,strava"'
+                )
+                page.locator('#list a.tile', has_text='Strava: heatmap').click()
+                page.locator('#list a.tile', has_text='OpenStreetMap').first.click()
+                page.wait_for_function('location.pathname === "/geo/42.36,-71.13"')
 
                 # Unreadable input shows an error, not a crash.
                 visit(page, '/geo/not-a-place')

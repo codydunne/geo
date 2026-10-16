@@ -234,6 +234,9 @@ button.linkish:hover { opacity: 1; text-decoration: underline; }
 .group li { padding: 0.15rem 0; break-inside: avoid; }
 /* Unstarred maps recede; must precede a.disabled, which has equal specificity. */
 a.dim { color: var(--fg); }
+/* The chosen tile layers are checked. */
+a.tile[aria-current="true"] { font-weight: bold; }
+a.tile[aria-current="true"]::before { content: "\2713\00a0"; }
 a.disabled { color: var(--error); text-decoration: line-through; }
 /* Framable maps (they open in the pane) get a small window drawn after the name. */
 a.f::after {

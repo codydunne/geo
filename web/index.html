@@ -29,7 +29,8 @@
         <li>Decimal or degree-minute-second coordinates.</li>
         <li>Searches Nominatim then Photon for non-lat-lon entries.</li>
         <li>Rewrites the address bar to a short link: <code>/geo/&lt;lat&gt;,&lt;lon&gt;</code> plus optional
-          <code>&amp;z=</code> zoom, <code>&amp;m=</code> map, and <code>&amp;a=</code> pin label.</li>
+          <code>&amp;z=</code> zoom, <code>&amp;m=</code> map, <code>&amp;tile=</code> basemap and overlays, and <code>&amp;a=</code> pin label.</li>
+        <li>Basemaps and Overlays at the end of the list change the pin map; Ctrl/&#8984;/middle-click opens the change in a new tab.</li>
         <li>Filters maps by location coverage (automatic), category, or name. Optionally show disabled sites and other regions&rsquo; maps.</li>
         <li>Maps with a small window open in place. Ctrl/&#8984;/middle-click opens them directly. Optionally try any map in the frame.</li>
         <li>FOSS: <a href="https://github.com/codydunne/geo">github.com/codydunne/geo</a>.</li>
@@ -81,8 +82,9 @@
           <a href="https://github.com/tankaru/OpenSwitchMapsWeb">OpenSwitchMaps</a> (MIT).
           Geocoding by <a href="https://nominatim.org/">Nominatim</a> and <a href="https://photon.komoot.io/">Photon</a>.
           Region outlines from <a href="https://www.naturalearthdata.com/">Natural Earth</a>.
-          Map by <a href="https://leafletjs.com/">Leaflet</a> with
-          <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> tiles.
+          Map by <a href="https://leafletjs.com/">Leaflet</a>; tile layers listed by
+          <a href="https://github.com/geopandas/xyzservices">xyzservices</a>/<a href="https://github.com/leaflet-extras/leaflet-providers">leaflet-providers</a> (BSD) and the
+          <a href="https://wiki.openstreetmap.org/wiki/Raster_tile_providers">OpenStreetMap wiki</a> (CC BY-SA 2.0), each credited on the map.
         </footer>
       </div>
     </div>

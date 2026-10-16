@@ -1,11 +1,14 @@
 // Pure location logic shared by the page and `node --test`: no DOM access here.
 
 /**
- * @typedef {{lat?: string, lon?: string, z?: number, m?: string, a?: string}} State
+ * @typedef {{lat?: string, lon?: string, z?: number, m?: string, a?: string, tile?: string}} State
  *   lat/lon stay strings so the digits a user typed survive canonicalization.
+ *   tile: comma-separated tile layer ids (a basemap and any overlays).
  * @typedef {{id: string, n: string, c: string, u: string, p?: string[], r?: (string | number[])[], s?: string[], f?: boolean, star?: boolean, disabled?: boolean}} MapDef
  *   f: the service allows being shown in an iframe (probed by the collector).
- * @typedef {{v: number, geocoders?: string[], maps: MapDef[], regions: Record<string, number[][]>}} MapData
+ * @typedef {{id: string, n: string, c: "Basemaps" | "Overlays", u: string, o: Record<string, unknown>, r?: (string | number[])[], s?: string[], star?: boolean, disabled?: boolean}} TileDef
+ *   u: a Leaflet tile URL template; o: its TileLayer options.
+ * @typedef {{v: number, geocoders?: string[], maps: MapDef[], tiles: TileDef[], regions: Record<string, number[][]>}} MapData
  */
 
 export const BASE = "/geo/";
@@ -149,8 +152,9 @@ export function parse(raw, data) {
   /** @type {State} */
   const own = {};
   let head = raw;
-  for (let m; (m = head.match(/(?:^|&)([zma])=([^&]*)$/)); head = head.slice(0, m.index)) {
-    const k = /** @type {"z"|"m"|"a"} */ (m[1]);
+  // `tile`, not `t`: many map links end in their own `&t=` (Apple, Google).
+  for (let m; (m = head.match(/(?:^|&)(z|m|a|tile)=([^&]*)$/)); head = head.slice(0, m.index)) {
+    const k = /** @type {"z"|"m"|"a"|"tile"} */ (m[1]);
     const v = decode(m[2].replace(/\+/g, " ")).trim();
     if (k === "z") {
       if (/^\d+(\.\d+)?$/.test(v)) own.z = Math.round(Number(v));
@@ -215,6 +219,7 @@ export function canonical(st) {
   let s = st.lat !== undefined ? `${st.lat},${st.lon}` : "";
   if (st.z !== undefined && st.z !== DEFAULT_Z) s += `&z=${st.z}`;
   if (st.m) s += `&m=${enc(st.m)}`;
+  if (st.tile) s += `&tile=${enc(st.tile)}`;
   if (st.a) s += `&a=${enc(st.a)}`;
   return BASE + (s.startsWith("&") ? "?" + s.slice(1) : s);
 }
@@ -275,7 +280,7 @@ export function fill(u, st) {
 /**
  * Whether a map applies at this point: global maps always, regional ones only inside
  * one of their country bboxes or inline [w,s,e,n] boxes.
- * @param {MapDef} d @param {State} st @param {MapData["regions"]} regions
+ * @param {MapDef | TileDef} d @param {State} st @param {MapData["regions"]} regions
  */
 export function inRegion(d, st, regions) {
   if (!d.r) return true;
